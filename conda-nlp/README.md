@@ -4,6 +4,8 @@ The purpose of this container is to create a Natural Language Processing (NLP) [
 
 # Docker
 
+Build it.
+
 ```bash
 ./build.sh
 ```
