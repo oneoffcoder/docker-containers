@@ -1,0 +1,27 @@
+name: nlp
+dependencies:
+  - python=3.7
+  - pip:
+    - pip
+    - numpy
+    - scipy
+    - networkx
+    - pandas
+    - matplotlib
+    - scikit-learn
+    - seaborn
+    - autograd
+    - tqdm
+    - joblib
+    - statsmodels
+    - ipykernel
+    - missingno
+    - spacy
+    - gensim
+    - wordcloud
+    - nltk
+    - yellowbrick
+    - textblob
+    - jupyter
+    - jupyterlab
+    - jupyter_contrib_nbextensions
