@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3
 LABEL Thanos "vangjee@gmail.com"
 RUN apt-get update
-RUN apt-get install supervisor -y
+RUN apt-get install supervisor default-libmysqlclient-dev python-dev build-essential -y
 COPY environment.yml /tmp/environment.yml
 COPY setup.sh /tmp/setup.sh
 COPY supervisord.conf /etc/supervisor/supervisord.conf

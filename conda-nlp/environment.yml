@@ -2,7 +2,6 @@ name: nlp
 dependencies:
   - python=3.7
   - pip:
-    - pip
     - numpy
     - scipy
     - networkx
@@ -22,6 +21,12 @@ dependencies:
     - nltk
     - yellowbrick
     - textblob
+    - Pattern
+    - polyglot
+    - stanfordcorenlp
+    - Vocabulary
+    - PyNLPl
+    - scattertext
     - jupyter
     - jupyterlab
     - jupyter_contrib_nbextensions
