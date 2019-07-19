@@ -2,10 +2,10 @@
 
 These are some sample docker containers for learning purposes.
 
-* [conda-nlp](conda-nlp)
-* [nginx-env](nginx-env)
-* [nginx-port](nginx-port)
-* [nginx-wsgi](nginx-wsgi)
+* [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/vangjee/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
+* [nginx-env](nginx-env): A [container](https://hub.docker.com/r/vangjee/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
+* [nginx-port](nginx-port): A [container](https://hub.docker.com/r/vangjee/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
+* [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/vangjee/nginx-wsgi) showing how to run flask behind gunicor and nginx.
 
 # Docker Hub
 
