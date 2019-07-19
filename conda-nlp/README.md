@@ -2,6 +2,20 @@
 
 The purpose of this container is to create a Natural Language Processing (NLP) [Conda](https://anaconda.org/) environment.
 
+Here are some NLP packages installed.
+
+* [spaCy](https://spacy.io/) with all English models
+* [gensim](https://radimrehurek.com/gensim/)
+* [nltk](https://www.nltk.org/)
+* [textblob](https://textblob.readthedocs.io/en/dev/)
+* [Pattern](https://www.clips.uantwerpen.be/pages/pattern)
+* [polyglot](https://github.com/aboSamoor/polyglot)
+* [stanfordcorenlp](https://github.com/Lynten/stanford-corenlp)
+* [Vocabulary](https://github.com/tasdikrahman/vocabulary)
+* [PyNLPl](https://github.com/proycon/pynlpl)
+* [wordcloud](https://github.com/amueller/word_cloud)
+* [scattertext](https://github.com/JasonKessler/scattertext)
+
 # Docker
 
 Build it.
