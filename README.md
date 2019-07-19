@@ -2,6 +2,11 @@
 
 These are some sample docker containers for learning purposes.
 
+* [conda-nlp](conda-nlp)
+* [nginx-env](nginx-env)
+* [nginx-port](nginx-port)
+* [nginx-wsgi](nginx-wsgi)
+
 # Docker Hub
 
 The instructions for publishing to Docker Hub are [here](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html).
