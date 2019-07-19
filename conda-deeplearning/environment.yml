@@ -1,0 +1,35 @@
+name: deeplearning
+dependencies:
+  - python=3.7
+  - pip:
+    - numpy
+    - scipy
+    - networkx
+    - pandas
+    - matplotlib
+    - scikit-learn
+    - seaborn
+    - autograd
+    - tqdm
+    - joblib
+    - statsmodels
+    - ipykernel
+    - missingno
+    - spacy
+    - gensim
+    - wordcloud
+    - nltk
+    - yellowbrick
+    - textblob
+    - Pattern
+    - polyglot
+    - stanfordcorenlp
+    - Vocabulary
+    - PyNLPl
+    - scattertext
+    - jupyter
+    - jupyterlab
+    - jupyter_contrib_nbextensions
+    - opencv-python
+    - tensorflow-gpu
+    - mxnet-cu101mkl
