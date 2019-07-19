@@ -62,7 +62,7 @@ Check out [John Papa](https://johnpapa.net/). He's got some good philosophical a
 ```
 @misc{vang_nginx_gunicorn_flask_demo_2019, 
 title={HOWTO create a docker container with nginx, gunicorn and flask}, 
-url={https://github.com/vangj/docker-nginx-gunicorn-flask-demo}, 
+url={https://github.com/vangj/docker-containers/tree/master/nginx-wsgi}, 
 journal={GitHub},
 author={Vang, Jee}, 
 year={2019}, 

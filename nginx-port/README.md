@@ -40,7 +40,7 @@ Check out [Charles Petzold](https://en.wikipedia.org/wiki/Charles_Petzold). He's
 ```
 @misc{vang_nginx_env_vars_2019, 
 title={nginx with dynamic environment variables}, 
-url={https://github.com/vangj/nginx-proj/}, 
+url={https://github.com/vangj/docker-containers/tree/master/nginx-port}, 
 journal={GitHub},
 author={Vang, Jee}, 
 year={2019}, 
