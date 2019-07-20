@@ -2,6 +2,12 @@
 
 The purpose of this container is to create a Deep Learning [Conda](https://anaconda.org/) environment.
 
+Here are some Deep Learning packages installed.
+
+* [TensorFlow](https://www.tensorflow.org/)
+* [PyTorch](https://pytorch.org/)
+* [MXNet](https://mxnet.apache.org/)
+
 # Docker
 
 Build it.
