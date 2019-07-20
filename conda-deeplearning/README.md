@@ -59,3 +59,15 @@ Observe it.
 * [Install Anaconda in silent mode](https://docs.anaconda.com/anaconda/install/silent-mode/)
 * [Include .whl installation in requirements.txt](https://stackoverflow.com/questions/45018492/include-whl-installation-in-requirements-txt)
 * [Tensorflow Install GPU](https://www.tensorflow.org/install/gpu)
+
+# Citation
+
+```
+@misc{vang_conda_deeplearning_2019, 
+title={Docker container for Deep Learning with Jupyter Lab}, 
+url={https://github.com/vangj/docker-containers/tree/master/conda-deeplearning}, 
+journal={GitHub},
+author={Vang, Jee}, 
+year={2019}, 
+month={Jul}}
+```

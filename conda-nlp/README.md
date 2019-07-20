@@ -41,3 +41,15 @@ docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 conda-nlp:local
 ```
 
 Observe it: [http://localhost:8888](http://localhost:8888).
+
+# Citation
+
+```
+@misc{vang_conda_nlp_2019, 
+title={Docker container for Natural Language Processing with Jupyter Lab}, 
+url={https://github.com/vangj/docker-containers/tree/master/conda-nlp}, 
+journal={GitHub},
+author={Vang, Jee}, 
+year={2019}, 
+month={Jul}}
+```

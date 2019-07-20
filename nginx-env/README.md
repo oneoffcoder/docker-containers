@@ -28,3 +28,14 @@ Observe it.
 docker exec -it [CONTAINER_ID] cat /usr/share/nginx/html/env.json
 docker exec -it [CONTAINER_ID] /bin/bash
 ```
+# Citation
+
+```
+@misc{vang_nginx_env_2019, 
+title={Docker container showing how to read environment variables}, 
+url={https://github.com/vangj/docker-containers/tree/master/nginx-env}, 
+journal={GitHub},
+author={Vang, Jee}, 
+year={2019}, 
+month={Jul}}
+```

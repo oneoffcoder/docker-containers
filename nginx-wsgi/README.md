@@ -66,29 +66,11 @@ Check out [John Papa](https://johnpapa.net/). He's got some good philosophical a
 # Citation
 
 ```
-@misc{vang_nginx_gunicorn_flask_demo_2019, 
-title={HOWTO create a docker container with nginx, gunicorn and flask}, 
+@misc{vang_nginx_wsgi_2019, 
+title={Docker container show how to run a Flask application behind gunicorn and nginx}, 
 url={https://github.com/vangj/docker-containers/tree/master/nginx-wsgi}, 
 journal={GitHub},
 author={Vang, Jee}, 
 year={2019}, 
-month={Jun}}
-```
-
-# Copyright Stuff
-
-```
-Copyright 2019 Jee Vang
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+month={Jul}}
 ```
