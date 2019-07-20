@@ -10,7 +10,7 @@ Here are some Deep Learning packages installed.
 * [spaCy](https://spacy.io)
 * [AllenNLP](https://allennlp.org)
 
-Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) (look at the `runtime=nvidia` requirement below when running this container).
+Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) (look at the `runtime=nvidia` requirement below when running this container). You will also need [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive), [cuDNN 7](https://developer.nvidia.com/cudnn), and [NCCL 2.3](https://developer.nvidia.com/nccl) installed on your host computer.
 
 # Docker Hub
 
