@@ -8,6 +8,8 @@ Here are some Deep Learning packages installed.
 * [PyTorch](https://pytorch.org/)
 * [MXNet](https://mxnet.apache.org/)
 
+Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) (look at the `runtime=nvidia` requirement below when running this container).
+
 # Docker
 
 Build it.
