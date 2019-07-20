@@ -11,6 +11,26 @@ These are some sample docker containers for learning purposes.
 
 The instructions for publishing to Docker Hub are [here](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html).
 
+# Cleaning up
+
+Remove all exited docker images
+
+```bash
+docker rm $(docker ps -q -f status=exited)
+```
+
+Remove all docker images that are dangling.
+
+```bash
+docker image rm $(docker images -f dangling=true -q)
+```
+
+Remove stopped container and images without any container associations.
+
+```bash
+docker system prune -a
+```
+
 # Citation
 
 ```

@@ -13,13 +13,35 @@ Build it.
 Run it.
 
 ```bash
-docker run -it -p 8888:8888 conda-deeplearning:local
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -p 8888:8888 \
+    conda-deeplearning:local
 ```
 
 Run it with a mounted host folder.
 
 ```bash
-docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 conda-deeplearning:local
+docker run -it \
+    -v /home/super/git/docker-containers/conda-deeplearning/ipynb:/ipynb \
+    -p 8888:8888 \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    conda-deeplearning:local
 ```
 
-Observe it: [http://localhost:8888](http://localhost:8888).
+Observe it.
+
+* [http://localhost:8888](http://localhost:8888)
+
+# Links
+
+* [GitHub NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)
+* [NVIDIA CUDA docker image](https://hub.docker.com/r/nvidia/cuda)
+* [Anaconda Install Scripts](https://repo.anaconda.com/archive/)
+* [Install Anaconda in silent mode](https://docs.anaconda.com/anaconda/install/silent-mode/)
+* [Include .whl installation in requirements.txt](https://stackoverflow.com/questions/45018492/include-whl-installation-in-requirements-txt)
+* [Tensorflow Install GPU](https://www.tensorflow.org/install/gpu)
