@@ -1,6 +1,6 @@
 # Purpose
 
-The purpose of this container is to create a Deep Learning [Conda](https://anaconda.org/) environment.
+The purpose of this container is to create a Deep Learning [Conda](https://anaconda.org/) environment with Jupyter Lab.
 
 Here are some Deep Learning packages installed.
 

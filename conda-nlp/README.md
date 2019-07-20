@@ -1,6 +1,6 @@
 # Purpose
 
-The purpose of this container is to create a Natural Language Processing (NLP) [Conda](https://anaconda.org/) environment.
+The purpose of this container is to create a Natural Language Processing (NLP) [Conda](https://anaconda.org/) environment with Jupyter Lab.
 
 Here are some NLP packages installed.
 
