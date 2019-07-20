@@ -2,6 +2,7 @@
 
 These are some sample docker containers for learning purposes.
 
+* [conda-deeplearning](conda-deeplearning): A [container](https://hub.docker.com/r/vangjee/conda-deeplearning) with conda environment + Jupyter for Deep Learning.
 * [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/vangjee/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
 * [nginx-env](nginx-env): A [container](https://hub.docker.com/r/vangjee/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
 * [nginx-port](nginx-port): A [container](https://hub.docker.com/r/vangjee/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
