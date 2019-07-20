@@ -7,6 +7,7 @@ RUN bash /tmp/conda.sh -b
 RUN echo "export PATH=/root/anaconda3/bin:${PATH}" >> /root/.bashrc
 COPY requirements.txt /tmp/requirements.txt
 RUN /root/anaconda3/bin/pip install -r /tmp/requirements.txt
+RUN /root/anaconda3/bin/python -m spacy download en_core_web_lg
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 RUN mkdir /ipynb
 EXPOSE 8888

@@ -7,6 +7,8 @@ Here are some Deep Learning packages installed.
 * [TensorFlow](https://www.tensorflow.org/)
 * [PyTorch](https://pytorch.org/)
 * [MXNet](https://mxnet.apache.org/)
+* [spaCy](https://spacy.io)
+* [AllenNLP](https://allennlp.org)
 
 Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) (look at the `runtime=nvidia` requirement below when running this container).
 
