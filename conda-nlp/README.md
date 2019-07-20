@@ -42,6 +42,10 @@ docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 conda-nlp:local
 
 Observe it: [http://localhost:8888](http://localhost:8888).
 
+# Take a Look!
+
+Check out [Robert Schapire](https://en.wikipedia.org/wiki/Robert_Schapire).
+
 # Citation
 
 ```

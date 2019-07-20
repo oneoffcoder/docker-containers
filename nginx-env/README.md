@@ -28,6 +28,11 @@ Observe it.
 docker exec -it [CONTAINER_ID] cat /usr/share/nginx/html/env.json
 docker exec -it [CONTAINER_ID] /bin/bash
 ```
+
+# Take a Look!
+
+Check out [John Henry Holland](https://en.wikipedia.org/wiki/John_Henry_Holland).
+
 # Citation
 
 ```

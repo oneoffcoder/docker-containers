@@ -60,6 +60,10 @@ Observe it.
 * [Include .whl installation in requirements.txt](https://stackoverflow.com/questions/45018492/include-whl-installation-in-requirements-txt)
 * [Tensorflow Install GPU](https://www.tensorflow.org/install/gpu)
 
+# Take a Look!
+
+Check out [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church).
+
 # Citation
 
 ```
