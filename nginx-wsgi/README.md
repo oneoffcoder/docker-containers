@@ -29,21 +29,27 @@ CMD ["gunicorn", "-b", "unix:app.sock ", "-w", "4", "--chdir", "/app", "app:app"
 
 The best approach is to use [supervisor](http://supervisord.org/) to control the services. What I like about `supervisor` is that it is easy to configure and it can restart failed services. Futhermore, both services are now in the foreground (you are able to monitor logging to the console for debugging purpose).
 
+# Docker Hub
+
+[Image](https://cloud.docker.com/repository/docker/vangjee/nginx-wsgi)
+
 # Docker
 
-To build the docker image.
+Build it.
 
 ```bash
 ./build.sh
 ```
 
-To run the docker image.
+Run it.
 
 ```bash
 docker run -it -p 80:80 --rm nginx-wsgi:local
 ```
 
-Then open your browser to [localhost](http://localhost).
+Observe it.
+
+* [http://localhost](http://localhost)
 
 # References
 

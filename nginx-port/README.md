@@ -2,26 +2,32 @@
 
 This project shows `HOWTO` create a Docker container using nginx where the nginx server can `dynamically` acquire values from environment variables passed in by docker (e.g. using the `-e` command).
 
-Before you build the docker image, build the Angular application.
+# Docker Hub
+
+[Image](https://cloud.docker.com/repository/docker/vangjee/nginx-port)
+
+# Docker
+
+Build it.
 
 ```bash
-npm install
-ng build
+./build.sh
 ```
 
-Then build the docker image by typing in the following.
-
-```bash
-docker build -t nginx-port:local .
-```
-
-To test running on different ports, run one of the following.
+Run it.
 
 ```bash
 docker run -p 81:81 -e PORT=81 --rm nginx-port:local
 docker run -p 82:82 -e PORT=82 --rm nginx-port:local
 docker run -p 83:83 -e PORT=83 --rm nginx-port:local
 ```
+
+Observe it.
+
+* [http://localhost:81](http://localhost:81)
+* [http://localhost:82](http://localhost:82)
+* [http://localhost:83](http://localhost:83)
+
 # Notes
 
 Note the following.

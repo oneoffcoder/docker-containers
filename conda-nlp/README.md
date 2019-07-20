@@ -16,6 +16,10 @@ Here are some NLP packages installed.
 * [wordcloud](https://github.com/amueller/word_cloud)
 * [scattertext](https://github.com/JasonKessler/scattertext)
 
+# Docker Hub
+
+[Image](https://cloud.docker.com/repository/docker/vangjee/conda-nlp)
+
 # Docker
 
 Build it.
