@@ -14,7 +14,7 @@ Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvi
 
 # Docker Hub
 
-[Image](https://cloud.docker.com/repository/docker/vangjee/conda-deeplearning)
+[Image](https://hub.docker.com/r/vangjee/conda-deeplearning)
 
 # Docker
 

@@ -31,7 +31,7 @@ The best approach is to use [supervisor](http://supervisord.org/) to control the
 
 # Docker Hub
 
-[Image](https://cloud.docker.com/repository/docker/vangjee/nginx-wsgi)
+[Image](https://hub.docker.com/r/vangjee/nginx-wsgi)
 
 # Docker
 

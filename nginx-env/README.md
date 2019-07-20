@@ -6,7 +6,7 @@ This container uses [supervisor](http://supervisord.org/) to achieve the intende
 
 # Docker Hub
 
-[Image](https://cloud.docker.com/repository/docker/vangjee/nginx-env)
+[Image](https://hub.docker.com/r/vangjee/nginx-env)
 
 # Docker
 

@@ -4,7 +4,7 @@ This project shows `HOWTO` create a Docker container using nginx where the nginx
 
 # Docker Hub
 
-[Image](https://cloud.docker.com/repository/docker/vangjee/nginx-port)
+[Image](https://hub.docker.com/r/vangjee/nginx-port)
 
 # Docker
 

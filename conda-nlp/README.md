@@ -18,7 +18,7 @@ Here are some NLP packages installed.
 
 # Docker Hub
 
-[Image](https://cloud.docker.com/repository/docker/vangjee/conda-nlp)
+[Image](https://hub.docker.com/r/vangjee/conda-nlp)
 
 # Docker
 
