@@ -29,7 +29,7 @@ docker image rm $(docker images -f dangling=true -q)
 Remove stopped container and images without any container associations.
 
 ```bash
-docker system prune -a
+docker system prune -a -f
 ```
 
 # Citation
