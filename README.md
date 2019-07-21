@@ -7,6 +7,8 @@ These are some sample docker containers for learning purposes.
 * [nginx-env](nginx-env): A [container](https://hub.docker.com/r/vangjee/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
 * [nginx-port](nginx-port): A [container](https://hub.docker.com/r/vangjee/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
 * [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/vangjee/nginx-wsgi) showing how to run flask behind gunicor and nginx.
+* [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/vangjee/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
+* [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/vangjee/rpi-jupyterlab) with Python 3.7 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
 
 # Docker Hub
 
