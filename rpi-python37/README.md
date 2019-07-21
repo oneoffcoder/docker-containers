@@ -22,7 +22,7 @@ docker run -it rpi-python37:local
 
 # Take a Look!
 
-Check out [Robert Schapire](https://en.wikipedia.org/wiki/Robert_Schapire).
+Check out [Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan).
 
 # Citation
 
