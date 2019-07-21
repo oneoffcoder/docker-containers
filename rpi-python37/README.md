@@ -20,6 +20,12 @@ Run it.
 docker run -it rpi-python37:local
 ```
 
+Observe it.
+
+```bash
+docker run -it rpi-python37:local python -c "print('hello, world')"
+```
+
 # Take a Look!
 
 Check out [Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan).
