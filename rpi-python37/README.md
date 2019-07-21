@@ -29,7 +29,7 @@ Check out [Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan).
 ```
 @misc{vang_rpi_python37_2019, 
 title={Docker container with Python 3.7 for Raspberry Pi 4}, 
-url={https://github.com/vangj/docker-containers/tree/rpi/rpi-python37}, 
+url={https://github.com/vangj/docker-containers/tree/master/rpi-python37}, 
 journal={GitHub},
 author={Vang, Jee}, 
 year={2019}, 
