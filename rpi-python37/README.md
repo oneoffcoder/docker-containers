@@ -2,6 +2,8 @@
 
 The purpose of this container is to create a Python 3.7 environment for use with Raspberry Pi 4 (armv7l).
 
+Note that you should be building and using this container only on a Raspberry Pi 4.
+
 # Docker Hub
 
 [Image](https://hub.docker.com/r/vangjee/rpi-python37)
@@ -23,7 +25,7 @@ docker run -it rpi-python37:local
 Observe it.
 
 ```bash
-docker run -it rpi-python37:local python -c "print('hello, world')"
+docker run -it rpi-python37:local python3.7 -c "print('hello, world')"
 ```
 
 # Take a Look!
