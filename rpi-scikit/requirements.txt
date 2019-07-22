@@ -1,0 +1,10 @@
+cython
+numpy
+scipy
+pandas
+matplotlib
+scikit-learn
+seaborn
+yellowbrick
+tqdm
+joblib
