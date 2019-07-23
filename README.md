@@ -14,6 +14,18 @@ These are some sample docker containers for learning purposes.
 * [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
 * [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
 
+# Raspberry Pi Images
+
+Here are the dependencies between the RPi Docker images.
+
+* rpi-base
+* rpi-miniconda (from rpi-base)
+* rpi-jupyterlab (from rpi-miniconda)
+* rpi-scikit (from rpi-jupyterlab)
+* rpi-nlp (from rpi-scikit)
+
+The rpi-python37 docker image does not depend on the others.
+
 # Docker Hub
 
 The instructions for publishing to Docker Hub are [here](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html).
