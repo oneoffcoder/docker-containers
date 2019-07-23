@@ -14,7 +14,7 @@ Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvi
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/conda-deeplearning)
+[Image](https://hub.docker.com/r/oneoffcoder/conda-deeplearning)
 
 # Docker
 
@@ -67,11 +67,11 @@ Check out [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church).
 # Citation
 
 ```
-@misc{vang_conda_deeplearning_2019, 
+@misc{oneoffcoder_conda_deeplearning_2019, 
 title={Docker container for Deep Learning with Jupyter Lab}, 
-url={https://github.com/vangj/docker-containers/tree/master/conda-deeplearning}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/conda-deeplearning}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

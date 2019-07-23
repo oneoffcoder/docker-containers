@@ -4,7 +4,7 @@ This project shows `HOWTO` create a Docker container using nginx where the nginx
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/nginx-port)
+[Image](https://hub.docker.com/r/oneoffcoder/nginx-port)
 
 # Docker
 
@@ -44,11 +44,11 @@ Check out [Charles Petzold](https://en.wikipedia.org/wiki/Charles_Petzold). He's
 # Citation
 
 ```
-@misc{vang_nginx_port_2019, 
+@misc{oneoffcoder_nginx_port_2019, 
 title={Docker container show how to dynamically set ports from environment variable}, 
-url={https://github.com/vangj/docker-containers/tree/master/nginx-port}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/nginx-port}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

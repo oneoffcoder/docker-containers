@@ -31,7 +31,7 @@ The best approach is to use [supervisor](http://supervisord.org/) to control the
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/nginx-wsgi)
+[Image](https://hub.docker.com/r/oneoffcoder/nginx-wsgi)
 
 # Docker
 
@@ -66,11 +66,11 @@ Check out [John Papa](https://johnpapa.net/). He's got some good philosophical a
 # Citation
 
 ```
-@misc{vang_nginx_wsgi_2019, 
+@misc{oneoffcoder_nginx_wsgi_2019, 
 title={Docker container show how to run a Flask application behind gunicorn and nginx}, 
-url={https://github.com/vangj/docker-containers/tree/master/nginx-wsgi}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/nginx-wsgi}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

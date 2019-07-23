@@ -10,7 +10,7 @@ docker run --rm --privileged hypriot/qemu-register
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/rpi-miniconda)
+[Image](https://hub.docker.com/r/oneoffcoder/rpi-miniconda)
 
 # Docker
 
@@ -44,11 +44,11 @@ Check out [X](https://X).
 # Citation
 
 ```
-@misc{vang_rpi_miniconda_2019, 
+@misc{oneoffcoder_rpi_miniconda_2019, 
 title={Docker container with Miniconda for Raspberry Pi 4}, 
-url={https://github.com/vangj/docker-containers/tree/master/rpi-miniconda}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/rpi-miniconda}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

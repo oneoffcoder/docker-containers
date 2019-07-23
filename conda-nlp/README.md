@@ -18,7 +18,7 @@ Here are some NLP packages installed.
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/conda-nlp)
+[Image](https://hub.docker.com/r/oneoffcoder/conda-nlp)
 
 # Docker
 
@@ -49,11 +49,11 @@ Check out [Robert Schapire](https://en.wikipedia.org/wiki/Robert_Schapire).
 # Citation
 
 ```
-@misc{vang_conda_nlp_2019, 
+@misc{oneoffcoder_conda_nlp_2019, 
 title={Docker container for Natural Language Processing with Jupyter Lab}, 
-url={https://github.com/vangj/docker-containers/tree/master/conda-nlp}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/conda-nlp}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

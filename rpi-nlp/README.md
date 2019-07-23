@@ -6,7 +6,7 @@ Note that you should be building and using this container only on a Raspberry Pi
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/rpi-jupyterlab)
+[Image](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab)
 
 # Docker
 
@@ -47,16 +47,16 @@ Observe it.
 
 # Take a Look!
 
-Check out [Tom Mitchell](http://www.cs.cmu.edu/~tom/).
+Check out [X](http://X).
 
 # Citation
 
 ```
-@misc{vang_rpi_jupyterlab_2019, 
+@misc{oneoffcoder_rpi_jupyterlab_2019, 
 title={Docker container with Python 3.7 and Jupyter Lab for Raspberry Pi 4}, 
-url={https://github.com/vangj/docker-containers/tree/master/rpi-jupyterlab}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/rpi-jupyterlab}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

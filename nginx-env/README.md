@@ -6,7 +6,7 @@ This container uses [supervisor](http://supervisord.org/) to achieve the intende
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/nginx-env)
+[Image](https://hub.docker.com/r/oneoffcoder/nginx-env)
 
 # Docker
 
@@ -36,11 +36,11 @@ Check out [John Henry Holland](https://en.wikipedia.org/wiki/John_Henry_Holland)
 # Citation
 
 ```
-@misc{vang_nginx_env_2019, 
+@misc{oneoffcoder_nginx_env_2019, 
 title={Docker container showing how to read environment variables}, 
-url={https://github.com/vangj/docker-containers/tree/master/nginx-env}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/nginx-env}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

@@ -10,7 +10,7 @@ docker run --rm --privileged hypriot/qemu-register
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/rpi-base)
+[Image](https://hub.docker.com/r/oneoffcoder/rpi-base)
 
 # Docker
 
@@ -33,11 +33,11 @@ Check out [X](https://X).
 # Citation
 
 ```
-@misc{vang_rpi_base_2019, 
+@misc{oneoffcoder_rpi_base_2019, 
 title={Base Docker container Raspberry Pi 4}, 
-url={https://github.com/vangj/docker-containers/tree/master/rpi-base}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/rpi-base}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

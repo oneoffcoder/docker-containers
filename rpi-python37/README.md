@@ -10,7 +10,7 @@ docker run --rm --privileged hypriot/qemu-register
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/rpi-python37)
+[Image](https://hub.docker.com/r/oneoffcoder/rpi-python37)
 
 # Docker
 
@@ -39,11 +39,11 @@ Check out [Ross Quinlan](https://en.wikipedia.org/wiki/Ross_Quinlan).
 # Citation
 
 ```
-@misc{vang_rpi_python37_2019, 
+@misc{oneoffcoder_rpi_python37_2019, 
 title={Docker container with Python 3.7 for Raspberry Pi 4}, 
-url={https://github.com/vangj/docker-containers/tree/master/rpi-python37}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/rpi-python37}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```

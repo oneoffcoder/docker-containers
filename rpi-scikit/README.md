@@ -6,7 +6,7 @@ Note that you should be building and using this container only on a Raspberry Pi
 
 # Docker Hub
 
-[Image](https://hub.docker.com/r/vangjee/rpi-scikit)
+[Image](https://hub.docker.com/r/oneoffcoder/rpi-scikit)
 
 # Docker
 
@@ -52,11 +52,11 @@ Check out [George Dantzig](https://en.wikipedia.org/wiki/George_Dantzig).
 # Citation
 
 ```
-@misc{vang_rpi_scikit_2019, 
+@misc{oneoffcoder_rpi_scikit_2019, 
 title={Docker container with Python 3.7 + Jupyter Lab + Scikit-Learn for Raspberry Pi 4},
-url={https://github.com/vangj/docker-containers/tree/master/rpi-scikit}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/rpi-scikit}, 
 journal={GitHub},
-author={Vang, Jee},
+author={One-Off Coder},
 year={2019},
 month={Jul}}
 ```
