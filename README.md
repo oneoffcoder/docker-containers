@@ -38,11 +38,11 @@ docker system prune -a -f
 # Citation
 
 ```
-@misc{vang_2019, 
+@misc{oneoffcoder_docker_containers_2019, 
 title={Docker Containers}, 
-url={https://github.com/vangj/docker-containers}, 
+url={https://github.com/oneoffcoder/docker-containers}, 
 journal={GitHub},
-author={Vang, Jee}, 
+author={One-Off Coder}, 
 year={2019}, 
 month={Jul}}
 ```
@@ -50,7 +50,7 @@ month={Jul}}
 # Copyright Stuff
 
 ```
-Copyright 2019 Jee Vang
+Copyright 2019 One-Off Coder
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
