@@ -6,20 +6,20 @@ Note that you should be building and using this container only on a Raspberry Pi
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/rpi-scikit)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/rpi-scikit)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/rpi-scikit:latest
+docker pull oneoffcoder/rpi-scikit:latest
 ```
 
 Run it (plain).
 
 ```bash
-docker run -it -p 8888:8888 vangjee/rpi-scikit
+docker run -it -p 8888:8888 oneoffcoder/rpi-scikit
 ```
 
 Run it (with host mount).
@@ -28,7 +28,7 @@ Run it (with host mount).
 docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-scikit/ipynb:/ipynb \
-    vangjee/rpi-scikit
+    oneoffcoder/rpi-scikit
 ```
 
 Run it (with Jupyter Notebook instead of Jupyter lab)
@@ -38,7 +38,7 @@ docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-scikit/ipynb:/ipynb \
     -e JUPYTER_TYPE=notebook \
-    vangjee/rpi-scikit
+    oneoffcoder/rpi-scikit
 ```
 
 Observe it.

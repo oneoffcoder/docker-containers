@@ -4,20 +4,20 @@ The purpose of this container is to create a Python 3.7 environment with Jupyter
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/rpi-jupyterlab)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/rpi-jupyterlab)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/rpi-jupyterlab:latest
+docker pull oneoffcoder/rpi-jupyterlab:latest
 ```
 
 Run it (plain).
 
 ```bash
-docker run -it -p 8888:8888 vangjee/rpi-jupyterlab
+docker run -it -p 8888:8888 oneoffcoder/rpi-jupyterlab
 ```
 
 Run it (with host mount).
@@ -26,7 +26,7 @@ Run it (with host mount).
 docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-jupyterlab/ipynb:/ipynb \
-    vangjee/rpi-jupyterlab
+    oneoffcoder/rpi-jupyterlab
 ```
 
 Run it (with Jupyter Notebook instead of Jupyter lab)
@@ -36,7 +36,7 @@ docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-jupyterlab/ipynb:/ipynb \
     -e JUPYTER_TYPE=notebook \
-    vangjee/rpi-jupyterlab
+    oneoffcoder/rpi-jupyterlab
 ```
 
 Observe it.
