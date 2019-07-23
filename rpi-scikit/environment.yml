@@ -4,7 +4,11 @@ dependencies:
   - pip
   - cython
   - pandas
+  - numpy
+  - scipy
   - matplotlib
   - scikit-learn
   - seaborn
   - tqdm
+  - pip:
+    - joblib
