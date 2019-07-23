@@ -9,6 +9,7 @@ These are some sample docker containers for learning purposes.
 * [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/vangjee/nginx-wsgi) showing how to run flask behind gunicor and nginx.
 * [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/vangjee/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
 * [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/vangjee/rpi-jupyterlab) with Python 3.7 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
+* [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/vangjee/rpi-scikit) with Python 3.7 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
 
 # Docker Hub
 
