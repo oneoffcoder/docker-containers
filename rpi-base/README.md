@@ -26,12 +26,6 @@ Run it.
 docker run -it rpi-base:local
 ```
 
-Observe it.
-
-```bash
-docker run -it rpi-base:local
-```
-
 # Take a Look!
 
 Check out [X](https://X).
