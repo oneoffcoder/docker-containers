@@ -1,0 +1,10 @@
+name: sklearn
+dependencies:
+  - python=3.6
+  - pip
+  - cython
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - tqdm

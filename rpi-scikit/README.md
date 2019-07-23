@@ -28,7 +28,7 @@ Run it (with host mount).
 docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-scikit/ipynb:/ipynb \
-    rpi-nlp:local
+    rpi-scikit:local
 ```
 
 Run it (with Jupyter Notebook instead of Jupyter lab)
