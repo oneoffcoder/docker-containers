@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ORGANIZATION=vangjee
+ORGANIZATION=oneoffcoder
 REPOSITORY=rpi-python37
 VERSION=0.0.1
 IMAGEID=$(docker images | awk -v repo="$REPOSITORY" -v tag="local" 'index($1, repo) && index($2, tag) {print $3}')
