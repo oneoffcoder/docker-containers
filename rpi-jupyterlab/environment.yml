@@ -2,6 +2,7 @@ name: py36
 dependencies:
   - python=3.6
   - pip
+  - numpy
   - ipykernel
   - jupyter
   - jupyterlab
