@@ -28,7 +28,7 @@ docker run -it rpi-base:local
 
 # Take a Look!
 
-Check out [X](https://X).
+Check out [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
 # Citation
 

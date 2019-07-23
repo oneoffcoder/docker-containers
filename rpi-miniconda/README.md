@@ -39,7 +39,7 @@ docker run -it rpi-miniconda:local
 
 # Take a Look!
 
-Check out [X](https://X).
+Check out [James Gosling](https://en.wikipedia.org/wiki/James_Gosling).
 
 # Citation
 

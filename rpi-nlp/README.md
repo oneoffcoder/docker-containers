@@ -47,7 +47,7 @@ Observe it.
 
 # Take a Look!
 
-Check out [X](http://X).
+Check out [Martin Odersky](https://en.wikipedia.org/wiki/Martin_Odersky).
 
 # Citation
 
