@@ -1,6 +1,6 @@
 # Purpose
 
-The purpose of this container is to create a Python 3.7 environment with Jupyter Lab for use with Raspberry Pi 4 (armv7l).
+The purpose of this container is to create a Python 3.7 environment with Natural Language Processing (NLP) APIs for use with Raspberry Pi 4 (armv7l).
 
 Note that you should be building and using this container only on a Raspberry Pi 4.
 
