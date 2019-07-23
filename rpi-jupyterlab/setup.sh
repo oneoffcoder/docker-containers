@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR=/usr/local/miniconda/bin
+BASE_DIR=/root/miniconda/bin
 CONDA=$BASE_DIR/conda
 PIP=$BASE_DIR/pip
 JUPYTER=$BASE_DIR/jupyter

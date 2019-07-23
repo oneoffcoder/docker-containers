@@ -1,9 +1,10 @@
 FROM vangjee/rpi-miniconda
 LABEL Thanos "vangjee@gmail.com"
+ENV CONDA_ENV=/root/miniconda
 ENV JUPYTER_TYPE=lab
-RUN apt-get update -y 
-RUN apt-get upgrade -y
-RUN apt-get install supervisor -y
+# RUN apt-get update -y 
+# RUN apt-get upgrade -y
+# RUN apt-get install supervisor -y
 COPY requirements.txt /tmp/requirements.txt
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 COPY setup.sh /tmp/setup.sh
