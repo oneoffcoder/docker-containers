@@ -1,5 +1,5 @@
-FROM vangjee/rpi-jupyterlab
-LABEL Thanos "vangjee@gmail.com"
+FROM oneoffcoder/rpi-jupyterlab
+LABEL One-Off Coder "info@oneoffcoder.com"
 RUN apt-get update -y 
 RUN apt-get upgrade -y
 COPY environment.yml /tmp/environment.yml

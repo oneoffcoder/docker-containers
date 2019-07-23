@@ -1,5 +1,5 @@
-FROM vangjee/rpi-base
-LABEL Thanos "vangjee@gmail.com"
+FROM oneoffcoder/rpi-base
+LABEL One-Off Coder "info@oneoffcoder.com"
 RUN apt-get update -y 
 RUN apt-get upgrade -y
 RUN wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh -O /tmp/miniconda.sh

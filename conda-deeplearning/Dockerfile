@@ -1,5 +1,5 @@
 FROM nvidia/cuda:10.0-cudnn7-devel
-LABEL Thanos "vangjee@gmail.com"
+LABEL One-Off Coder "info@oneoffcoder.com"
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install wget supervisor -y
 RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O /tmp/conda.sh

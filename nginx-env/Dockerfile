@@ -1,5 +1,5 @@
 FROM nginx:alpine  
-LABEL Thanos "jvang@bechtel.com"
+LABEL One-Off Coder "info@oneoffcoder.com"
 COPY ./doit.sh /tmp/doit.sh
 COPY ./supervisord.conf /etc/supervisord.conf
 RUN apk update && apk add --no-cache supervisor bash

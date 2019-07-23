@@ -6,7 +6,7 @@ RUN npm install
 RUN ng build
 
 FROM nginx:alpine
-LABEL Thanos "vangjee@gmail.com"
+LABEL One-Off Coder "info@oneoffcoder.com"
 COPY nginx-default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]

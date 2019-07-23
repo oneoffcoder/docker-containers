@@ -1,5 +1,5 @@
 FROM python:3.7-alpine
-LABEL Thanos "vangjee@gmail.com"
+LABEL One-Off Coder "info@oneoffcoder.com"
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./flask /app

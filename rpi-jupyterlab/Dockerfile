@@ -1,5 +1,5 @@
-FROM vangjee/rpi-miniconda
-LABEL Thanos "vangjee@gmail.com"
+FROM oneoffcoder/rpi-miniconda
+LABEL One-Off Coder "info@oneoffcoder.com"
 ENV JUPYTER_TYPE=lab
 RUN apt-get update -y 
 RUN apt-get upgrade -y

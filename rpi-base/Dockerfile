@@ -1,5 +1,5 @@
 FROM arm32v7/ubuntu
-LABEL Thanos "vangjee@gmail.com"
+LABEL One-Off Coder "info@oneoffcoder.com"
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y 
 RUN apt-get upgrade -y
