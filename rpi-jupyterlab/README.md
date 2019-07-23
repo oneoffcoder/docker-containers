@@ -28,6 +28,7 @@ Run it (with host mount).
 docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-jupyterlab/ipynb:/ipynb \
+    -e CONDA_ENV=/root/miniconda/envs/py36 \
     rpi-jupyterlab:local
 ```
 
@@ -37,6 +38,7 @@ Run it (with Jupyter Notebook instead of Jupyter lab)
 docker run -it \
     -p 8888:8888 \
     -v /home/pi/git/docker-containers/rpi-jupyterlab/ipynb:/ipynb \
+    -e CONDA_ENV=/root/miniconda/envs/py36 \
     -e JUPYTER_TYPE=notebook \
     rpi-jupyterlab:local
 ```
