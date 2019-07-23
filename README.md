@@ -2,14 +2,17 @@
 
 These are some sample docker containers for learning purposes.
 
-* [conda-deeplearning](conda-deeplearning): A [container](https://hub.docker.com/r/vangjee/conda-deeplearning) with conda environment + Jupyter for Deep Learning.
-* [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/vangjee/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
-* [nginx-env](nginx-env): A [container](https://hub.docker.com/r/vangjee/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
-* [nginx-port](nginx-port): A [container](https://hub.docker.com/r/vangjee/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
-* [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/vangjee/nginx-wsgi) showing how to run flask behind gunicor and nginx.
-* [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/vangjee/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
-* [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/vangjee/rpi-jupyterlab) with Python 3.7 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
-* [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/vangjee/rpi-scikit) with Python 3.7 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
+* [conda-deeplearning](conda-deeplearning): A [container](https://hub.docker.com/r/oneoffcoder/conda-deeplearning) with conda environment + Jupyter for Deep Learning.
+* [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/oneoffcoder/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
+* [nginx-env](nginx-env): A [container](https://hub.docker.com/r/oneoffcoder/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
+* [nginx-port](nginx-port): A [container](https://hub.docker.com/r/oneoffcoder/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
+* [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/oneoffcoder/nginx-wsgi) showing how to run flask behind gunicor and nginx.
+* [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/oneoffcoder/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
+* [rpi-base](rpi-base): A [container](https://hub.docker.com/r/oneoffcoder/rpi-base) for use with Raspberry Pi 4.
+* [rpi-miniconda](rpi-miniconda): A [container](https://hub.docker.com/r/oneoffcoder/rpi-miniconda) with Miniconda and Python 3.6 for use with Raspberry Pi 4.
+* [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab) with Python 3.7 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
+* [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
+* [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
 
 # Docker Hub
 
