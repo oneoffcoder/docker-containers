@@ -7,5 +7,6 @@ RUN /bin/bash /tmp/miniconda.sh -b -p /usr/local/miniconda
 RUN echo "PATH=/usr/local/miniconda/bin:$PATH" >> /root/.bashrc
 RUN /usr/local/miniconda/bin/conda update -n root conda -y
 RUN /usr/local/miniconda/bin/conda update --all -y
+RUN /usr/local/miniconda/bin/pip install --upgrade pip
 RUN /usr/local/miniconda/bin/conda config --add channels rpi
 RUN /usr/local/miniconda/bin/conda install python=3.6 -y
