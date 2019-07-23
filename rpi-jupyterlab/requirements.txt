@@ -1,0 +1,3 @@
+ipykernel
+jupyter
+jupyterlab
