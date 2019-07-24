@@ -18,26 +18,26 @@ Here are some NLP packages installed.
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/conda-nlp)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/conda-nlp)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/conda-nlp:latest
+docker pull oneoffcoder/conda-nlp:latest
 ```
 
 Run it.
 
 ```bash
-docker run -it -p 8888:8888 vangjee/conda-nlp
+docker run -it -p 8888:8888 oneoffcoder/conda-nlp
 ```
 
 Run it with a mounted host folder.
 
 ```bash
-docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 vangjee/conda-nlp
+docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 oneoffcoder/conda-nlp
 ```
 
 Use it.
