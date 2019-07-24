@@ -1,0 +1,22 @@
+name: py36
+dependencies:
+  - python=3.6
+  - pip
+  - cython
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - tqdm
+  - nltk
+  - pip:
+    - joblib
+    - stanfordcorenlp
+    - gensim
+    - textblob
+  
+  
+  
+  
