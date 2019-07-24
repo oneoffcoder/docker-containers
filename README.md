@@ -10,9 +10,9 @@ These are some sample docker containers for learning purposes.
 * [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/oneoffcoder/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
 * [rpi-base](rpi-base): A [container](https://hub.docker.com/r/oneoffcoder/rpi-base) for use with Raspberry Pi 4.
 * [rpi-miniconda](rpi-miniconda): A [container](https://hub.docker.com/r/oneoffcoder/rpi-miniconda) with Miniconda and Python 3.6 for use with Raspberry Pi 4.
-* [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab) with Python 3.7 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
-* [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
-* [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.7 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
+* [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab) with Python 3.6 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
+* [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.6 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
+* [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.6 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
 
 # Raspberry Pi Images
 
