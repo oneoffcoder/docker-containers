@@ -14,14 +14,14 @@ Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvi
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/conda-deeplearning)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/conda-deeplearning)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/conda-deeplearning:latest
+docker pull oneoffcoder/conda-deeplearning:latest
 ```
 
 Run it.
@@ -32,7 +32,7 @@ docker run -it \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
     -p 8888:8888 \
-    vangjee/conda-deeplearning
+    oneoffcoder/conda-deeplearning
 ```
 
 Run it with a mounted host folder.
@@ -44,7 +44,7 @@ docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
-    vangjee/conda-deeplearning
+    oneoffcoder/conda-deeplearning
 ```
 
 Use it.
