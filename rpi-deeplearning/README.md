@@ -65,6 +65,11 @@ Observe it.
 
 * [http://localhost:8888](http://localhost:8888)
 
+# Links
+
+* https://stackoverflow.com/questions/33622613/tensorflow-installation-error-not-a-supported-wheel-on-this-platform
+* https://askubuntu.com/questions/183312/how-are-so-files-used-in-ubuntu
+
 # Take a Look!
 
 Check out [Martin Odersky](https://en.wikipedia.org/wiki/Martin_Odersky).
