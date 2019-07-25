@@ -26,7 +26,7 @@ tensorflow/tools/ci_build/ci_build.sh PI \
     tensorflow/tools/ci_build/pi/build_raspberry_pi.sh PI_ONE
 ```
 
-After you are done, place the `$TENSORFLOW/output-artifacts` into this directory, where `$TENSORFLOW` is the path to where you checked out the Tensorflow git repository.
+After you are done, place the `$TENSORFLOW/output-artifacts` into this directory, where `$TENSORFLOW` is the path to where you checked out the Tensorflow git repository. Additionally, rename `tensorflow-1.14.1-cp34-none-linux_armv7l.whl` to `tensorflow-1.14.1-cp36-none-linux_armv7l.whl`.
 
 # Docker
 

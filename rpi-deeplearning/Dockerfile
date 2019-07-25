@@ -6,3 +6,4 @@ COPY output-artifacts/ /tmp/output-artifacts
 RUN /tmp/setup.sh
 RUN rm -f /tmp/setup.sh
 RUN rm -f /tmp/environment.yml
+RUN rm -fr /tmp/output-artifacts
