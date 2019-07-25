@@ -10,10 +10,7 @@ Note that you should be building and using this container only on a Raspberry Pi
 
 # Tensorflow
 
-Before you may build this docker image, you will need to [cross compile Tensorflow for the Raspberry Pi](https://www.tensorflow.org/install/source_rpi). Note 
-
-* that Tensorflow for Raspberry Pi will only work with Python 3.4, and
-* when you compile Tensorflow, you have to compile on a x86 computer (not on a Raspberry Pi or any ARMv7 CPU).
+Before you may build this docker image, you will need to [cross compile Tensorflow for the Raspberry Pi](https://www.tensorflow.org/install/source_rpi). Note when you compile Tensorflow, you have to compile on a x86 computer (not on a Raspberry Pi or any ARMv7 CPU).
 
 ```bash
 git clone https://github.com/tensorflow/tensorflow.git
