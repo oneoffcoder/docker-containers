@@ -22,9 +22,8 @@ cd tensorflow
 
 git checkout r1.14
 
-CI_DOCKER_EXTRA_PARAMS="-e CI_BUILD_PYTHON=python3 -e CROSSTOOL_PYTHON_INCLUDE_PATH=/usr/include/python3.4" \
-    tensorflow/tools/ci_build/ci_build.sh PI-PYTHON3 \
-    tensorflow/tools/ci_build/pi/build_raspberry_pi.sh
+tensorflow/tools/ci_build/ci_build.sh PI \
+    tensorflow/tools/ci_build/pi/build_raspberry_pi.sh PI_ONE
 ```
 
 After you are done, place the `$TENSORFLOW/output-artifacts` into this directory, where `$TENSORFLOW` is the path to where you checked out the Tensorflow git repository.
