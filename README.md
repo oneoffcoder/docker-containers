@@ -13,7 +13,7 @@ These are some sample docker containers for learning purposes.
 * [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab) with Python 3.6 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
 * [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.6 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
 * [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-nlp) with Python 3.6 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
-* [rpi-nlp] A [container](https://hub.docker.com/r/oneoffcoder/rpi-deeplearning) with Python 3.6 + Scikit-Learn + NLP + Tensorflow + Jupyter Lab for Raspberry Pi 4.
+* [rpi-deeplearning](rpi-deeplearning) A [container](https://hub.docker.com/r/oneoffcoder/rpi-deeplearning) with Python 3.6 + Scikit-Learn + NLP + Tensorflow + Jupyter Lab for Raspberry Pi 4.
 
 # Raspberry Pi Images
 
