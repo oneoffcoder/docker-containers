@@ -47,7 +47,7 @@ Run it (with host mount).
 ```bash
 docker run -it \
     -p 8888:8888 \
-    -v /home/pi/git/docker-containers/rpi-nlp/ipynb:/ipynb \
+    -v /home/pi/git/docker-containers/rpi-deeplearning/ipynb:/ipynb \
     rpi-deeplearning:local
 ```
 
@@ -56,7 +56,7 @@ Run it (with Jupyter Notebook instead of Jupyter lab)
 ```bash
 docker run -it \
     -p 8888:8888 \
-    -v /home/pi/git/docker-containers/rpi-nlp/ipynb:/ipynb \
+    -v /home/pi/git/docker-containers/rpi-deeplearning/ipynb:/ipynb \
     -e JUPYTER_TYPE=notebook \
     rpi-deeplearning:local
 ```
