@@ -1,8 +1,6 @@
 #!/bin/bash
 
-BASE_DIR=/root/miniconda/bin
-CONDA=$BASE_DIR/conda
-PYTHON=$BASE_DIR/python
-
 echo "update environment"
-$CONDA env update -f /tmp/environment.yml
+/root/miniconda/bin/conda env update -f /tmp/environment.yml
+/root/miniconda/envs/py36/bin/pip install --upgrade pip
+/root/miniconda/envs/py36/bin/pip install -vvv /tmp/output-artifacts/tensorflow-1.14.1-cp36-none-linux_armv7l.whl
