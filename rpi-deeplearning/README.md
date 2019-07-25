@@ -69,7 +69,7 @@ Observe it.
 
 # Take a Look!
 
-Check out [Martin Odersky](https://en.wikipedia.org/wiki/Martin_Odersky).
+Check out [John Backus](https://en.wikipedia.org/wiki/John_Backus).
 
 # Citation
 
