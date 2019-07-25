@@ -4,20 +4,20 @@ A container demonstrating how to run a Flask application behind gunicorn and ngi
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/nginx-wsgi)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/nginx-wsgi)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/nginx-wsgi:latest
+docker pull oneoffcoder/nginx-wsgi:latest
 ```
 
 Run it.
 
 ```bash
-docker run -it -p 80:80 --rm vangjee/nginx-wsgi
+docker run -it -p 80:80 --rm oneoffcoder/nginx-wsgi
 ```
 
 Observe it.

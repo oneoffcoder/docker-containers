@@ -37,7 +37,10 @@ docker run -it -p 8888:8888 oneoffcoder/conda-nlp
 Run it with a mounted host folder.
 
 ```bash
-docker run -it -v /home/user/ipynb:/ipynb -p 8888:8888 oneoffcoder/conda-nlp
+docker run -it \
+    -v $HOME/git/docker-containers/conda-nlp/ipynb:/ipynb \
+    -p 8888:8888 \
+    oneoffcoder/conda-nlp
 ```
 
 Use it.

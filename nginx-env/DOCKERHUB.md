@@ -4,20 +4,20 @@ An nginx container showing how to acquire and save environment variables at runt
 
 # Source
 
-[GitHub](https://github.com/vangj/docker-containers/tree/master/nginx-env)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/nginx-env)
 
 # Docker
 
 Pull it.
 
 ```bash
-docker pull vangjee/nginx-env:latest
+docker pull oneoffcoder/nginx-env:latest
 ```
 
 Run it.
 
 ```bash
-docker run -it -p 80:80 vangjee/nginx-env
+docker run -it -p 80:80 oneoffcoder/nginx-env
 ```
 
 Observe it.

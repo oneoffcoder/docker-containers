@@ -27,7 +27,7 @@ Run it (with host mount).
 ```bash
 docker run -it \
     -p 8888:8888 \
-    -v /home/pi/git/docker-containers/rpi-nlp/ipynb:/ipynb \
+    -v $HOME/git/docker-containers/rpi-nlp/ipynb:/ipynb \
     oneoffcoder/rpi-nlp
 ```
 
@@ -36,7 +36,7 @@ Run it (with Jupyter Notebook instead of Jupyter lab)
 ```bash
 docker run -it \
     -p 8888:8888 \
-    -v /home/pi/git/docker-containers/rpi-nlp/ipynb:/ipynb \
+    -v $HOME/git/docker-containers/rpi-nlp/ipynb:/ipynb \
     -e JUPYTER_TYPE=notebook \
     oneoffcoder/rpi-nlp
 ```

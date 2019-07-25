@@ -39,7 +39,7 @@ Run it with a mounted host folder.
 
 ```bash
 docker run -it \
-    -v /home/super/git/docker-containers/conda-deeplearning/ipynb:/ipynb \
+    -v $HOME/git/docker-containers/conda-deeplearning/ipynb:/ipynb \
     -p 8888:8888 \
     --runtime=nvidia \
     --shm-size=5g \
