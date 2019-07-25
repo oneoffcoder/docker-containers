@@ -17,7 +17,3 @@ dependencies:
     - stanfordcorenlp
     - gensim
     - textblob
-  
-  
-  
-  
