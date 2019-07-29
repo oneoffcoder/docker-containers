@@ -6,7 +6,7 @@ These are some sample docker containers for learning purposes.
 * [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/oneoffcoder/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
 * [nginx-env](nginx-env): A [container](https://hub.docker.com/r/oneoffcoder/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
 * [nginx-port](nginx-port): A [container](https://hub.docker.com/r/oneoffcoder/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
-* [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/oneoffcoder/nginx-wsgi) showing how to run flask behind gunicor and nginx.
+* [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/oneoffcoder/nginx-wsgi) showing how to run flask behind gunicorn and nginx.
 * [rpi-python37](rpi-python37): A [container](https://hub.docker.com/r/oneoffcoder/rpi-python37) with Python 3.7 for use with Raspberry Pi 4.
 * [rpi-base](rpi-base): A [container](https://hub.docker.com/r/oneoffcoder/rpi-base) for use with Raspberry Pi 4.
 * [rpi-miniconda](rpi-miniconda): A [container](https://hub.docker.com/r/oneoffcoder/rpi-miniconda) with Miniconda and Python 3.6 for use with Raspberry Pi 4.
