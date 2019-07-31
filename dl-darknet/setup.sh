@@ -23,11 +23,11 @@ installAnaconda() {
 installDarknet() {
     echo "installing darknet"
     DARKNET_HOME=/darknet
-    git clone https://github.com/pjreddie/darknet.git $DARKNET_HOME
+    # git clone https://github.com/pjreddie/darknet.git $DARKNET_HOME
+    git clone https://github.com/AlexeyAB/darknet.git $DARKNET_HOME
     sed -i 's/GPU=0/GPU=1/g' $DARKNET_HOME/Makefile
     sed -i 's/OPENCV=0/OPENCV=1/g' $DARKNET_HOME/Makefile
     sed -i 's/CUDNN=0/CUDNN=1/g' $DARKNET_HOME/Makefile
-    sed -i 's/names = data/coco.names/names = /darknet/data/coco.names/g' $DARKNET_HOME/cfg/coco.data
     cd $DARKNET_HOME
     make -j 4
     mkdir $DARKNET_HOME/weight
@@ -35,7 +35,6 @@ installDarknet() {
     mkdir $DARKNET_HOME/image
     wget -q https://pjreddie.com/media/files/yolov3-tiny.weights -O $DARKNET_HOME/weight/yolov3-tiny.weights
     wget -q https://pjreddie.com/media/files/yolov3.weights -O $DARKNET_HOME/weight/yolov3.weights
-    wget -q https://pjreddie.com/media/files/darknet53.conv.74 -O $DARKNET_HOME/weight/darknet53.conv.74
     echo "DARKNET_HOME=${DARKNET_HOME}" >> /root/.bashrc
     echo "export PATH=\${DARKNET_HOME}:\${PATH}" >> /root/.bashrc
 }
