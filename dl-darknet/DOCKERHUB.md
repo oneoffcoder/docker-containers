@@ -21,6 +21,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     oneoffcoder/dl-darknet \
     /bin/sh -c "cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show > image/dog.log"
 ```
@@ -38,6 +39,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     oneoffcoder/dl-darknet \
     /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show'
 ```
@@ -55,6 +57,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     oneoffcoder/dl-darknet \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
 ```
@@ -75,6 +78,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     -p 8070:8070 \
     -p 8090:8090 \
     oneoffcoder/dl-darknet \
@@ -94,6 +98,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     -p 8070:8070 \
     -p 8090:8090 \
     oneoffcoder/dl-darknet \
@@ -113,6 +118,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     oneoffcoder/dl-darknet \
     /bin/sh -c 'cd /darknet; ./darknet detector train /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg -dont_show'
 ```
@@ -130,6 +136,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     oneoffcoder/dl-darknet \
     /bin/sh -c 'cd /darknet; ./darknet detector test /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg /darknet/backup/tiny-yolo-iaia-polygons_last.weights -ext_output -dont_show -out /darknet/log/result.json < /darknet/image/polygons/iaia-polygons_valid.txt'
 ```

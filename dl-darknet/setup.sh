@@ -61,7 +61,12 @@ installDn() {
     ln -s /darknet/log $DARKNET_HOME/log
 }
 
+setupScripts() {
+    mkdir /root/scripts
+}
+
 updateAptPackages
 installAnaconda
 installDarknet
 installDn
+setupScripts
