@@ -15,9 +15,23 @@ docker run -it \
     -e NVIDIA_VISIBLE_DEVICES=0 \
     dl-darknet:local \
     darknet detect \
-    cfg/yolov3-tiny.cfg \
-    weight/yolov3-tiny.weights \
-    data/dog.jpg
+        cfg/yolov3-tiny.cfg \
+        weight/yolov3-tiny.weights \
+        data/dog.jpg
+
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    dl-darknet:local \
+    darknet detect \
+        cfg/yolov3-tiny.cfg \
+        weight/yolov3-tiny.weights \
+        data/dog.jpg
 ```
 
 ## Useful commands
