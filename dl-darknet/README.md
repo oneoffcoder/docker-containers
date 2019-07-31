@@ -60,6 +60,29 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
 ```
 
+To detect with Yolo v3 on MP4 file and redirect output to JSON + MJPEG + AVI. After you run the command below, direct your browsers to the following URLs.
+
+* http://localhost:8070 for the JSON data of the annotations
+* http://localhost:8090 for the annotated video
+
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -p 8070:8070 \
+    -p 8090:8090 \
+    dl-darknet:local \
+    /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
+```
+
+
+
 # Use in interactive terminal mode
 
 To run local build with GPU support.
