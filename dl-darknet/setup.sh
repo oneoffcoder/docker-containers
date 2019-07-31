@@ -27,6 +27,7 @@ installDarknet() {
     sed -i 's/GPU=0/GPU=1/g' $DARKNET_HOME/Makefile
     sed -i 's/OPENCV=0/OPENCV=1/g' $DARKNET_HOME/Makefile
     sed -i 's/CUDNN=0/CUDNN=1/g' $DARKNET_HOME/Makefile
+    sed -i 's/names = data/coco.names/names = /darknet/data/coco.names/g' $DARKNET_HOME/cfg/coco.data
     cd $DARKNET_HOME
     make -j 4
     mkdir $DARKNET_HOME/weight
