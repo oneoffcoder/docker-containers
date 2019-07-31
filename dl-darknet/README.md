@@ -12,6 +12,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     dl-darknet:local \
     /bin/sh -c "cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show > image/dog.log"
 ```
@@ -28,6 +29,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     dl-darknet:local \
     /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show'
 ```
@@ -44,6 +46,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     dl-darknet:local \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
 ```
@@ -63,6 +66,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -p 8070:8070 \
     -p 8090:8090 \
     dl-darknet:local \
@@ -81,6 +85,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -p 8070:8070 \
     -p 8090:8090 \
     dl-darknet:local \
