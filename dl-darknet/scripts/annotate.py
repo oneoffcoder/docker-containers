@@ -28,14 +28,24 @@ def annotate(item, o_dir):
 
     draw = ImageDraw.Draw(o_img, 'RGBA')
 
+    font = ImageFont.load_default()
+
     for obj in item['objects']:
         name = obj['name']
         x = obj['relative_coordinates']['center_x'] * i_img.size[0]
         y = obj['relative_coordinates']['center_y'] * i_img.size[1]
-        w = obj['relative_coordinates']['width'] * i_img.size[0]
-        h = obj['relative_coordinates']['height'] * i_img.size[1]
+        w = (obj['relative_coordinates']['width'] * i_img.size[0]) / 2.0
+        h = (obj['relative_coordinates']['height'] * i_img.size[1]) / 2.0
 
-        draw.rectangle(((x, y), (w, h)), fill=None)
+        x0 = x - w
+        y0 = y - h
+        x1 = x + w
+        y1 = y + h
+
+        points = [(x0, y0), (x1, y1)]
+
+        draw.rectangle(points, fill=None)
+        draw.text((x0, y0 - font.getsize(name)[1]), name, font=font)
 
     o_img.save(o_path, 'PNG')
 
