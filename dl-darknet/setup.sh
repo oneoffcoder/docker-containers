@@ -33,6 +33,7 @@ installDarknet() {
     mkdir $DARKNET_HOME/weight
     mkdir $DARKNET_HOME/video
     mkdir $DARKNET_HOME/image
+    mkdir $DARKNET_HOME/log
     wget -q https://pjreddie.com/media/files/yolov3-tiny.weights -O $DARKNET_HOME/weight/yolov3-tiny.weights
     wget -q https://pjreddie.com/media/files/yolov3.weights -O $DARKNET_HOME/weight/yolov3.weights
     echo "DARKNET_HOME=${DARKNET_HOME}" >> /root/.bashrc
