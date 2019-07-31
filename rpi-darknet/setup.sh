@@ -18,6 +18,7 @@ installMiniconda() {
     $CONDA config --add channels rpi
     $CONDA install python=3.6 -y
     $PIP install --upgrade pip
+    $CONDA install opencv -y
     echo "CONDA_HOME=${CONDA_HOME}" >> /root/.bashrc
     echo "export PATH=\${CONDA_HOME}/bin:\${PATH}" >> /root/.bashrc
     rm -fr /tmp/miniconda.sh
