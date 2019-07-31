@@ -1,14 +1,8 @@
-# Interactive terminal mode
+# Use as a command line
 
-To run local build with GPU support.
+To detect with Yolo v3 tiny weights.
 
 ```bash
-docker run -it \
-    --runtime=nvidia \
-    --shm-size=5g \
-    -e NVIDIA_VISIBLE_DEVICES=0 \
-    dl-darknet:local
-
 docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
@@ -19,7 +13,11 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     dl-darknet:local \
     /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show'
+```
 
+To detect with Yolo v3 normal weights.
+
+```bash
 docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
@@ -30,7 +28,11 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
     dl-darknet:local \
     /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show'
+```
 
+To detect with Yolo v3 on MP4 file.
+
+```bash
 docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
@@ -43,7 +45,17 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
 ```
 
-## Useful commands
+# Use in interactive terminal mode
+
+To run local build with GPU support.
+
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    dl-darknet:local
+```
 
 To test if OpenCV was installed correctly.
 
@@ -78,3 +90,8 @@ time ./darknet detector \
     weight/yolov3.weights \
     data/dog.jpg
 ```
+
+# Links
+
+* https://github.com/pjreddie/darknet
+* https://github.com/AlexeyAB/darknet
