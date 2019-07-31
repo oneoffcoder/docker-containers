@@ -92,6 +92,40 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights http://192.168.0.210:8080/video?dummy=param.mjpg -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
 ```
 
+Training your own object detector.
+
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    dl-darknet:local \
+    /bin/sh -c 'cd /darknet; ./darknet detector train /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg -dont_show'
+```
+
+Testing your own object detector.
+
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    dl-darknet:local \
+    /bin/sh -c 'cd /darknet; ./darknet detector test /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg /darknet/backup/tiny-yolo-iaia-polygons_last.weights -ext_output -dont_show -out /darknet/log/result.json < /darknet/image/polygons/iaia-polygons_valid.txt'
+```
+
 # Use in interactive terminal mode
 
 To run local build with GPU support.
