@@ -1,6 +1,6 @@
 # Use as a command line
 
-To detect with Yolo v3 tiny weights.
+Detection with tiny weights.
 
 ```bash
 docker run -it \
@@ -14,21 +14,9 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     dl-darknet:local \
     /bin/sh -c "cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show > image/dog.log"
-
-docker run -it \
-    --runtime=nvidia \
-    --shm-size=5g \
-    -e NVIDIA_VISIBLE_DEVICES=0 \
-    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
-    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
-    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
-    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
-    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
-    dl-darknet:local \
-    /bin/sh -c "cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/eagle.jpg -dont_show > image/eagle.log"
 ```
 
-To detect with Yolo v3 normal weights.
+Detection with normal weights.
 
 ```bash
 docker run -it \
@@ -44,7 +32,7 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show'
 ```
 
-To detect with Yolo v3 on MP4 file.
+Detection on a MP4 file.
 
 ```bash
 docker run -it \
@@ -60,7 +48,7 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
 ```
 
-To detect with Yolo v3 on MP4 file and redirect output to JSON + MJPEG + AVI. After you run the command below, direct your browsers to the following URLs.
+Detection on a MP4 file and output to JSON + MJPEG + AVI. After you run the command below, direct your browsers to the following URLs.
 
 * http://localhost:8070 for the JSON data of the annotations
 * http://localhost:8090 for the annotated video
@@ -81,7 +69,23 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
 ```
 
+Detection on a real-time video stream and redirect output to JSON + MJPEG + AVIG. Note that you can test the below by downloading and installing [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam) on your phone; replace the IP below with the one on your phone (the software on the phone will show you what the phone's IP is).
 
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -p 8070:8070 \
+    -p 8090:8090 \
+    dl-darknet:local \
+    /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights http://192.168.0.210:8080/video?dummy=param.mjpg -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
+```
 
 # Use in interactive terminal mode
 
