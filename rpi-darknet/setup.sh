@@ -7,28 +7,32 @@ updateAptPackages() {
 
 installMiniconda() {
     echo "installing miniconda"
-    CONDA=/root/miniconda/bin/conda
+    CONDA_HOME=/root/miniconda
+    CONDA=$CONDA_HOME/bin/conda
     PIP=/root/miniconda/bin/pip
 
     wget -q http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh -O /tmp/miniconda.sh
-    /bin/bash /tmp/miniconda.sh -b -p /root/miniconda
+    /bin/bash /tmp/miniconda.sh -b -p $CONDA_HOME
     $CONDA update -n root conda -y
     $CONDA update --all -y
     $CONDA config --add channels rpi
     $CONDA install python=3.6 -y
     $PIP install --upgrade pip
-    echo "PATH=/root/miniconda/bin:${PATH}" >> /root/.bashrc
+    echo "CONDA_HOME=${CONDA_HOME}" >> /root/.bashrc
+    echo "export PATH=\${CONDA_HOME}/bin:\${PATH}" >> /root/.bashrc
     rm -fr /tmp/miniconda.sh
 } 
 
 installDarknet() {
-    DARKNET_HOME=/usr/local/darknet
+    DARKNET_HOME=/darknet
     echo "installing darknet"
     git clone https://github.com/pjreddie/darknet.git $DARKNET_HOME
     sed -i 's/OPENCV=0/OPENCV=1/g' $DARKNET_HOME/Makefile
     cd $DARKNET_HOME
     make -j 4
-    echo "PATH=${DARKNET_HOME}:${PATH}" >> /root/.bashrc
+    mkdir $DARKNET_HOME/weight
+    echo "DARKNET_HOME=${DARKNET_HOME}" >> /root/.bashrc
+    echo "export PATH=\${DARKNET_HOME}:\${PATH}" >> /root/.bashrc
 }
 
 updateAptPackages
