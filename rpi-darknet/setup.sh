@@ -2,7 +2,7 @@
 
 updateAptPackages() {
     echo "installing packages via APT"
-    apt-get install git python-opencv -y
+    apt-get install git libopencv-dev python3-opencv -y
 }
 
 installMiniconda() {
@@ -22,12 +22,13 @@ installMiniconda() {
 } 
 
 installDarknet() {
+    DARKNET_HOME=/usr/local/darknet
     echo "installing darknet"
-    git clone https://github.com/pjreddie/darknet.git /usr/local/darknet
-    sed -i 's/OPENCV=0/OPENCV=1/g' /tmp/darknet/Makefile
-    cd /usr/local/darknet
-    make
-    echo "PATH=/usr/local/darknet:${PATH}" >> /root/.bashrc
+    git clone https://github.com/pjreddie/darknet.git $DARKNET_HOME
+    sed -i 's/OPENCV=0/OPENCV=1/g' $DARKNET_HOME/Makefile
+    cd $DARKNET_HOME
+    make -j 4
+    echo "PATH=${DARKNET_HOME}:${PATH}" >> /root/.bashrc
 }
 
 updateAptPackages
