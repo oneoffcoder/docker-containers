@@ -32,6 +32,7 @@ installDarknet() {
     cd $DARKNET_HOME
     make -j 4
     mkdir $DARKNET_HOME/weight
+    wget -q https://pjreddie.com/media/files/yolov3-tiny.weights -O $DARKNET_HOME/weight/yolov3-tiny.weights
     echo "DARKNET_HOME=${DARKNET_HOME}" >> /root/.bashrc
     echo "export PATH=\${DARKNET_HOME}:\${PATH}" >> /root/.bashrc
 }
