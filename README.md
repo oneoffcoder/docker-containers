@@ -14,14 +14,15 @@ These are some sample docker containers for learning purposes.
 * [rpi-jupyterlab](rpi-jupyterlab): A [container](https://hub.docker.com/r/oneoffcoder/rpi-jupyterlab) with Python 3.6 + Jupyter Lab (and Notebook) for Raspberry Pi 4.
 * [rpi-scikit](rpi-scikit): A [container](https://hub.docker.com/r/oneoffcoder/rpi-scikit) with Python 3.6 + Scikit-Learn + Jupyter Lab for Raspberry Pi 4.
 * [rpi-nlp](rpi-nlp): A [container](https://hub.docker.com/r/oneoffcoder/rpi-nlp) with Python 3.6 + NLTK + gensim + Stanford Core NLP + textblob + Jupyter Lab for Raspberry Pi 4.
-* [rpi-deeplearning](rpi-deeplearning) A [container](https://hub.docker.com/r/oneoffcoder/rpi-deeplearning) with Python 3.6 + Scikit-Learn + NLP + Tensorflow + Jupyter Lab for Raspberry Pi 4.
+* [rpi-deeplearning](rpi-deeplearning): A [container](https://hub.docker.com/r/oneoffcoder/rpi-deeplearning) with Python 3.6 + Scikit-Learn + NLP + Tensorflow + Jupyter Lab for Raspberry Pi 4.
+* [rpi-darknet](rpi-darkent): [YOLO object detection](https://github.com/pjreddie/darknet) with [darknet](https://github.com/AlexeyAB/darknet) in a [box](https://hub.docker.com/r/oneoffcoder/rpi-darknet) for Raspberry Pi 4! Be careful, not for the faint of heart!
 
 # Raspberry Pi Images
 
 Here are the dependencies between the RPi Docker images.
 
 * rpi-base
-* rpi-miniconda (from rpi-base)
+* rpi-miniconda, rpi-darknet (from rpi-base)
 * rpi-jupyterlab (from rpi-miniconda)
 * rpi-scikit (from rpi-jupyterlab)
 * rpi-nlp (from rpi-scikit)
