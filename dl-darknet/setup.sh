@@ -14,7 +14,7 @@ installAnaconda() {
     
     wget -q https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O /tmp/anaconda.sh
     /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME
-    $CONDA install -c menpo opencv -y
+    $CONDA install -c menpo opencv joblib -y
     echo "CONDA_HOME=${CONDA_HOME}" >> /root/.bashrc
     echo "export PATH=\${CONDA_HOME}/bin:\${PATH}" >> /root/.bashrc
     rm -fr /tmp/anaconda.sh

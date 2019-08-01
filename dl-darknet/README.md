@@ -141,6 +141,24 @@ docker run -it \
     /bin/sh -c 'cd /darknet; ./darknet detector test /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg /darknet/backup/tiny-yolo-iaia-polygons_last.weights -ext_output -dont_show -out /darknet/log/result.json < /darknet/image/polygons/iaia-polygons_valid.txt'
 ```
 
+Annotating the images with the results.
+
+```bash
+docker run -it \
+    --runtime=nvidia \
+    --shm-size=5g \
+    -e NVIDIA_VISIBLE_DEVICES=0 \
+    -v $HOME/git/docker-containers/dl-darknet/cfg:/darknet/cfg \
+    -v $HOME/git/docker-containers/dl-darknet/data:/darknet/data \
+    -v $HOME/git/docker-containers/dl-darknet/image:/darknet/image \
+    -v $HOME/git/docker-containers/dl-darknet/video:/darknet/video \
+    -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
+    -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
+    -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
+    dl-darknet:local \
+    /bin/sh -c '/opt/anaconda/bin/python /root/scripts/annotate.py -j /darknet/log/result.json  -d /darknet/image/polygons/annotations'
+```
+
 # Use in interactive terminal mode
 
 To run local build with GPU support.

@@ -4,3 +4,4 @@ video/*.avi
 log/*.json
 log/*.txt
 backup/*.weights
+image/polygons/annotations
