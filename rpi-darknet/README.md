@@ -26,6 +26,11 @@ docker run -it \
 ```
 Detection on a real-time video stream and redirect output to JSON + MJPEG + AVIG. Note that you can test the below by downloading and installing [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam) on your phone; replace the IP below with the one on your phone (the software on the phone will show you what the phone's IP is).
 
+After you run the command below, direct your browsers to the following URLs.
+
+* http://localhost:8070 for the JSON data of the annotations
+* http://localhost:8090 for the annotated video
+
 ```bash
 docker run -it \
     -v $HOME/git/docker-containers/rpi-darknet/cfg:/darknet/cfg \
