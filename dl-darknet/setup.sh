@@ -23,7 +23,6 @@ installAnaconda() {
 installDarknet() {
     echo "installing darknet from alexeyab"
     DARKNET_HOME=/darknet
-    # git clone https://github.com/pjreddie/darknet.git $DARKNET_HOME
     git clone https://github.com/AlexeyAB/darknet.git $DARKNET_HOME
     sed -i 's/GPU=0/GPU=1/g' $DARKNET_HOME/Makefile
     sed -i 's/OPENCV=0/OPENCV=1/g' $DARKNET_HOME/Makefile
