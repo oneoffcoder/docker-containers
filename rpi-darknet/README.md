@@ -99,7 +99,7 @@ docker run -it \
 
 # Take a Look!
 
-Check out [Grace Hopper](https://en.wikipedia.org/wiki/Grace_Hopper).
+Check out [John McCarthy](https://en.wikipedia.org/wiki/John_McCarthy_%28computer_scientist%29).
 
 # Citation
 
