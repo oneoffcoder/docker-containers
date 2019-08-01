@@ -1,0 +1,8 @@
+classes= 80
+train  = /darknet/data/coco/trainvalno5k.txt
+valid  = coco_testdev
+#valid = data/coco_val_5k.list
+names = /darknet/data/coco.names
+backup = /darknet/backup/
+eval=coco
+

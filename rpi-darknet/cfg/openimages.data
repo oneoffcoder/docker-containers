@@ -1,0 +1,8 @@
+classes= 601
+train  = /darknet/data/openimsv4/openimages.train.list
+#valid  = coco_testdev
+valid = /darknet/data/coco_val_5k.list
+names = /darknet/data/openimages.names
+backup = /darknet/backup/
+eval=coco
+

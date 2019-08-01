@@ -1,0 +1,8 @@
+nonagon
+quadrilateral
+octagon
+heptagon
+hexagon
+decagon
+triangle
+pentagon
