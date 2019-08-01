@@ -34,6 +34,8 @@ docker run -it \
     -v $HOME/git/docker-containers/rpi-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/rpi-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/rpi-darknet/scripts:/root/scripts \
+    -p 8070:8070 \
+    -p 8090:8090 \
     rpi-darknet:local \
     /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights http://192.168.0.210:8080/video?dummy=param.mjpg -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
 ```
