@@ -8,10 +8,10 @@ This application is a simple demonstration of streaming binary data (e.g. Word, 
 
 # Docker
 
-Build it.
+Pull it.
 
 ```bash
-./docker-local.sh
+docker pull oneoffcoder/nginx-stream-binary:latest
 ```
 
 Run it.
