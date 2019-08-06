@@ -1,0 +1,5 @@
+classes = 8
+train  = /darknet/image/polygons/iaia-polygons_train.txt
+valid  = /darknet/image/polygons/iaia-polygons_valid.txt
+names = /darknet/image/polygons/iaia-polygons_labels.txt
+backup = /darknet/backup

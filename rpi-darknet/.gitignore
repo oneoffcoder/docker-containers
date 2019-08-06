@@ -1,0 +1,7 @@
+video/*.mp4
+video/*.avi
+*.log
+log/*.json
+log/*.txt
+backup/*.weights
+image/polygons/annotations
