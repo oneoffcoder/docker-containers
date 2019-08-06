@@ -17,7 +17,7 @@ Build it.
 Run it.
 
 ```bash
-docker run -it -p 80:80 --rm oneoffcoder/demo-flask
+docker run -it -p 80:80 --rm oneoffcoder/nginx-stream-binary
 ```
 
 Observe it.
