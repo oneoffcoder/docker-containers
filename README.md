@@ -10,6 +10,7 @@ These are some sample docker containers for learning purposes.
 * [nginx-env](nginx-env): A [container](https://hub.docker.com/r/oneoffcoder/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
 * [nginx-port](nginx-port): A [container](https://hub.docker.com/r/oneoffcoder/nginx-port) showing how to run nginx on a port specified at runtime through an environment variable.
 * [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/oneoffcoder/nginx-wsgi) showing how to run flask behind gunicorn and nginx.
+* [nginx-stream-binary](nginx-stream-binary): A [container](https://hub.docker.com/r/oneoffcoder/nginx-stream-binary) showing how to stream back binary files (e.g. Word, Excel, PowerPoint and PDF).
 
 ## Raspberry Pi Docker Images
 
