@@ -20,18 +20,41 @@ from collections import namedtuple
 from argparse import RawTextHelpFormatter
 
 def get_device():
+    """
+    Gets the device.
+    :return: cuda:0 or cpu.
+    """
     return torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 
-def get_input_size(m):
-    return 299 if m == 'inception_v3' else 256
+def get_input_size(model_type):
+    """
+    Gets the input size required by the model. All models
+    require an input size of 256 except for Inception v3,
+    which requires 299.
+    :param model_type: Model type.
+    :return: Input size to the model.
+    """
+    return 299 if 'inception_v3' == model_type else 256
 
 
-def determine_inception(m):
-    return True if m == 'inception_v3' else False
+def determine_inception(model_type):
+    """
+    Determines if the model type is Inception v3.
+    :param model_type: Model type.
+    :return: A boolean indicating if the model is Inception v3.
+    """
+    return True if model_type == 'inception_v3' else False
 
 
 def create_model(model_type, num_classes, pretrained):
+    """
+    Creates a model.
+    :param model_type: Model type.
+    :param num_classes: Number of classes.
+    :param pretrained: A boolean indicating if pretrained weights should be used.
+    :return: Model.
+    """
     device = get_device()
     if 'resnet18' == model_type:
         model = models.resnet18(pretrained=pretrained)
@@ -145,18 +168,42 @@ def create_model(model_type, num_classes, pretrained):
 
 
 def get_criterion():
+    """
+    Gets the criterion for determining loss. Only cross-entropy is supported.
+    :return: Loss criterion.
+    """
     return nn.CrossEntropyLoss()
 
 
 def get_optimizer(model, params):
+    """
+    Gets the optimizer. Only SGD is supported.
+    :param model: Model.
+    :param params: Parameters to the optimizer.
+    :return: Optimizer.
+    """
     return optim.SGD(model.parameters(), **params)
 
 
 def get_scheduler(optimizer, params):
+    """
+    Gets the scheduler. Only StepLR is supported.
+    :param optimizer: Optimizer.
+    :param params: Parameters to the scheduler.
+    :return: Scheduler.
+    """
     return lr_scheduler.StepLR(optimizer, **params)
 
 
 def get_dataloaders(data_dir, input_size, batch_size, num_workers):
+    """
+    Gets the data loaders.
+    :param data_dir: Root path to data with images.
+    :param input_size: The input size required by the model.
+    :param batch_size: The batch size used during training.
+    :param num_workers: The number of CPU workers for loading images.
+    :return: A tuple: dataloaders, dataset_sizes, class_names, num_classes.
+    """
     data_transforms = {
         'train': transforms.Compose([
             transforms.Resize(input_size),
@@ -194,6 +241,18 @@ def get_dataloaders(data_dir, input_size, batch_size, num_workers):
 
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs, is_inception):
+    """
+    Starts the training.
+    :param model: Model.
+    :param criterion: Criterion.
+    :param optimizer: Optimizer.
+    :param scheduler: Scheduler.
+    :param dataloaders: Data loaders.
+    :param dataset_sizes: Dataset sizes.
+    :param num_epochs: Number of epochs to train for.
+    :param is_inception: A boolean indicating if the model is Inception v3.
+    :return: Model.
+    """
     device = get_device()
     Result = namedtuple('Result', 'phase loss acc')
 
@@ -271,6 +330,13 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
 
 
 def get_metrics(model, dataloaders, class_names):
+    """
+    Gets the classification performance metrics for each class.
+    :param model: Model.
+    :param dataloaders: Data loaders.
+    :param class_names: Class names.
+    :return: A named tuple: clazz, tn, fp, fn, tp, sen, spe, acc, f1, mcc
+    """
     device = get_device()
     Metric = namedtuple('Metric', 'clazz tn fp fn tp sen spe acc f1 mcc')
 
@@ -315,31 +381,65 @@ def get_metrics(model, dataloaders, class_names):
 
 
 def print_metrics(metrics):
+    """
+    Prints the metrics for each class.
+    :param metrics: List of metrics.
+    :return: None.
+    """
     for m in metrics:
         print('{}: sen = {:.5f}, spe = {:.5f}, acc = {:.5f}, f1 = {:.5f}, mcc = {:.5f}'
               .format(m.clazz, m.sen, m.spe, m.acc, m.f1, m.mcc))
 
 
 def get_ms_past_epoch():
+    """
+    Gets the number of milliseconds past epoch.
+    :return: ms past epoch.
+    """
     return int(round(time.time() * 1000))
 
 
-def save_model(m, model, output_dir):
+def save_model(model_type, model, output_dir):
+    """
+    Saves the model.
+    :param model_type: Model type.
+    :param model: Model.
+    :output_dir: Output directory.
+    :return: None.
+    """
     o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
     millis = get_ms_past_epoch()
-    output_file = '{}-{}.t'.format(m, millis)
+    output_file = '{}-{}.t'.format(model_type, millis)
     output_path = '{}/{}'.format(o_dir, output_file)
     torch.save(model.state_dict(), output_path)
     print('saved model to {}'.format(output_path))
 
 
 def load_model(model_type, num_classes, model_path):
+    """
+    Loads a model.
+    :param model_type: Model type.
+    :param num_classes: Number of classes.
+    :param model_path: Model path.
+    :return: Model.
+    """
     model = create_model(model_type, num_classes, False)
     model.load_state_dict(torch.load(model_path))
     return model
 
 
 def get_model(model_type, num_classes, pretrained, model_path):
+    """
+    Gets a model. If the model_path is not null and has length greater
+    than zero, then an attempt will be made to load such existing
+    model. In the event of failure, a new model of model_type will
+    be created.
+    :param model_type: Model type.
+    :param num_classes: Number of classes.
+    :param pretrained: A boolean indicating if pretrained weights should be used.
+    :param model_path: Path to an existing model.
+    :return: Model.
+    """
     if model_path is None or len(model_path.strip()) == 0:
         print('creating new model {}, pretrained = {}'.format(model_type, pretrained))
         return create_model(model_type, num_classes, pretrained)
@@ -428,12 +528,18 @@ def parse_args(args):
 
 
 def do_it(args):
+    """
+    Do it.
+    :param args: Arguments.
+    :return: None.
+    """
     data_dir = args.data_dir
     model_type = args.model_type
     input_size = get_input_size(model_type)
     batch_size = args.batch_size
     num_workers = args.num_workers
 
+    print('creating data loaders')
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
     
     model_path = args.load_model
@@ -441,6 +547,7 @@ def do_it(args):
     optimizer_params = args.optimizer_params
     scheduler_params = args.scheduler_params
 
+    print('constructing training components')
     model = get_model(model_type, num_classes, pretrained, model_path)
     criterion = get_criterion()
     optimizer = get_optimizer(model, optimizer_params)
@@ -448,6 +555,8 @@ def do_it(args):
 
     num_epochs = args.epochs
     is_inception = determine_inception(model_type)
+
+    print('training initiated')
     model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
     print_metrics(get_metrics(model, dataloaders, class_names))
@@ -463,7 +572,7 @@ if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
 
-    seed = seed if args.seed > 0 else get_ms_past_epoch()
+    seed = args.seed if args.seed > 0 else get_ms_past_epoch()
     print('seed: {}'.format(seed))
     random.seed(seed)
     torch.manual_seed(seed)
