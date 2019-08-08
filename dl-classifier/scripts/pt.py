@@ -343,6 +343,7 @@ def parse_args(args):
     :return: Arguments.
     """
     parser = argparse.ArgumentParser('PyTorch classification models', formatter_class=RawTextHelpFormatter)
+    
     parser.add_argument('-m', '--model_type', help="""model type
     For example:
         - inception_v3
@@ -350,6 +351,7 @@ def parse_args(args):
         - vgg19_bn 
     For the full list, go to https://pytorch.org/docs/stable/torchvision/models.html.
     """.strip(), required=True)
+    
     parser.add_argument('-d', '--data_dir', help="""data directory
     e.g. /path/to/images
     Note that there should be 3 sub-directories under /path/to/images:
@@ -366,31 +368,40 @@ def parse_args(args):
         - /path/to/images/valid/0   # for validating 0-th class after training
         - /path/to/images/valid/1   # for validating 1-st class after training
     """.strip(), required=True)
+    
     parser.add_argument('-b', '--batch_size', help='batch size (default: 4)', required=False, default=4, type=int)
+    
     parser.add_argument('-e', '--epochs', help='number of epochs (default: 25)', required=False, default=25, type=int)
+    
     parser.add_argument('--pretrained', help='use transfer learning by loading pretrained weights (default: true)', required=False, default=True, type=bool)
+    
     parser.add_argument('--optimizer_params', help="""optimizer parameters (default: {"lr": 0.001, "momentum": 0.9})
     torch.optim.SGD is the only optimizer supported.
     The string you pass in must be parseable by json.loads().
     Example of a JSON string is as follows.
     {"lr": 0.001, "momentum": 0.9}
     """.strip(), required=False, default='{"lr": 0.001, "momentum": 0.9}', type=json.loads)
+    
     parser.add_argument('--scheduler_params', help="""scheduler parameters (default: {"step_size": 7, "gamma": 0.1})
     torch.optim.lr_scheduler.StepLR is the only scheduler supported.
     The string you pass in must be parseable by json.loads().
     Example of a JSON string is as follows.
     {"step_size": 7, "gamma": 0.1}
     """.strip(), required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
+    
     parser.add_argument('-w', '--num_workers', help='number of workers (default: 4)', required=False, default=4, type=int)
+    
     parser.add_argument('-s', '--seed', help="""seed used for random number generators (default: 1299827)
     Use a negative number (e.g. -1) to seed with the current time
     represented as milliseconds past epoch.
     """.strip(), required=False, default=1299827, type=int)
+    
     parser.add_argument('-o', '--output_dir', help="""output dir (default: /tmp)
     e.g. /tmp/inception_v3-1565298691256.t
     Note that the file path is: [model_type]-[milliseconds_past_epoch].t
     You may only control the output directory, not the file name.
     """.strip(), required=False, default='/tmp')
+    
     parser.add_argument('-l', '--load_model', help="""path of model to load
     e.g. /path/to/model.t
     If such a path does NOT exists, then a new model (of the model_type) will 
