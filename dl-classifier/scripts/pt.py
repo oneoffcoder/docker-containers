@@ -221,7 +221,8 @@ def get_metrics(model, dataloaders, class_names):
         spe = tn / (tn + fp)
         acc = (tp + tn) / (tp + fp + fn + tn)
         f1 = (2.0 * tp) / (2 * tp + fp + fn)
-        mcc = (tp * tn - fp * fn) / np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+        mcc_denom = np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+        mcc = (tp * tn - fp * fn) / mcc_denom if mcc_denom > 0 else 0
         metric = Metric(clazz, tn, fp, fn, tp, sen, spe, acc, f1, mcc)
         metrics.append(metric)
     
