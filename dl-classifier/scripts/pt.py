@@ -27,7 +27,7 @@ def get_input_size(m):
 def determine_inception(m):
     return True if m == 'inception_v3' else False
 
-def get_model(model_type, num_classes, pretrained):
+def create_model(model_type, num_classes, pretrained):
     device = get_device()
     if 'resnet18' == model_type:
         model = models.resnet18(pretrained=pretrained)
@@ -244,9 +244,17 @@ def save_model(m, model, output_dir):
     print('saved model to {}'.format(output_path))
 
 def load_model(model_type, num_classes, model_path):
-    model = get_model(model_type, num_classes, False)
+    model = create_model(model_type, num_classes, False)
     model.load_state_dict(torch.load(model_path))
     return model
+
+def get_model(model_type, num_classes, pretrained, model_path):
+    if model_path is None or len(model_path.strip()) == 0:
+        print('creating new model {}, pretrained = {}'.format(model_type, pretrained))
+        return create_model(model_type, num_classes, pretrained)
+    else:
+        print('loading model {} from {}'.format(model_type, model_path))
+        return load_model(model_type, num_classes, model_path)
 
 def parse_args(args):
     """
@@ -264,6 +272,7 @@ def parse_args(args):
     parser.add_argument('-w', '--num_workers', help='number of workers', required=False, default=4, type=int)
     parser.add_argument('-s', '--seed', help='seed', required=False, default=37, type=int)
     parser.add_argument('-o', '--output_dir', help='output dir', required=False, default=None)
+    parser.add_argument('-l', '--load_model', help='model path', required=False, default=None)
 
     return parser.parse_args(args)
 
@@ -277,11 +286,12 @@ def do_it(args):
 
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
     
+    model_path = args.load_model
     pretrained = args.pretrained
     optimizer_params = args.optimizer_params
     scheduler_params = args.scheduler_params
 
-    model = get_model(model_type, num_classes, pretrained)
+    model = get_model(model_type, num_classes, pretrained, model_path)
     criterion = get_criterion()
     optimizer = get_optimizer(model, optimizer_params)
     scheduler = get_scheduler(optimizer, scheduler_params)
@@ -300,6 +310,7 @@ def do_it(args):
 
 if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -e 1
+    # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
     random.seed(args.seed)
     torch.manual_seed(args.seed)
