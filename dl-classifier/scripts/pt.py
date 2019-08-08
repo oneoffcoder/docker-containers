@@ -259,8 +259,8 @@ def parse_args(args):
     parser.add_argument('-b', '--batch_size', help='batch size', required=False, default=4, type=int)
     parser.add_argument('-e', '--epochs', help='number of epochs', required=False, default=25, type=int)
     parser.add_argument('--pretrained', help='use transfer learning', required=False, default=True, type=bool)
-    parser.add_argument('--optimizer', help='optimizer options', required=False, default='{"lr": 0.001, "momentum": 0.9}', type=json.loads)
-    parser.add_argument('--scheduler', help='scheduler options', required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
+    parser.add_argument('--optimizer_params', help='optimizer parameters', required=False, default='{"lr": 0.001, "momentum": 0.9}', type=json.loads)
+    parser.add_argument('--scheduler_params', help='scheduler parameters', required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
     parser.add_argument('-w', '--num_workers', help='number of workers', required=False, default=4, type=int)
     parser.add_argument('-s', '--seed', help='seed', required=False, default=37, type=int)
     parser.add_argument('-o', '--output_dir', help='output dir', required=False, default=None)
@@ -277,19 +277,21 @@ def do_it(args):
 
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
     pretrained = args.pretrained
+    optimizer_params = args.optimizer_params
+    scheduler_params = args.scheduler_params
     model = get_model(model_type, num_classes, pretrained)
     criterion = get_criterion()
-    optimizer = get_optimizer(model, args.optimizer)
-    scheduler = get_scheduler(optimizer, args.scheduler)
+    optimizer = get_optimizer(model, optimizer_params)
+    scheduler = get_scheduler(optimizer, scheduler_params)
 
     num_epochs = args.epochs
     is_inception = determine_inception(model_type)
     model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
+    print_metrics(get_metrics(model, dataloaders, class_names))
+
     output_dir = args.output_dir
     save_model(model_type, model, output_dir)
-
-    print_metrics(get_metrics(model, dataloaders, class_names))
 
     print('done')
 
