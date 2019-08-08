@@ -30,12 +30,12 @@ def get_device():
 def get_input_size(model_type):
     """
     Gets the input size required by the model. All models
-    require an input size of 256 except for Inception v3,
+    require an input size of 224 except for Inception v3,
     which requires 299.
     :param model_type: Model type.
     :return: Input size to the model.
     """
-    return 299 if 'inception_v3' == model_type else 256
+    return 299 if 'inception_v3' == model_type else 224
 
 
 def determine_inception(model_type):
@@ -45,6 +45,19 @@ def determine_inception(model_type):
     :return: A boolean indicating if the model is Inception v3.
     """
     return True if model_type == 'inception_v3' else False
+
+
+def set_parameter_requires_grad(model, feature_extracting):
+    """
+    Sets the parameters of the model to False
+    if we are feature extracting.
+    :param model: Mode.
+    :feature_extracting: A boolean indicating if we are feature extracting.
+    :return: None.
+    """
+    if feature_extracting:
+        for param in model.parameters():
+            param.requires_grad = False
 
 
 def create_model(model_type, num_classes, pretrained):
