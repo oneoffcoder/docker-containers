@@ -22,11 +22,14 @@ from argparse import RawTextHelpFormatter
 def get_device():
     return torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
+
 def get_input_size(m):
     return 299 if m == 'inception_v3' else 256
 
+
 def determine_inception(m):
     return True if m == 'inception_v3' else False
+
 
 def create_model(model_type, num_classes, pretrained):
     device = get_device()
@@ -140,14 +143,18 @@ def create_model(model_type, num_classes, pretrained):
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     return model.to(device)
 
+
 def get_criterion():
     return nn.CrossEntropyLoss()
+
 
 def get_optimizer(model, params):
     return optim.SGD(model.parameters(), **params)
 
+
 def get_scheduler(optimizer, params):
     return lr_scheduler.StepLR(optimizer, **params)
+
 
 def get_dataloaders(data_dir, input_size, batch_size, num_workers):
     data_transforms = {
@@ -184,6 +191,7 @@ def get_dataloaders(data_dir, input_size, batch_size, num_workers):
     class_names = image_datasets['train'].classes
     
     return dataloaders, dataset_sizes, class_names, len(class_names)
+
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs, is_inception):
     device = get_device()
@@ -261,6 +269,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
     model.load_state_dict(best_model_wts)
     return model
 
+
 def get_metrics(model, dataloaders, class_names):
     device = get_device()
     Metric = namedtuple('Metric', 'clazz tn fp fn tp sen spe acc f1 mcc')
@@ -304,13 +313,16 @@ def get_metrics(model, dataloaders, class_names):
     
     return metrics
 
+
 def print_metrics(metrics):
     for m in metrics:
         print('{}: sen = {:.5f}, spe = {:.5f}, acc = {:.5f}, f1 = {:.5f}, mcc = {:.5f}'
               .format(m.clazz, m.sen, m.spe, m.acc, m.f1, m.mcc))
 
+
 def get_ms_past_epoch():
     return int(round(time.time() * 1000))
+
 
 def save_model(m, model, output_dir):
     o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
@@ -320,10 +332,12 @@ def save_model(m, model, output_dir):
     torch.save(model.state_dict(), output_path)
     print('saved model to {}'.format(output_path))
 
+
 def load_model(model_type, num_classes, model_path):
     model = create_model(model_type, num_classes, False)
     model.load_state_dict(torch.load(model_path))
     return model
+
 
 def get_model(model_type, num_classes, pretrained, model_path):
     if model_path is None or len(model_path.strip()) == 0:
@@ -336,6 +350,7 @@ def get_model(model_type, num_classes, pretrained, model_path):
         except:
             print('could not load model {} from {}, will create a new one'.format(model_type, model_path))
             return create_model(model_type, num_classes, pretrained)
+
 
 def parse_args(args):
     """
