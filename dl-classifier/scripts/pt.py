@@ -18,43 +18,46 @@ from collections import namedtuple
 from sklearn.metrics import multilabel_confusion_matrix
 from collections import namedtuple
 
+def get_device():
+    return torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
 def get_input_size(m):
     return 299 if m == 'inception_v3' else 256
 
 def determine_inception(m):
     return True if m == 'inception_v3' else False
 
-def get_model(m, num_classes, pretrained):
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    if 'resnet18' == max:
+def get_model(model_type, num_classes, pretrained):
+    device = get_device()
+    if 'resnet18' == model_type:
         model = models.resnet18(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'resnet152' == m:
+    elif 'resnet152' == model_type:
         model = models.resnet152(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'alexnet' == m:
+    elif 'alexnet' == model_type:
         model = models.alexnet(pretrained=pretrained)
         model.classifier[6] = nn.Linear(4096, num_classes)
-    elif 'vgg19_bn' == m:
+    elif 'vgg19_bn' == model_type:
         model = models.vgg19_bn(pretrained=pretrained)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
-    elif 'squeezenet1_1' == m:
+    elif 'squeezenet1_1' == model_type:
         model = models.squeezenet1_1(pretrained=pretrained)
         model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
         model.num_classes = num_classes
-    elif 'densenet201' == m:
+    elif 'densenet201' == model_type:
         model = models.densenet201(pretrained=pretrained)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
-    elif 'googlenet' == m:
+    elif 'googlenet' == model_type:
         model = models.googlenet(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'shufflenet_v2_x0_5' == m:
+    elif 'shufflenet_v2_x0_5' == model_type:
         model = models.shufflenet_v2_x0_5(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'mobilenet_v2' == m:
+    elif 'mobilenet_v2' == model_type:
         model = models.mobilenet_v2(pretrained=pretrained)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
-    elif 'resnext101_32x8d' == m:
+    elif 'resnext101_32x8d' == model_type:
         model = models.resnext101_32x8d(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     else:
@@ -109,7 +112,7 @@ def get_dataloaders(data_dir, input_size, batch_size, num_workers):
     return dataloaders, dataset_sizes, class_names, len(class_names)
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs, is_inception):
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = get_device()
     Result = namedtuple('Result', 'phase loss acc')
 
     since = time.time()
@@ -185,7 +188,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
     return model
 
 def get_metrics(model, dataloaders, class_names):
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = get_device()
     Metric = namedtuple('Metric', 'clazz tn fp fn tp sen spe acc f1 mcc')
 
     y_true = []
@@ -240,13 +243,18 @@ def save_model(m, model, output_dir):
     torch.save(model.state_dict(), output_path)
     print('saved model to {}'.format(output_path))
 
+def load_model(model_type, num_classes, model_path):
+    model = get_model(model_type, num_classes, False)
+    model.load_state_dict(torch.load(model_path))
+    return model
+
 def parse_args(args):
     """
     Parses arguments.
     :return: Arguments.
     """
     parser = argparse.ArgumentParser('PyTorch classification models')
-    parser.add_argument('-m', '--model', help='model', required=True)
+    parser.add_argument('-m', '--model_type', help='model', required=True)
     parser.add_argument('-d', '--data_dir', help='data directory', required=True)
     parser.add_argument('-b', '--batch_size', help='batch size', required=False, default=4, type=int)
     parser.add_argument('-e', '--epochs', help='number of epochs', required=False, default=25, type=int)
@@ -262,22 +270,24 @@ def parse_args(args):
 
 def do_it(args):
     data_dir = args.data_dir
-    input_size = get_input_size(args.model)
+    model_type = args.model_type
+    input_size = get_input_size(model_type)
     batch_size = args.batch_size
     num_workers = args.num_workers
 
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
-    model = get_model(args.model, num_classes, args.pretrained)
+    pretrained = args.pretrained
+    model = get_model(model_type, num_classes, pretrained)
     criterion = get_criterion()
     optimizer = get_optimizer(model, args.optimizer)
     scheduler = get_scheduler(optimizer, args.scheduler)
 
     num_epochs = args.epochs
-    is_inception = determine_inception(args.model)
+    is_inception = determine_inception(model_type)
     model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
     output_dir = args.output_dir
-    save_model(args.model, model, output_dir)
+    save_model(model_type, model, output_dir)
 
     print_metrics(get_metrics(model, dataloaders, class_names))
 
