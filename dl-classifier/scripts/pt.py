@@ -209,7 +209,6 @@ def get_metrics(model, dataloaders, class_names):
                 y_true.append(cpu_label)
                 y_pred.append(clazz_name)
                 
-                
         model.train(mode=was_training)
     
     cmatrices = multilabel_confusion_matrix(y_true, y_pred, labels=class_names)
