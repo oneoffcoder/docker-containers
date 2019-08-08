@@ -276,9 +276,11 @@ def do_it(args):
     num_workers = args.num_workers
 
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
+    
     pretrained = args.pretrained
     optimizer_params = args.optimizer_params
     scheduler_params = args.scheduler_params
+
     model = get_model(model_type, num_classes, pretrained)
     criterion = get_criterion()
     optimizer = get_optimizer(model, optimizer_params)
