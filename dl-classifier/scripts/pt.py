@@ -17,6 +17,7 @@ import copy
 from collections import namedtuple
 from sklearn.metrics import multilabel_confusion_matrix
 from collections import namedtuple
+from argparse import RawTextHelpFormatter
 
 def get_device():
     return torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -32,19 +33,62 @@ def create_model(model_type, num_classes, pretrained):
     if 'resnet18' == model_type:
         model = models.resnet18(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'resnet34' == model_type:
+        model = models.resnet34(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'resnet50' == model_type:
+        model = models.resnet50(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'resnet101' == model_type:
+        model = models.resnet101(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'resnet152' == model_type:
         model = models.resnet152(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'alexnet' == model_type:
         model = models.alexnet(pretrained=pretrained)
         model.classifier[6] = nn.Linear(4096, num_classes)
+    elif 'vgg11' == model_type:
+        model = models.vgg11(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg11_bn' == model_type:
+        model = models.vgg11_bn(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg13' == model_type:
+        model = models.vgg13(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg13_bn' == model_type:
+        model = models.vgg13_bn(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg16' == model_type:
+        model = models.vgg16(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg16_bn' == model_type:
+        model = models.vgg16_bn(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'vgg19' == model_type:
+        model = models.vgg19(pretrained=pretrained)
+        model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg19_bn' == model_type:
         model = models.vgg19_bn(pretrained=pretrained)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
+    elif 'squeezenet1_0' == model_type:
+        model = models.squeezenet1_0(pretrained=pretrained)
+        model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
+        model.num_classes = num_classes
     elif 'squeezenet1_1' == model_type:
         model = models.squeezenet1_1(pretrained=pretrained)
         model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
         model.num_classes = num_classes
+    elif 'densenet121' == model_type:
+        model = models.densenet121(pretrained=pretrained)
+        model.classifier = nn.Linear(model.classifier.in_features, num_classes)
+    elif 'densenet161' == model_type:
+        model = models.densenet161(pretrained=pretrained)
+        model.classifier = nn.Linear(model.classifier.in_features, num_classes)
+    elif 'densenet169' == model_type:
+        model = models.densenet169(pretrained=pretrained)
+        model.classifier = nn.Linear(model.classifier.in_features, num_classes)
     elif 'densenet201' == model_type:
         model = models.densenet201(pretrained=pretrained)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
@@ -54,12 +98,42 @@ def create_model(model_type, num_classes, pretrained):
     elif 'shufflenet_v2_x0_5' == model_type:
         model = models.shufflenet_v2_x0_5(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'shufflenet_v2_x1_0' == model_type:
+        model = models.shufflenet_v2_x1_0(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'shufflenet_v2_x1_5' == model_type:
+        model = models.shufflenet_v2_x1_5(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'shufflenet_v2_x2_0' == model_type:
+        model = models.shufflenet_v2_x2_0(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'mobilenet_v2' == model_type:
         model = models.mobilenet_v2(pretrained=pretrained)
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    elif 'resnext50_32x4d' == model_type:
+        model = models.resnext50_32x4d(pretrained=pretrained)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'resnext101_32x8d' == model_type:
         model = models.resnext101_32x8d(pretrained=pretrained)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'wide_resnet50_2' == model_type:
+        model = models.wide_resnet50_2(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'wide_resnet101_2' == model_type:
+        model = models.wide_resnet101_2(pretrained=pretrained)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
+    elif 'mnasnet0_5' == model_type:
+        model = models.mnasnet0_5(pretrained=pretrained)
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    elif 'mnasnet0_75' == model_type:
+        model = models.mnasnet0_75(pretrained=pretrained)
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    elif 'mnasnet1_0' == model_type:
+        model = models.mnasnet1_0(pretrained=pretrained)
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    elif 'mnasnet1_3' == model_type:
+        model = models.mnasnet1_3(pretrained=pretrained)
+        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     else:
         model = models.inception_v3(pretrained=pretrained)
         model.AuxLogits.fc = nn.Linear(model.AuxLogits.fc.in_features, num_classes)
@@ -235,9 +309,12 @@ def print_metrics(metrics):
         print('{}: sen = {:.5f}, spe = {:.5f}, acc = {:.5f}, f1 = {:.5f}, mcc = {:.5f}'
               .format(m.clazz, m.sen, m.spe, m.acc, m.f1, m.mcc))
 
+def get_ms_past_epoch():
+    return int(round(time.time() * 1000))
+
 def save_model(m, model, output_dir):
     o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
-    millis = int(round(time.time() * 1000))
+    millis = get_ms_past_epoch()
     output_file = '{}-{}.t'.format(m, millis)
     output_path = '{}/{}'.format(o_dir, output_file)
     torch.save(model.state_dict(), output_path)
@@ -253,26 +330,73 @@ def get_model(model_type, num_classes, pretrained, model_path):
         print('creating new model {}, pretrained = {}'.format(model_type, pretrained))
         return create_model(model_type, num_classes, pretrained)
     else:
-        print('loading model {} from {}'.format(model_type, model_path))
-        return load_model(model_type, num_classes, model_path)
+        try:
+            print('loading model {} from {}'.format(model_type, model_path))
+            return load_model(model_type, num_classes, model_path)
+        except:
+            print('could not load model {} from {}, will create a new one'.format(model_type, model_path))
+            return create_model(model_type, num_classes, pretrained)
 
 def parse_args(args):
     """
     Parses arguments.
     :return: Arguments.
     """
-    parser = argparse.ArgumentParser('PyTorch classification models')
-    parser.add_argument('-m', '--model_type', help='model', required=True)
-    parser.add_argument('-d', '--data_dir', help='data directory', required=True)
-    parser.add_argument('-b', '--batch_size', help='batch size', required=False, default=4, type=int)
-    parser.add_argument('-e', '--epochs', help='number of epochs', required=False, default=25, type=int)
-    parser.add_argument('--pretrained', help='use transfer learning', required=False, default=True, type=bool)
-    parser.add_argument('--optimizer_params', help='optimizer parameters', required=False, default='{"lr": 0.001, "momentum": 0.9}', type=json.loads)
-    parser.add_argument('--scheduler_params', help='scheduler parameters', required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
-    parser.add_argument('-w', '--num_workers', help='number of workers', required=False, default=4, type=int)
-    parser.add_argument('-s', '--seed', help='seed', required=False, default=37, type=int)
-    parser.add_argument('-o', '--output_dir', help='output dir', required=False, default=None)
-    parser.add_argument('-l', '--load_model', help='model path', required=False, default=None)
+    parser = argparse.ArgumentParser('PyTorch classification models', formatter_class=RawTextHelpFormatter)
+    parser.add_argument('-m', '--model_type', help="""model type
+    For example:
+        - inception_v3
+        - alexnet 
+        - vgg19_bn 
+    For the full list, go to https://pytorch.org/docs/stable/torchvision/models.html.
+    """.strip(), required=True)
+    parser.add_argument('-d', '--data_dir', help="""data directory
+    e.g. /path/to/images
+    Note that there should be 3 sub-directories under /path/to/images:
+        - /path/to/images/train     # for training
+        - /path/to/images/test      # for testing during training
+        - /path/to/images/valid     # for validation after training
+    Inside each of these sub-directories should be additional sub-directories 
+    that correspond to your class labels. Assuming you have only two classes,
+    such as 0 and 1, then you should have the following directories:
+        - /path/to/images/train/0   # for training 0-th class
+        - /path/to/images/train/1   # for training 1-st class
+        - /path/to/images/test/0    # for testing 0-th class during training
+        - /path/to/images/test/1    # for testing 1-st class during training
+        - /path/to/images/valid/0   # for validating 0-th class after training
+        - /path/to/images/valid/1   # for validating 1-st class after training
+    """.strip(), required=True)
+    parser.add_argument('-b', '--batch_size', help='batch size (default: 4)', required=False, default=4, type=int)
+    parser.add_argument('-e', '--epochs', help='number of epochs (default: 25)', required=False, default=25, type=int)
+    parser.add_argument('--pretrained', help='use transfer learning by loading pretrained weights (default: true)', required=False, default=True, type=bool)
+    parser.add_argument('--optimizer_params', help="""optimizer parameters (default: {"lr": 0.001, "momentum": 0.9})
+    torch.optim.SGD is the only optimizer supported.
+    The string you pass in must be parseable by json.loads().
+    Example of a JSON string is as follows.
+    {"lr": 0.001, "momentum": 0.9}
+    """.strip(), required=False, default='{"lr": 0.001, "momentum": 0.9}', type=json.loads)
+    parser.add_argument('--scheduler_params', help="""scheduler parameters (default: {"step_size": 7, "gamma": 0.1})
+    torch.optim.lr_scheduler.StepLR is the only scheduler supported.
+    The string you pass in must be parseable by json.loads().
+    Example of a JSON string is as follows.
+    {"step_size": 7, "gamma": 0.1}
+    """.strip(), required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
+    parser.add_argument('-w', '--num_workers', help='number of workers (default: 4)', required=False, default=4, type=int)
+    parser.add_argument('-s', '--seed', help="""seed used for random number generators (default: 1299827)
+    Use a negative number (e.g. -1) to seed with the current time
+    represented as milliseconds past epoch.
+    """.strip(), required=False, default=1299827, type=int)
+    parser.add_argument('-o', '--output_dir', help="""output dir (default: /tmp)
+    e.g. /tmp/inception_v3-1565298691256.t
+    Note that the file path is: [model_type]-[milliseconds_past_epoch].t
+    You may only control the output directory, not the file name.
+    """.strip(), required=False, default='/tmp')
+    parser.add_argument('-l', '--load_model', help="""path of model to load
+    e.g. /path/to/model.t
+    If such a path does NOT exists, then a new model (of the model_type) will 
+    be created. If such a path does exists, then that model will be used
+    as a starting point for training.
+    """.strip(), required=False, default=None)
 
     return parser.parse_args(args)
 
@@ -312,6 +436,10 @@ if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -e 1
     # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
-    random.seed(args.seed)
-    torch.manual_seed(args.seed)
+
+    seed = seed if args.seed > 0 else get_ms_past_epoch()
+    print('seed: {}'.format(seed))
+    random.seed(seed)
+    torch.manual_seed(seed)
+
     do_it(args)
