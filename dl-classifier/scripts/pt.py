@@ -232,6 +232,14 @@ def print_metrics(metrics):
         print('{}: sen = {:.5f}, spe = {:.5f}, acc = {:.5f}, f1 = {:.5f}, mcc = {:.5f}'
               .format(m.clazz, m.sen, m.spe, m.acc, m.f1, m.mcc))
 
+def save_model(m, model, output_dir):
+    o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
+    millis = int(round(time.time() * 1000))
+    output_file = '{}-{}.t'.format(m, millis)
+    output_path = '{}/{}'.format(o_dir, output_file)
+    torch.save(model.state_dict(), output_path)
+    print('saved model to {}'.format(output_path))
+
 def parse_args(args):
     """
     Parses arguments.
@@ -247,6 +255,7 @@ def parse_args(args):
     parser.add_argument('--scheduler', help='scheduler options', required=False, default='{"step_size": 7, "gamma": 0.1}', type=json.loads)
     parser.add_argument('-w', '--num_workers', help='number of workers', required=False, default=4, type=int)
     parser.add_argument('-s', '--seed', help='seed', required=False, default=37, type=int)
+    parser.add_argument('-o', '--output_dir', help='output dir', required=False, default=None)
 
     return parser.parse_args(args)
 
@@ -267,12 +276,16 @@ def do_it(args):
     is_inception = determine_inception(args.model)
     model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
+    output_dir = args.output_dir
+    save_model(args.model, model, output_dir)
+
     print_metrics(get_metrics(model, dataloaders, class_names))
 
     print('done')
 
 
 if __name__ == "__main__":
+    # python scripts/pt.py -m inception_v3 -d faces-small -e 1
     args = parse_args(sys.argv[1:])
     random.seed(args.seed)
     torch.manual_seed(args.seed)
