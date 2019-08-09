@@ -4,6 +4,7 @@ These are some sample docker containers for learning purposes.
 
 # x86 Docker Images
 
+* [dl-classifier](dl-classifier): An executable [container](https://hub.docker.com/r/oneoffcoder/dl-classifier) with [all of PyTorch's convolutional neural networks](https://pytorch.org/docs/stable/torchvision/models.html) (CNNs)
 * [dl-darknet](dl-darknet): [YOLO object detection](https://github.com/pjreddie/darknet) with [darknet](https://github.com/AlexeyAB/darknet) in a [box](https://hub.docker.com/r/oneoffcoder/dl-darknet)!
 * [conda-deeplearning](conda-deeplearning): A [container](https://hub.docker.com/r/oneoffcoder/conda-deeplearning) with conda environment + Jupyter for Deep Learning.
 * [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/oneoffcoder/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
