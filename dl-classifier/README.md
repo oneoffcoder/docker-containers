@@ -89,7 +89,7 @@ optional arguments:
 
 The most important options as follows.
 
-* `-m` specifies the model type (e.g. inception_v3, alexnet, vgg19_bn, etc...).
+* `-m` specifies the model type: `resnet18` `resnet34` `resnet50` `resnet101` `resnet152` `alexnet` `vgg11` `vgg11_bn` `vgg13` `vgg13_bn` `vgg16` `vgg16_bn` `vgg19` `vgg19_bn` `squeezenet1_0` `squeezenet1_1` `densenet121` `densenet161` `densenet169` `densenet201` `googlenet` `shufflenet_v2_x0_5` `shufflenet_v2_x1_0` `mobilenet_v2` `resnext50_32x4d` `resnext101_32x8d` `wide_resnet50_2` `wide_resnet101_2` `mnasnet0_5` `mnasnet1_0` `inception_v3`
 * `-d` specifies the data directory containing your images; your data directory **MUST** follow the required PyTorch layout as we are using its `ImageFolder` to build the `DataLoader`. Take a look on the [official documentation](https://pytorch.org/docs/stable/torchvision/datasets.html#imagefolder) to get a better idea of the folder structure of the data directory. The help printout also does a decent job at explaining.
 * `-o` specifies the output directory that you want to serialize the PyTorch model to.
 * `-e` specifies the number of epochs to train.
