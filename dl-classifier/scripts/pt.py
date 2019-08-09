@@ -644,7 +644,7 @@ def do_it(args):
 
 if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -e 1
-    # python scripts/pt.py -m inception_v3 -d faces-small -e 1 -f True
+    # python scripts/pt.py -m inception_v3 -d faces-small -e 1 -f
     # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
     print('arguments')
