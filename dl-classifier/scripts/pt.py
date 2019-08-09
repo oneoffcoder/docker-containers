@@ -60,7 +60,7 @@ def set_parameter_requires_grad(model, feature_extracting):
             param.requires_grad = False
 
 
-def create_model(model_type, num_classes, pretrained):
+def create_model(model_type, num_classes, feature_extract, pretrained):
     """
     Creates a model.
     :param model_type: Model type.
@@ -71,110 +71,145 @@ def create_model(model_type, num_classes, pretrained):
     device = get_device()
     if 'resnet18' == model_type:
         model = models.resnet18(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'resnet34' == model_type:
         model = models.resnet34(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'resnet50' == model_type:
         model = models.resnet50(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'resnet101' == model_type:
         model = models.resnet101(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'resnet152' == model_type:
         model = models.resnet152(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'alexnet' == model_type:
         model = models.alexnet(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(4096, num_classes)
     elif 'vgg11' == model_type:
         model = models.vgg11(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg11_bn' == model_type:
         model = models.vgg11_bn(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg13' == model_type:
         model = models.vgg13(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg13_bn' == model_type:
         model = models.vgg13_bn(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg16' == model_type:
         model = models.vgg16(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg16_bn' == model_type:
         model = models.vgg16_bn(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg19' == model_type:
         model = models.vgg19(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'vgg19_bn' == model_type:
         model = models.vgg19_bn(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[6] = nn.Linear(model.classifier[6].in_features, num_classes)
     elif 'squeezenet1_0' == model_type:
         model = models.squeezenet1_0(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
         model.num_classes = num_classes
     elif 'squeezenet1_1' == model_type:
         model = models.squeezenet1_1(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Conv2d(512, num_classes, kernel_size=(1,1), stride=(1,1))
         model.num_classes = num_classes
     elif 'densenet121' == model_type:
         model = models.densenet121(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
     elif 'densenet161' == model_type:
         model = models.densenet161(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
     elif 'densenet169' == model_type:
         model = models.densenet169(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
     elif 'densenet201' == model_type:
         model = models.densenet201(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier = nn.Linear(model.classifier.in_features, num_classes)
     elif 'googlenet' == model_type:
         model = models.googlenet(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'shufflenet_v2_x0_5' == model_type:
         model = models.shufflenet_v2_x0_5(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'shufflenet_v2_x1_0' == model_type:
         model = models.shufflenet_v2_x1_0(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'shufflenet_v2_x1_5' == model_type:
         model = models.shufflenet_v2_x1_5(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'shufflenet_v2_x2_0' == model_type:
         model = models.shufflenet_v2_x2_0(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'mobilenet_v2' == model_type:
         model = models.mobilenet_v2(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'resnext50_32x4d' == model_type:
         model = models.resnext50_32x4d(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'resnext101_32x8d' == model_type:
         model = models.resnext101_32x8d(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'wide_resnet50_2' == model_type:
         model = models.wide_resnet50_2(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'wide_resnet101_2' == model_type:
         model = models.wide_resnet101_2(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'mnasnet0_5' == model_type:
         model = models.mnasnet0_5(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'mnasnet0_75' == model_type:
         model = models.mnasnet0_75(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'mnasnet1_0' == model_type:
         model = models.mnasnet1_0(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'mnasnet1_3' == model_type:
         model = models.mnasnet1_3(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     else:
         model = models.inception_v3(pretrained=pretrained)
+        set_parameter_requires_grad(model, feature_extract)
         model.AuxLogits.fc = nn.Linear(model.AuxLogits.fc.in_features, num_classes)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
     return model.to(device)
@@ -188,14 +223,14 @@ def get_criterion():
     return nn.CrossEntropyLoss()
 
 
-def get_optimizer(model, params):
+def get_optimizer(params_to_update, params):
     """
     Gets the optimizer. Only SGD is supported.
-    :param model: Model.
+    :param params_to_update: Model parameters to update.
     :param params: Parameters to the optimizer.
     :return: Optimizer.
     """
-    return optim.SGD(model.parameters(), **params)
+    return optim.SGD(params_to_update, **params)
 
 
 def get_scheduler(optimizer, params):
@@ -441,7 +476,7 @@ def load_model(model_type, num_classes, model_path):
     return model
 
 
-def get_model(model_type, num_classes, pretrained, model_path):
+def get_model(model_type, num_classes, feature_extract, pretrained, model_path):
     """
     Gets a model. If the model_path is not null and has length greater
     than zero, then an attempt will be made to load such existing
@@ -455,14 +490,14 @@ def get_model(model_type, num_classes, pretrained, model_path):
     """
     if model_path is None or len(model_path.strip()) == 0:
         print('creating new model {}, pretrained = {}'.format(model_type, pretrained))
-        return create_model(model_type, num_classes, pretrained)
+        return create_model(model_type, num_classes, feature_extract, pretrained)
     else:
         try:
             print('loading model {} from {}'.format(model_type, model_path))
             return load_model(model_type, num_classes, model_path)
         except:
             print('could not load model {} from {}, will create a new one'.format(model_type, model_path))
-            return create_model(model_type, num_classes, pretrained)
+            return create_model(model_type, num_classes, feature_extract, pretrained)
 
 
 def parse_args(args):
@@ -470,7 +505,7 @@ def parse_args(args):
     Parses arguments.
     :return: Arguments.
     """
-    parser = argparse.ArgumentParser('PyTorch classification models', formatter_class=RawTextHelpFormatter)
+    parser = argparse.ArgumentParser('PyTorch Classification Models', formatter_class=RawTextHelpFormatter)
     
     parser.add_argument('-m', '--model_type', help="""model type
     For example:
@@ -479,6 +514,11 @@ def parse_args(args):
         - vgg19_bn 
     For the full list, go to https://pytorch.org/docs/stable/torchvision/models.html.
     """.strip(), required=True)
+
+    parser.add_argument('-f', help="""indicates if we are feature extracting (default: False)
+    This option is a flag. If used, then feature extracting will be true, else,
+    feature extracting will be false
+    """, action='store_true', dest='feature_extract', required=False, default=False)
     
     parser.add_argument('-d', '--data_dir', help="""data directory
     e.g. /path/to/images
@@ -501,7 +541,11 @@ def parse_args(args):
     
     parser.add_argument('-e', '--epochs', help='number of epochs (default: 25)', required=False, default=25, type=int)
     
-    parser.add_argument('--pretrained', help='use transfer learning by loading pretrained weights (default: true)', required=False, default=True, type=bool)
+    parser.add_argument('-p', help="""use transfer learning by loading pretrained weights (default: True)
+    To turn off using pretrained weights, pass in -p.
+    By default, without -p, pretrained weights are used.
+    """, 
+        action='store_false', dest='pretrained', required=False, default=True)
     
     parser.add_argument('--optimizer_params', help="""optimizer parameters (default: {"lr": 0.001, "momentum": 0.9})
     torch.optim.SGD is the only optimizer supported.
@@ -537,6 +581,8 @@ def parse_args(args):
     as a starting point for training.
     """.strip(), required=False, default=None)
 
+    parser.add_argument('--version', action='version', version='%(prog)s v0.0.1')
+
     return parser.parse_args(args)
 
 
@@ -556,14 +602,30 @@ def do_it(args):
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
     
     model_path = args.load_model
+    feature_extract = args.feature_extract
     pretrained = args.pretrained
+    feature_extract = args.feature_extract
     optimizer_params = args.optimizer_params
     scheduler_params = args.scheduler_params
 
     print('constructing training components')
-    model = get_model(model_type, num_classes, pretrained, model_path)
+    model = get_model(model_type, num_classes, feature_extract, pretrained, model_path)
+
+    params_to_update = model.parameters()
+    print("params to learn:")
+    if feature_extract:
+        params_to_update = []
+        for name,param in model.named_parameters():
+            if param.requires_grad == True:
+                params_to_update.append(param)
+                print("\t",name)
+    else:
+        for name,param in model.named_parameters():
+            if param.requires_grad == True:
+                print("\t",name)
+
     criterion = get_criterion()
-    optimizer = get_optimizer(model, optimizer_params)
+    optimizer = get_optimizer(params_to_update, optimizer_params)
     scheduler = get_scheduler(optimizer, scheduler_params)
 
     num_epochs = args.epochs
@@ -582,11 +644,13 @@ def do_it(args):
 
 if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -e 1
+    # python scripts/pt.py -m inception_v3 -d faces-small -e 1 -f True
     # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
+    print('arguments')
+    print(json.dumps(vars(args), indent=1, sort_keys=True))
 
     seed = args.seed if args.seed > 0 else get_ms_past_epoch()
-    print('seed: {}'.format(seed))
     random.seed(seed)
     torch.manual_seed(seed)
 
