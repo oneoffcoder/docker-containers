@@ -7,6 +7,8 @@ COPY setup.sh /tmp/setup.sh
 RUN /tmp/setup.sh
 RUN rm -f /tmp/setup.sh
 COPY scripts /scripts
-RUN mkdir /data
+COPY faces-small /data
 RUN mkdir /model
-VOLUME ["/data", "/model"]
+VOLUME [ "/data", "/model" ]
+ENTRYPOINT [ "python", "/scripts/pt.py" ]
+CMD [ "--help" ]

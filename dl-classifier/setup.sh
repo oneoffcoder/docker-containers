@@ -4,7 +4,7 @@ updateAptPackages() {
     echo "installing packages via APT"
     apt-get update -y
     apt-get upgrade -y
-    apt-get install git libopencv-dev wget -y
+    apt-get install wget -y
 }
 
 installAnaconda() {
@@ -17,10 +17,8 @@ installAnaconda() {
 installPytorch() {
     echo "installing pytorch"
     conda install --yes \
-        -c menpo \
         -c pytorch \
-        opencv \
-        pytorch torchvision cudatoolkit=10.0
+        scikit-learn=0.21.1 pytorch torchvision cudatoolkit=10.0
 }
 
 updateAptPackages

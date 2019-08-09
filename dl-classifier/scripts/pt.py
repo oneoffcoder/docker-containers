@@ -65,6 +65,7 @@ def create_model(model_type, num_classes, feature_extract, pretrained):
     Creates a model.
     :param model_type: Model type.
     :param num_classes: Number of classes.
+    :param feature_extract: A boolean indicating if we are extracting features.
     :param pretrained: A boolean indicating if pretrained weights should be used.
     :return: Model.
     """
@@ -463,15 +464,16 @@ def save_model(model_type, model, output_dir):
     print('saved model to {}'.format(output_path))
 
 
-def load_model(model_type, num_classes, model_path):
+def load_model(model_type, num_classes, feature_extract, model_path):
     """
     Loads a model.
     :param model_type: Model type.
     :param num_classes: Number of classes.
+    :param feature_extract: A boolean indicating if we are extracting features.
     :param model_path: Model path.
     :return: Model.
     """
-    model = create_model(model_type, num_classes, False)
+    model = create_model(model_type, num_classes, feature_extract, False)
     model.load_state_dict(torch.load(model_path))
     return model
 
@@ -484,6 +486,7 @@ def get_model(model_type, num_classes, feature_extract, pretrained, model_path):
     be created.
     :param model_type: Model type.
     :param num_classes: Number of classes.
+    :param feature_extract: A boolean indicating if we are extracting features.
     :param pretrained: A boolean indicating if pretrained weights should be used.
     :param model_path: Path to an existing model.
     :return: Model.
@@ -494,7 +497,7 @@ def get_model(model_type, num_classes, feature_extract, pretrained, model_path):
     else:
         try:
             print('loading model {} from {}'.format(model_type, model_path))
-            return load_model(model_type, num_classes, model_path)
+            return load_model(model_type, num_classes, feature_extract, model_path)
         except:
             print('could not load model {} from {}, will create a new one'.format(model_type, model_path))
             return create_model(model_type, num_classes, feature_extract, pretrained)
@@ -612,17 +615,11 @@ def do_it(args):
     model = get_model(model_type, num_classes, feature_extract, pretrained, model_path)
 
     params_to_update = model.parameters()
-    print("params to learn:")
     if feature_extract:
         params_to_update = []
-        for name,param in model.named_parameters():
+        for _, param in model.named_parameters():
             if param.requires_grad == True:
                 params_to_update.append(param)
-                print("\t",name)
-    else:
-        for name,param in model.named_parameters():
-            if param.requires_grad == True:
-                print("\t",name)
 
     criterion = get_criterion()
     optimizer = get_optimizer(params_to_update, optimizer_params)
