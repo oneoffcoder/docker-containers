@@ -6,7 +6,7 @@ ENV PATH="${CONDA_HOME}/bin:${PATH}"
 COPY setup.sh /tmp/setup.sh
 RUN /tmp/setup.sh
 RUN rm -f /tmp/setup.sh
-RUN COPY scripts /scripts
+COPY scripts /scripts
 RUN mkdir /data
 RUN mkdir /model
 VOLUME ["/data", "/model"]
