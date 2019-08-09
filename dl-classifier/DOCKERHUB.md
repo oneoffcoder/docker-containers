@@ -2,9 +2,9 @@
 
 This project is an executable container with [all of PyTorch's convolutional neural networks](https://pytorch.org/docs/stable/torchvision/models.html) (CNNs). You may use it with ease to train, test and validate against your own data. All the available pre-trained model weights are downloaded into the container already. The way this container works is with the helper Python program `pt.py` and the docker instructions `ENTRYPOINT` and `CMD`. The `ENTRYPOINT` instruction points to `pt.py` and the `CMD` instruction passes in the `--help` flag. At runtime, you override what `CMD` passes to `pt.py` by specifying appropriate flags.
 
-# Docker Hub
+# Source
 
-[Image](https://hub.docker.com/r/oneoffcoder/dl-classifier)
+[GitHub](https://github.com/oneoffcoder/docker-containers/tree/master/dl-classifier)
 
 # Options
 
@@ -127,20 +127,4 @@ docker run -it \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
     dl-classifier:local -m inception_v3 -d /data -e 25 -o /model
-```
-
-# Take a Look!
-
-Check out [Niklaus Wirth](https://en.wikipedia.org/wiki/Niklaus_Wirth).
-
-# Citation
-
-```
-@misc{oneoffcoder_dl_classifier_2019, 
-title={An executable docker container with all of PyTorch classification models}, 
-url={https://github.com/oneoffcoder/docker-containers/tree/master/dl-classifier}, 
-journal={GitHub},
-author={One-Off Coder}, 
-year={2019}, 
-month={Aug}}
 ```
