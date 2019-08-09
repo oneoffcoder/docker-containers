@@ -104,7 +104,7 @@ As for the docker container, you have 2 mounts that you should use to load data 
 The following command will run the container and do its default programmed behavior, which is printing the help screen.
 
 ```bash
-docker run -it dl-classifier:local
+docker run -it oneoffcoder/dl-classifier
 ```
 
 The following command will start learning from dummy data stored in the `/data` directory. Note that the `/data` is already pre-loaded with this dummy data and no mount is set to that directory. Also, since we do not specify an output directory, the model will be saved on the container in the `/tmp` directory.
@@ -114,7 +114,7 @@ docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
-    dl-classifier:local -m inception_v3 -d /data -e 50
+    oneoffcoder/dl-classifier -m inception_v3 -d /data -e 50
 ```
 
 The following command is the most realistic one as you are mounting your data and folder to save the model.
@@ -126,5 +126,5 @@ docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
-    dl-classifier:local -m inception_v3 -d /data -e 25 -o /model
+    oneoffcoder/dl-classifier -m inception_v3 -d /data -e 25 -o /model
 ```
