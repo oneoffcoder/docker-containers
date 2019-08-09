@@ -164,14 +164,6 @@ def create_model(model_type, num_classes, feature_extract, pretrained):
         model = models.shufflenet_v2_x1_0(pretrained=pretrained)
         set_parameter_requires_grad(model, feature_extract)
         model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'shufflenet_v2_x1_5' == model_type:
-        model = models.shufflenet_v2_x1_5(pretrained=pretrained)
-        set_parameter_requires_grad(model, feature_extract)
-        model.fc = nn.Linear(model.fc.in_features, num_classes)
-    elif 'shufflenet_v2_x2_0' == model_type:
-        model = models.shufflenet_v2_x2_0(pretrained=pretrained)
-        set_parameter_requires_grad(model, feature_extract)
-        model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif 'mobilenet_v2' == model_type:
         model = models.mobilenet_v2(pretrained=pretrained)
         set_parameter_requires_grad(model, feature_extract)
@@ -624,6 +616,10 @@ def do_it(args):
     criterion = get_criterion()
     optimizer = get_optimizer(params_to_update, optimizer_params)
     scheduler = get_scheduler(optimizer, scheduler_params)
+
+    print(criterion)
+    print(optimizer)
+    print('scheduler step_size={}, gamma={}'.format(scheduler.step_size, scheduler.gamma))
 
     num_epochs = args.epochs
     is_inception = determine_inception(model_type)
