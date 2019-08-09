@@ -188,16 +188,8 @@ def create_model(model_type, num_classes, feature_extract, pretrained):
         model = models.mnasnet0_5(pretrained=pretrained)
         set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
-    elif 'mnasnet0_75' == model_type:
-        model = models.mnasnet0_75(pretrained=pretrained)
-        set_parameter_requires_grad(model, feature_extract)
-        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     elif 'mnasnet1_0' == model_type:
         model = models.mnasnet1_0(pretrained=pretrained)
-        set_parameter_requires_grad(model, feature_extract)
-        model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
-    elif 'mnasnet1_3' == model_type:
-        model = models.mnasnet1_3(pretrained=pretrained)
         set_parameter_requires_grad(model, feature_extract)
         model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
     else:
