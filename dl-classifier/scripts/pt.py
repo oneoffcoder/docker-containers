@@ -307,6 +307,8 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
         # Each epoch has a training and validation phase
         for phase in ['train', 'test']:
             if phase == 'train':
+                optimizer.step()
+                scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()   # Set model to evaluate mode
@@ -340,8 +342,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
                     if phase == 'train':
                         loss.backward()
                         optimizer.step()
-                        scheduler.step()
-
+                        
                 # statistics
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds == labels.data)
