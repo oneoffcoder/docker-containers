@@ -443,7 +443,7 @@ def save_model(model_type, model, output_dir):
     """
     o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
     millis = get_ms_past_epoch()
-    output_file = '{}-{}.t'.format(model_type, millis)
+    output_file = '{}-{}.pth'.format(model_type, millis)
     output_path = '{}/{}'.format(o_dir, output_file)
     torch.save(model.state_dict(), output_path)
     print('saved model to {}'.format(output_path))
@@ -563,7 +563,7 @@ def parse_args(args):
     """.strip(), required=False, default='/tmp')
     
     parser.add_argument('-l', '--load_model', help="""path of model to load
-    e.g. /path/to/model.t
+    e.g. /path/to/model.pth
     If such a path does NOT exists, then a new model (of the model_type) will 
     be created. If such a path does exists, then that model will be used
     as a starting point for training.
