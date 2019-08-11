@@ -493,7 +493,9 @@ def parse_args(args):
     Parses arguments.
     :return: Arguments.
     """
-    parser = argparse.ArgumentParser('PyTorch Classification Models', formatter_class=RawTextHelpFormatter)
+    parser = argparse.ArgumentParser('PyTorch Classification Models',
+        epilog='One-Off Coder http://www.oneoffcoder.com',
+        formatter_class=RawTextHelpFormatter)
     
     parser.add_argument('-m', '--model_type', help="""model type
     For example:
@@ -524,6 +526,43 @@ def parse_args(args):
         - /path/to/images/valid/0   # for validating 0-th class after training
         - /path/to/images/valid/1   # for validating 1-st class after training
     """.strip(), required=True)
+
+    parser.add_argument('-t', '--transform', action='append', nargs=5, metavar=('phase', 'type', 'name', 'order', 'params'), required=False, 
+    help="""transform
+    For example (https://pytorch.org/docs/stable/torchvision/transforms.html)
+        # PIL tranforms
+        train Resize r 0 '{"input_size": 224}'
+        train CenterCrop cc 1 '{"input_size": 224}'
+        train ColorJitter cj 2 '{"brightness": 0, "contrast": 0, "saturation": 0, "hue": 0}'
+        train FiveCrop fc 3 '{"size": 0}'
+        train Grayscale gs 4 '{"num_output_channels": 3}'
+        train Pad p 5 '{"padding": 10, "fill": 0, "padding_mode": "constant"}'
+        train RandomAffine ra 6 '{"degrees": [-10,10], "translate": [5, 5], "scale": [1.0, 1.5], "shear": 5, "resample": false, "fillcolor": 0}'
+        train RandomApply rap 7 '{"transforms": ["r", "cc", "fc"], "p": 0.5}'
+        train RandomChoice rc 8 '{"transforms": ["r", "cc", "fc"]}'
+        train RandomCrop rcr 9 '{"size": [224, 224], "padding": null, "pad_if_needed": false, "fill": 0, "padding_mode": "constant"}'
+        train RandomGrayscale rgs 10 '{"p": 0.1}'
+        train RandomHorizontalFlip rhp 11 '{"p": 0.5}'
+        train RandomOrder ro 12 '{"transforms": ["r", "cc", "fc"]}'
+        train RandomPerspective rp 13 '{"distortion_scale": 0.5, "p": 0.5, "interpolation": 3}'
+        train RandomResizedCrop rrc 14 '{"size": 224, "scale": [0.08, 1.0], "ratio": [0.75, 1.33], "interpolation": 2}'
+        train RandomRotation rrot 15 '{"degrees": 10, "resample": false, "expand": false, "center": null}'
+        train RandomVerticalFlip rvf 16 '{"p": 0.5}'
+        train TenCrop tc 19 '{"size": 224, "vertical_flip": false}'
+        train Compose compose 20 '{"transforms": [["r", "cc", "fc"]]}'
+        # tensor transforms
+        train Normalize norm 21 '{"mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]}'
+        train RandomErasing rer 22 '{"p": 0.5, "scale": [0.02, 0.33], "ratio": [0.3, 3.3], "value": 0, "inplace": false}'
+        # conversion transforms
+        train ToTensor tt 23 '{}'
+    Note the pattern: [phase] [official name] [custom name] [order] [parameters]
+        - [phase] specifies the training, testing or validation phases; must be train, test or valid
+        - [official name] the official API name
+        - [custom name] the variable name that will be used to store the instantiation of the transform
+        - [order] the order in which the transform will be placed; use -1 to exclude a transform
+        - [parameters] a JSON parseable string literal serving as parameters to the transform
+    Defining custom transforms will override the default. Use at your own risk!
+    """)
     
     parser.add_argument('-b', '--batch_size', help='batch size (default: 4)', required=False, default=4, type=int)
     
