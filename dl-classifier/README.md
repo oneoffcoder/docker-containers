@@ -18,6 +18,8 @@ usage: PyTorch Classification Models [-h] -m MODEL_TYPE [-f] -d DATA_DIR
                                      [--scheduler_params SCHEDULER_PARAMS]
                                      [-w NUM_WORKERS] [-s SEED]
                                      [-o OUTPUT_DIR] [-l LOAD_MODEL]
+                                     [--figure_width FIGURE_WIDTH]
+                                     [--figure_height FIGURE_HEIGHT]
                                      [--version]
 
 optional arguments:
@@ -121,7 +123,13 @@ optional arguments:
                             If such a path does NOT exists, then a new model (of the model_type) will 
                             be created. If such a path does exists, then that model will be used
                             as a starting point for training.
+  --figure_width FIGURE_WIDTH
+                        figure width (default: 20)
+  --figure_height FIGURE_HEIGHT
+                        figure height (default: 8)
   --version             show program's version number and exit
+
+One-Off Coder http://www.oneoffcoder.com
 ```
 
 The most important options as follows.
