@@ -11,4 +11,4 @@ RUN apt-get update -y \
 RUN mkdir /app
 COPY main.py /app
 ENTRYPOINT [ "python", "/app/main.py" ]
-CMD [ "--version" ]]
+CMD [ "--version" ]
