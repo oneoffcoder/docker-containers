@@ -18,7 +18,7 @@ from collections import namedtuple
 from sklearn.metrics import multilabel_confusion_matrix
 from collections import namedtuple
 from argparse import RawTextHelpFormatter
-from oneoffcoder.transform import get_default_transforms
+from oneoffcoder.transform import get_default_transforms, get_transforms
 
 def get_device():
     """
@@ -530,7 +530,7 @@ def parse_args(args):
         train RandomRotation rrot 15 '{"degrees": 10, "resample": false, "expand": false, "center": null}'
         train RandomVerticalFlip rvf 16 '{"p": 0.5}'
         train TenCrop tc 19 '{"size": 224, "vertical_flip": false}'
-        train Compose compose 20 '{"transforms": [["r", "cc", "fc"]]}'
+        train Compose compose 20 '{"transforms": ["r", "cc", "fc"]}'
         # tensor transforms
         train Normalize norm 21 '{"mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]}'
         train RandomErasing rer 22 '{"p": 0.5, "scale": [0.02, 0.33], "ratio": [0.3, 3.3], "value": 0, "inplace": false}'
@@ -608,6 +608,7 @@ def do_it(args):
 
     print('creating data transforms')
     data_transforms = get_default_transforms(input_size)
+    get_transforms(args.transform)
 
     print('creating data loaders')
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
@@ -641,12 +642,12 @@ def do_it(args):
     is_inception = determine_inception(model_type)
 
     print('training initiated')
-    model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
+    # model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
-    print_metrics(get_metrics(model, dataloaders, class_names))
+    # print_metrics(get_metrics(model, dataloaders, class_names))
 
-    output_dir = args.output_dir
-    save_model(model_type, model, output_dir)
+    # output_dir = args.output_dir
+    # save_model(model_type, model, output_dir)
 
     print('done')
 
@@ -656,8 +657,8 @@ if __name__ == "__main__":
     # python scripts/pt.py -m inception_v3 -d faces-small -e 1 -f
     # python scripts/pt.py -m inception_v3 -d faces-small -l /tmp/inception_v3-1565300203817.t -e 1
     args = parse_args(sys.argv[1:])
-    print('arguments')
-    print(json.dumps(vars(args), indent=1, sort_keys=True))
+    # print('arguments')
+    # print(json.dumps(vars(args), indent=1, sort_keys=True))
 
     seed = args.seed if args.seed > 0 else get_ms_past_epoch()
     random.seed(seed)

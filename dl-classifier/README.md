@@ -129,6 +129,35 @@ docker run -it \
     dl-classifier:local -m inception_v3 -d /data -e 25 -o /model
 ```
 
+```bash
+python scripts/pt.py \
+    -m inception_v3 \
+    -d faces-small \
+    -e 1 \
+    -t train Resize r 0 '{"size": 224}' \
+    -t train CenterCrop cc 1 '{"size": 224}' \
+    -t train ColorJitter cj 2 '{"brightness": 0, "contrast": 0, "saturation": 0, "hue": 0}' \
+    -t train FiveCrop fc 3 '{"size": 0}' \
+    -t train Grayscale gs 4 '{"num_output_channels": 3}' \
+    -t train Pad p 5 '{"padding": 10, "fill": 0, "padding_mode": "constant"}' \
+    -t train RandomAffine ra 6 '{"degrees": [-10,10], "translate": [0.5, 0.5], "scale": [1.0, 1.5], "shear": 5, "resample": false, "fillcolor": 0}' \
+    -t train RandomApply rap 7 '{"transforms": ["r", "cc", "fc"], "p": 0.5}' \
+    -t train RandomChoice rc 8 '{"transforms": ["r", "cc", "fc"]}' \
+    -t train RandomCrop rcr 9 '{"size": [224, 224], "padding": null, "pad_if_needed": false, "fill": 0, "padding_mode": "constant"}' \
+    -t train RandomGrayscale rgs 10 '{"p": 0.1}' \
+    -t train RandomHorizontalFlip rhp 11 '{"p": 0.5}' \
+    -t train RandomOrder ro 12 '{"transforms": ["r", "cc", "fc"]}' \
+    -t train RandomPerspective rp 13 '{"distortion_scale": 0.5, "p": 0.5, "interpolation": 3}' \
+    -t train RandomResizedCrop rrc 14 '{"size": 224, "scale": [0.08, 1.0], "ratio": [0.75, 1.33], "interpolation": 2}' \
+    -t train RandomRotation rrot 15 '{"degrees": 10, "resample": false, "expand": false, "center": null}' \
+    -t train RandomVerticalFlip rvf 16 '{"p": 0.5}' \
+    -t train TenCrop tc 19 '{"size": 224, "vertical_flip": false}' \
+    -t train Compose compose 20 '{"transforms": ["r", "cc", "fc"]}' \
+    -t train Normalize norm 21 '{"mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]}' \
+    -t train RandomErasing rer 22 '{"p": 0.5, "scale": [0.02, 0.33], "ratio": [0.3, 3.3], "value": 0, "inplace": false}' \
+    -t train ToTensor tt 23 '{}'
+```
+
 # Take a Look!
 
 Check out [Niklaus Wirth](https://en.wikipedia.org/wiki/Niklaus_Wirth).
