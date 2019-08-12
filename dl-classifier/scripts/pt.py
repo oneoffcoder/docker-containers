@@ -19,6 +19,7 @@ from sklearn.metrics import multilabel_confusion_matrix
 from collections import namedtuple
 from argparse import RawTextHelpFormatter
 from oneoffcoder.transform import get_default_transforms, get_transforms
+from oneoffcoder.performance import get_predictions, save_predictions
 
 def get_device():
     """
@@ -344,68 +345,6 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_siz
     return model
 
 
-def get_metrics(model, dataloaders, class_names):
-    """
-    Gets the classification performance metrics for each class.
-    :param model: Model.
-    :param dataloaders: Data loaders.
-    :param class_names: Class names.
-    :return: A named tuple: clazz, tn, fp, fn, tp, sen, spe, acc, f1, mcc
-    """
-    device = get_device()
-    Metric = namedtuple('Metric', 'clazz tn fp fn tp sen spe acc f1 mcc')
-
-    y_true = []
-    y_pred = []
-    was_training = model.training
-    model.eval()
-
-    with torch.no_grad():
-        for i, (inputs, labels) in enumerate(dataloaders['valid']):
-            inputs = inputs.to(device)
-            labels = labels.to(device)
-            cpu_labels = labels.cpu().numpy()
-
-            outputs = model(inputs)
-            _, preds = torch.max(outputs, 1)
-
-            for j in range(inputs.size()[0]):
-                cpu_label = f'{cpu_labels[j]:02}'
-                clazz_name = class_names[preds[j]]
-                
-                y_true.append(cpu_label)
-                y_pred.append(clazz_name)
-                
-        model.train(mode=was_training)
-    
-    cmatrices = multilabel_confusion_matrix(y_true, y_pred, labels=class_names)
-    metrics = []
-    for clazz in range(len(cmatrices)):
-        cmatrix = cmatrices[clazz]
-        tn, fp, fn, tp = cmatrix[0][0], cmatrix[0][1], cmatrix[1][0], cmatrix[1][1]
-        sen = tp / (tp + fn)
-        spe = tn / (tn + fp)
-        acc = (tp + tn) / (tp + fp + fn + tn)
-        f1 = (2.0 * tp) / (2 * tp + fp + fn)
-        mcc_denom = np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
-        mcc = (tp * tn - fp * fn) / mcc_denom if mcc_denom > 0 else 0
-        metric = Metric(clazz, tn, fp, fn, tp, sen, spe, acc, f1, mcc)
-        metrics.append(metric)
-    
-    return metrics
-
-
-def print_metrics(metrics):
-    """
-    Prints the metrics for each class.
-    :param metrics: List of metrics.
-    :return: None.
-    """
-    for m in metrics:
-        print('{}: sen = {:.5f}, spe = {:.5f}, acc = {:.5f}, f1 = {:.5f}, mcc = {:.5f}'
-              .format(m.clazz, m.sen, m.spe, m.acc, m.f1, m.mcc))
-
-
 def get_ms_past_epoch():
     """
     Gets the number of milliseconds past epoch.
@@ -414,7 +353,7 @@ def get_ms_past_epoch():
     return int(round(time.time() * 1000))
 
 
-def save_model(model_type, model, output_dir):
+def save_model(model_type, model, ms=int(round(time.time() * 1000)), output_dir=None):
     """
     Saves the model.
     :param model_type: Model type.
@@ -423,8 +362,7 @@ def save_model(model_type, model, output_dir):
     :return: None.
     """
     o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
-    millis = get_ms_past_epoch()
-    output_file = '{}-{}.pth'.format(model_type, millis)
+    output_file = 'oneoffcoder-{}-{}.pth'.format(ms, model_type)
     output_path = '{}/{}'.format(o_dir, output_file)
     torch.save(model.state_dict(), output_path)
     print('saved model to {}'.format(output_path))
@@ -610,7 +548,7 @@ def do_it(args):
     data_transforms = get_default_transforms(input_size) if args.transform is None else get_transforms(args.transform)
     
     print('creating data loaders')
-    dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
+    dataloaders, dataset_sizes, _, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
     
     model_path = args.load_model
     feature_extract = args.feature_extract
@@ -634,20 +572,21 @@ def do_it(args):
     optimizer = get_optimizer(params_to_update, optimizer_params)
     scheduler = get_scheduler(optimizer, scheduler_params)
 
-    # print(criterion)
-    # print(optimizer)
-    # print('scheduler step_size={}, gamma={}'.format(scheduler.step_size, scheduler.gamma))
-
     num_epochs = args.epochs
     is_inception = determine_inception(model_type)
 
     print('training initiated')
     model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
-    print_metrics(get_metrics(model, dataloaders, class_names))
-
     output_dir = args.output_dir
-    save_model(model_type, model, output_dir)
+    ms = get_ms_past_epoch()
+    
+    print('saving model')
+    save_model(model_type, model, ms=ms, output_dir=output_dir)
+    
+    print('saving predictions')
+    p = get_predictions(model, dataloaders)
+    save_predictions(p, ms=ms, output_dir=output_dir)
 
     print('done')
 

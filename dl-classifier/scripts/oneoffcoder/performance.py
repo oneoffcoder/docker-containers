@@ -7,10 +7,12 @@ import numpy as np
 from collections import namedtuple
 import matplotlib.pyplot as plt
 import seaborn as sns
+import time
+import json
 
 PREDICTION = namedtuple('Prediction', 'P y')
 
-def get_predictions(model, dataloaders, dataset_key='valid'):
+def __get_predictions__(model, dataloaders, dataset_key='valid'):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     P = []
 
@@ -37,7 +39,7 @@ def get_predictions(model, dataloaders, dataset_key='valid'):
     y = label_binarize(y, classes=np.unique(y))
     return PREDICTION(P[:,:-1], y)
 
-def get_roc_stats(V):
+def __get_roc_stats__(V):
     n_classes = V.y.shape[1]
     fpr = dict()
     tpr = dict()
@@ -87,7 +89,7 @@ def plot_rocs(tpr, fpr, roc_auc, keys, ax):
     ax.set_title('ROC Curve')
     ax.legend(loc="lower right")
     
-def get_pr_stats(V):
+def __get_pr_stats__(V):
     n_classes = V.y.shape[1]
     precision = dict()
     recall = dict()
@@ -135,3 +137,107 @@ def plot_prs(precision, recall, average_precision, baselines, keys, ax):
     ax.set_ylabel('precision')
     ax.set_title('PR Curve')
     ax.legend(loc="upper right")
+
+def get_predictions(model, dataloaders):
+    def get_stats(V):
+        tpr, fpr, roc_auc, roc_keys = __get_roc_stats__(R)
+        pre, rec, avg_pre, base, pr_keys = __get_pr_stats__(R)
+
+        stats = {}
+        stats['ROC'] = {
+            'tpr': tpr,
+            'fpr': fpr,
+            'auc': roc_auc,
+            'keys': roc_keys
+        }
+        stats['PR'] = {
+            'precision': pre,
+            'recall': rec,
+            'auc': avg_pre,
+            'baselines': base,
+            'keys': pr_keys
+        }
+        return stats
+    
+    R = __get_predictions__(model, dataloaders, dataset_key='train')
+    E = __get_predictions__(model, dataloaders, dataset_key='test')
+    V = __get_predictions__(model, dataloaders, dataset_key='valid')
+
+    R_S = get_stats(R)
+    E_S = get_stats(E)
+    V_S = get_stats(V)
+
+    return {
+        'R': {
+            'P': R.P,
+            'y': R.y,
+            'S': R_S
+        },
+        'E': {
+            'P': E.P,
+            'y': E.y,
+            'S': E_S
+        },
+        'V': {
+            'P': V.P,
+            'y': V.y,
+            'S': V_S
+        }
+    }
+
+def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None):
+    def convert_stats_dict(d):
+        n = {}
+        for k, v in d.items():
+            n[k] = v.tolist()
+        return n
+
+    def convert_stats(S):
+        stats = {}
+        stats['ROC'] = {
+            'tpr': convert_stats_dict(S['ROC']['tpr']),
+            'fpr': convert_stats_dict(S['ROC']['fpr']),
+            'auc': convert_stats_dict(S['ROC']['auc']),
+            'keys': S['ROC']['keys']
+        }
+        stats['PR'] = {
+            'precision': convert_stats_dict(S['PR']['precision']),
+            'recall': convert_stats_dict(S['PR']['recall']),
+            'auc': convert_stats_dict(S['PR']['auc']),
+            'baselines': convert_stats_dict(S['PR']['baselines']),
+            'keys': S['ROC']['keys']
+        }
+        return stats
+
+    o_dir = '/tmp' if output_dir is None or len(output_dir.strip()) == 0 else output_dir.strip()
+
+    r_path = '{}/oneoffcoder-{}-train.csv'.format(o_dir, ms)
+    e_path = '{}/oneoffcoder-{}-test.csv'.format(o_dir, ms)
+    v_path = '{}/oneoffcoder-{}-valid.csv'.format(o_dir, ms)
+
+    rs_path = '{}/oneoffcoder-{}-train.json'.format(o_dir, ms)
+    es_path = '{}/oneoffcoder-{}-test.json'.format(o_dir, ms)
+    vs_path = '{}/oneoffcoder-{}-valid.json'.format(o_dir, ms)
+
+    np.savetxt(r_path, np.hstack([p['R']['P'], p['R']['y']]), delimiter=',')
+    print('wrote {}'.format(r_path))
+
+    np.savetxt(e_path, np.hstack([p['E']['P'], p['E']['y']]), delimiter=',')
+    print('wrote {}'.format(e_path))
+
+    np.savetxt(v_path, np.hstack([p['V']['P'], p['V']['y']]), delimiter=',')
+    print('wrote {}'.format(v_path))
+
+    # print(p['R']['S'])
+    print('writing {}'.format(rs_path))
+    with open(rs_path, 'w') as f:
+        f.write(json.dumps(convert_stats(p['R']['S']), indent=2))
+        
+    print('writing {}'.format(es_path))
+    with open(es_path, 'w') as f:
+        f.write(json.dumps(convert_stats(p['E']['S']), indent=2))
+        
+    print('writing {}'.format(vs_path))
+    with open(vs_path, 'w') as f:
+        f.write(json.dumps(convert_stats(p['V']['S']), indent=2))
+        
