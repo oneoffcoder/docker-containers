@@ -407,6 +407,20 @@ def get_model(model_type, num_classes, feature_extract, pretrained, model_path):
             return create_model(model_type, num_classes, feature_extract, pretrained)
 
 
+def get_data_transforms(input_size, args_transform):
+    def_transforms = get_default_transforms(input_size)
+    if args_transform is not None:
+        arg_transforms = get_transforms(args_transform)
+        if 'train' in arg_transforms:
+            def_transforms['train'] = arg_transforms['train']
+        if 'test' in arg_transforms:
+            def_transforms['test'] = arg_transforms['test']
+        if 'valid' in arg_transforms:
+            def_transforms['valid'] = arg_transforms['valid']
+
+    return def_transforms
+
+
 def parse_args(args):
     """
     Parses arguments.
@@ -548,8 +562,7 @@ def do_it(args):
     num_workers = args.num_workers
 
     print('creating data transforms')
-    data_transforms = get_default_transforms(input_size) \
-        if args.transform is None else get_transforms(args.transform)
+    data_transforms = get_data_transforms(input_size, args.transform)
     
     print('creating data loaders')
     dataloaders, dataset_sizes, _, num_classes = \

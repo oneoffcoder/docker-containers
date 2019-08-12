@@ -138,7 +138,7 @@ The most important options as follows.
 * `-d` specifies the data directory containing your images; your data directory **MUST** follow the required PyTorch layout as we are using its `ImageFolder` to build the `DataLoader`. Take a look on the [official documentation](https://pytorch.org/docs/stable/torchvision/datasets.html#imagefolder) to get a better idea of the folder structure of the data directory. The help printout also does a decent job at explaining.
 * `-o` specifies the output directory that you want to serialize the PyTorch model to.
 * `-e` specifies the number of epochs to train.
-* `-t` specifies the transforms (look at the help screen for more information)
+* `-t` specifies the transforms: `Resize`, `CenterCrop`, `ColorJitter`, `FiveCrop`, `Grayscale`, `Pad`, `RandomAffine`, `RandomCrop`, `RandomGrayscale`, `RandomHorizontalFlip`, `RandomPerspective`, `RandomResizedCrop`, `RandomRotation`, `RandomVerticalFlip`, `TenCrop`, `Normalize`, `RandomErasing`, `ToTensor`, `RandomChoice`, `RandomOrder`, `RandomApply`, `Compose`. Nearly all transforms (PIL, Tensor, Conversion) are supported. If you define a transform that is incompatible, obviously, the whole process might break. For example, the Inception v3 model requires an image size of 299 while all other models require 224. You may choose to override the `train`, `test` or `valid` transform phases individually or all together.
 
 As for the docker container, you have 2 mounts that you should use to load data and save the models.
 
