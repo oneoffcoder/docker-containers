@@ -70,7 +70,7 @@ def __get_roc_stats__(V):
     
     return tpr, fpr, roc_auc, keys
 
-def plot_rocs(tpr, fpr, roc_auc, keys, ax):
+def __plot_rocs__(tpr, fpr, roc_auc, keys, ax):
     n_classes = len(keys)
 
     colors = sns.color_palette('hls', n_classes)
@@ -112,7 +112,7 @@ def __get_pr_stats__(V):
     
     return precision, recall, average_precision, baselines, keys
 
-def plot_prs(precision, recall, average_precision, baselines, keys, ax):
+def __plot_prs__(precision, recall, average_precision, baselines, keys, ax):
     f_scores = np.linspace(0.2, 0.8, num=4)
     for f_score in f_scores:
         x = np.linspace(0.01, 1)
@@ -137,6 +137,20 @@ def plot_prs(precision, recall, average_precision, baselines, keys, ax):
     ax.set_ylabel('precision')
     ax.set_title('PR Curve')
     ax.legend(loc="upper right")
+
+def __plot__(phase, S, ms, output_dir, figure_width, figure_height, figure_type='jpg'):
+    tpr, fpr, roc_auc, roc_keys = S['ROC']['tpr'], S['ROC']['fpr'], S['ROC']['auc'], S['ROC']['keys']
+    precision, recall, average_precision, baselines, pr_keys = S['PR']['precision'], S['PR']['recall'], S['PR']['auc'], S['PR']['baselines'], S['PR']['keys']
+    
+    fig, ax = plt.subplots(1, 2, figsize=(figure_width, figure_height))
+    __plot_rocs__(tpr, fpr, roc_auc, roc_keys, ax[0])
+    __plot_prs__(precision, recall, average_precision, baselines, pr_keys, ax[1])
+    plt.tight_layout()
+
+    file_path = '{}/oneoffcoder-{}-{}.{}'.format(output_dir, ms, phase, figure_type)
+    fig.savefig(file_path, quality=100, optimize=True)
+    plt.close()
+    print('saved {}'.format(file_path))
 
 def get_predictions(model, dataloaders):
     def get_stats(V):
@@ -185,7 +199,7 @@ def get_predictions(model, dataloaders):
         }
     }
 
-def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None):
+def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None, figure_width=20, figure_height=8):
     def convert_stats_dict(d):
         n = {}
         for k, v in d.items():
@@ -219,6 +233,7 @@ def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None):
     es_path = '{}/oneoffcoder-{}-test.json'.format(o_dir, ms)
     vs_path = '{}/oneoffcoder-{}-valid.json'.format(o_dir, ms)
 
+    print('print saving predictions')
     np.savetxt(r_path, np.hstack([p['R']['P'], p['R']['y']]), delimiter=',')
     print('wrote {}'.format(r_path))
 
@@ -228,7 +243,7 @@ def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None):
     np.savetxt(v_path, np.hstack([p['V']['P'], p['V']['y']]), delimiter=',')
     print('wrote {}'.format(v_path))
 
-    # print(p['R']['S'])
+    print('saving performance statistics')
     print('writing {}'.format(rs_path))
     with open(rs_path, 'w') as f:
         f.write(json.dumps(convert_stats(p['R']['S']), indent=2))
@@ -240,4 +255,9 @@ def save_predictions(p, ms=int(round(time.time() * 1000)), output_dir=None):
     print('writing {}'.format(vs_path))
     with open(vs_path, 'w') as f:
         f.write(json.dumps(convert_stats(p['V']['S']), indent=2))
+
+    print('saving performance figures')
+    __plot__('train', p['R']['S'], ms, o_dir, figure_width, figure_height)
+    __plot__('test', p['E']['S'], ms, o_dir, figure_width, figure_height)
+    __plot__('valid', p['V']['S'], ms, o_dir, figure_width, figure_height)
         

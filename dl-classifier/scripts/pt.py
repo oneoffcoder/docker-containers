@@ -527,6 +527,9 @@ def parse_args(args):
     as a starting point for training.
     """.strip(), required=False, default=None)
 
+    parser.add_argument('--figure_width', help='figure width (default: 20)', required=False, type=int, default=20)
+    parser.add_argument('--figure_height', help='figure height (default: 8)', required=False, type=int, default=8)
+
     parser.add_argument('--version', action='version', version='%(prog)s v0.0.1')
 
     return parser.parse_args(args)
@@ -601,7 +604,15 @@ def do_it(args):
     
     print('saving predictions')
     p = get_predictions(model, dataloaders)
-    save_predictions(p, ms=ms, output_dir=output_dir)
+    figure_width = args.figure_width
+    figure_height = args.figure_height
+    save_predictions(**{
+        'p': p, 
+        'ms': ms, 
+        'output_dir': output_dir,
+        'figure_width': figure_width,
+        'figure_height': figure_height
+    })
 
     print('done')
 
