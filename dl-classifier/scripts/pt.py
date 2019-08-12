@@ -576,7 +576,15 @@ def do_it(args):
     is_inception = determine_inception(model_type)
 
     print('training initiated')
-    model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
+    model = train_model(**{
+        'model': model, 
+        'criterion': criterion, 
+        'optimizer': optimizer, 
+        'scheduler': scheduler, 
+        'dataloaders': dataloaders, 
+        'dataset_sizes': dataset_sizes, 
+        'num_epochs': num_epochs, 
+        'is_inception': is_inception})
 
     output_dir = args.output_dir
     ms = get_ms_past_epoch()
