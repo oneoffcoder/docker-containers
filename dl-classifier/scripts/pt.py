@@ -545,10 +545,12 @@ def do_it(args):
     num_workers = args.num_workers
 
     print('creating data transforms')
-    data_transforms = get_default_transforms(input_size) if args.transform is None else get_transforms(args.transform)
+    data_transforms = get_default_transforms(input_size) \
+        if args.transform is None else get_transforms(args.transform)
     
     print('creating data loaders')
-    dataloaders, dataset_sizes, _, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
+    dataloaders, dataset_sizes, _, num_classes = \
+        get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
     
     model_path = args.load_model
     feature_extract = args.feature_extract
@@ -558,7 +560,12 @@ def do_it(args):
     scheduler_params = args.scheduler_params
 
     print('constructing training components')
-    model = get_model(model_type, num_classes, feature_extract, pretrained, model_path)
+    model = get_model(**{
+        'model_type': model_type, 
+        'num_classes': num_classes, 
+        'feature_extract': feature_extract, 
+        'pretrained': pretrained, 
+        'model_path': model_path})
 
     params_to_update = model.parameters()
     if feature_extract:
