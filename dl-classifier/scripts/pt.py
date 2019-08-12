@@ -18,6 +18,7 @@ from collections import namedtuple
 from sklearn.metrics import multilabel_confusion_matrix
 from collections import namedtuple
 from argparse import RawTextHelpFormatter
+from oneoffcoder.transform import get_default_transforms
 
 def get_device():
     """
@@ -228,35 +229,15 @@ def get_scheduler(optimizer, params):
     return lr_scheduler.StepLR(optimizer, **params)
 
 
-def get_dataloaders(data_dir, input_size, batch_size, num_workers):
+def get_dataloaders(data_dir, data_transforms, batch_size, num_workers):
     """
     Gets the data loaders.
     :param data_dir: Root path to data with images.
-    :param input_size: The input size required by the model.
+    :param data_transforms: The data transforms.
     :param batch_size: The batch size used during training.
     :param num_workers: The number of CPU workers for loading images.
     :return: A tuple: dataloaders, dataset_sizes, class_names, num_classes.
     """
-    data_transforms = {
-        'train': transforms.Compose([
-            transforms.Resize(input_size),
-            transforms.CenterCrop(input_size),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        ]),
-        'test': transforms.Compose([
-            transforms.Resize(input_size),
-            transforms.CenterCrop(input_size),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        ]),
-        'valid': transforms.Compose([
-            transforms.Resize(input_size),
-            transforms.CenterCrop(input_size),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-        ])
-    }
 
     shuffles = {
         'train': True,
@@ -531,13 +512,13 @@ def parse_args(args):
     help="""transform
     For example (https://pytorch.org/docs/stable/torchvision/transforms.html)
         # PIL tranforms
-        train Resize r 0 '{"input_size": 224}'
-        train CenterCrop cc 1 '{"input_size": 224}'
+        train Resize r 0 '{"size": 224}'
+        train CenterCrop cc 1 '{"size": 224}'
         train ColorJitter cj 2 '{"brightness": 0, "contrast": 0, "saturation": 0, "hue": 0}'
         train FiveCrop fc 3 '{"size": 0}'
         train Grayscale gs 4 '{"num_output_channels": 3}'
         train Pad p 5 '{"padding": 10, "fill": 0, "padding_mode": "constant"}'
-        train RandomAffine ra 6 '{"degrees": [-10,10], "translate": [5, 5], "scale": [1.0, 1.5], "shear": 5, "resample": false, "fillcolor": 0}'
+        train RandomAffine ra 6 '{"degrees": [-10,10], "translate": [0.5, 0.5], "scale": [1.0, 1.5], "shear": 5, "resample": false, "fillcolor": 0}'
         train RandomApply rap 7 '{"transforms": ["r", "cc", "fc"], "p": 0.5}'
         train RandomChoice rc 8 '{"transforms": ["r", "cc", "fc"]}'
         train RandomCrop rcr 9 '{"size": [224, 224], "padding": null, "pad_if_needed": false, "fill": 0, "padding_mode": "constant"}'
@@ -625,8 +606,11 @@ def do_it(args):
     batch_size = args.batch_size
     num_workers = args.num_workers
 
+    print('creating data transforms')
+    data_transforms = get_default_transforms(input_size)
+
     print('creating data loaders')
-    dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, input_size, batch_size, num_workers)
+    dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
     
     model_path = args.load_model
     feature_extract = args.feature_extract
