@@ -151,8 +151,8 @@ def __get_final_transforms__(transforms):
     d = {}
     for k, v in transforms.items():
         tups = sorted([(t['order'], t['transform']) for _, t in v.items()], key=lambda tup: tup[0])
-        items = map(lambda item: item[1], tups)
-        d[k] = items
+        items = list(map(lambda item: item[1], tups))
+        d[k] = Compose(items)
     return d
 
 def get_transforms(transform_options):

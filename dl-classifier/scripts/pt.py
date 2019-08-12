@@ -607,9 +607,8 @@ def do_it(args):
     num_workers = args.num_workers
 
     print('creating data transforms')
-    data_transforms = get_default_transforms(input_size)
-    get_transforms(args.transform)
-
+    data_transforms = get_default_transforms(input_size) if args.transform is None else get_transforms(args.transform)
+    
     print('creating data loaders')
     dataloaders, dataset_sizes, class_names, num_classes = get_dataloaders(data_dir, data_transforms, batch_size, num_workers)
     
@@ -630,24 +629,25 @@ def do_it(args):
             if param.requires_grad == True:
                 params_to_update.append(param)
 
+    print('creatin criterion, optimizer, scheduler')
     criterion = get_criterion()
     optimizer = get_optimizer(params_to_update, optimizer_params)
     scheduler = get_scheduler(optimizer, scheduler_params)
 
-    print(criterion)
-    print(optimizer)
-    print('scheduler step_size={}, gamma={}'.format(scheduler.step_size, scheduler.gamma))
+    # print(criterion)
+    # print(optimizer)
+    # print('scheduler step_size={}, gamma={}'.format(scheduler.step_size, scheduler.gamma))
 
     num_epochs = args.epochs
     is_inception = determine_inception(model_type)
 
     print('training initiated')
-    # model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
+    model = train_model(model, criterion, optimizer, scheduler, dataloaders, dataset_sizes, num_epochs=num_epochs, is_inception=is_inception)
 
-    # print_metrics(get_metrics(model, dataloaders, class_names))
+    print_metrics(get_metrics(model, dataloaders, class_names))
 
-    # output_dir = args.output_dir
-    # save_model(model_type, model, output_dir)
+    output_dir = args.output_dir
+    save_model(model_type, model, output_dir)
 
     print('done')
 
