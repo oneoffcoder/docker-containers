@@ -225,3 +225,8 @@ author={One-Off Coder},
 year={2019}, 
 month={Jul}}
 ```
+
+# TODO's
+
+* [Use ENTRYPOINT and CMD](https://medium.com/@oprearocks/how-to-properly-override-the-entrypoint-using-docker-run-2e081e5feb9d)
+* [Use WORKDIR](https://stackoverflow.com/questions/20632258/change-directory-command-in-docker)
