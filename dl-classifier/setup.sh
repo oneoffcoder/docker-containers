@@ -18,7 +18,7 @@ installPytorch() {
     echo "installing pytorch"
     conda install --yes \
         -c pytorch \
-        scikit-learn=0.21.1 pytorch torchvision cudatoolkit=10.0
+        scikit-learn=0.21.1 pytorch torchvision cudatoolkit=10.0 seaborn=0.9.0
 }
 
 downloadModels() {
