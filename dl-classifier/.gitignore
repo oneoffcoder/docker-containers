@@ -1,2 +1,5 @@
 *.pth
 __pycache__/
+model/*.csv
+model/*.jpg
+model/*.json
