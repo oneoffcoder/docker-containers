@@ -23,7 +23,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     dl-darknet:local \
-    /bin/sh -c "cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show > image/dog.log"
+    detector test cfg/coco.data cfg/yolov3-tiny.cfg weight/yolov3-tiny.weights data/dog.jpg -dont_show > image/dog.log
 ```
 
 Detection with normal weights.
@@ -41,7 +41,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show'
+    detector test cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights data/dog.jpg -dont_show > image/dog2.log
 ```
 
 Detection on a MP4 file.
@@ -59,7 +59,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show'
+    detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -out_filename video/dummy.avi -dont_show
 ```
 
 Detection on a MP4 file and output to JSON + MJPEG + AVI. After you run the command below, direct your browsers to the following URLs.
@@ -82,7 +82,7 @@ docker run -it \
     -p 8070:8070 \
     -p 8090:8090 \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
+    detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights video/dummy.mp4 -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi
 ```
 
 Detection on a real-time video stream and redirect output to JSON + MJPEG + AVIG. Note that you can test the below by downloading and installing [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam) on your phone; replace the IP below with the one on your phone (the software on the phone will show you what the phone's IP is).
@@ -102,7 +102,7 @@ docker run -it \
     -p 8070:8070 \
     -p 8090:8090 \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights http://192.168.0.210:8080/video?dummy=param.mjpg -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi'
+    detector demo cfg/coco.data cfg/yolov3.cfg weight/yolov3.weights http://192.168.0.210:8080/video?dummy=param.mjpg -json_port 8070 -mjpeg_port 8090 -ext_output -dont_show -out_filename video/dummy.avi
 ```
 
 Training your own object detector.
@@ -120,7 +120,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector train /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg -dont_show'
+    detector train /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg -dont_show
 ```
 
 Testing your own object detector.
@@ -138,7 +138,7 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
     dl-darknet:local \
-    /bin/sh -c 'cd /darknet; ./darknet detector test /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg /darknet/backup/tiny-yolo-iaia-polygons_last.weights -ext_output -dont_show -out /darknet/log/result.json < /darknet/image/polygons/iaia-polygons_valid.txt'
+    detector test /darknet/image/polygons/iaia-polygons.data /darknet/image/polygons/tiny-yolo-iaia-polygons.cfg /darknet/backup/tiny-yolo-iaia-polygons_last.weights -ext_output -dont_show -out /darknet/log/result.json < /darknet/image/polygons/iaia-polygons_valid.txt
 ```
 
 Annotating the images with the results.
@@ -155,8 +155,9 @@ docker run -it \
     -v $HOME/git/docker-containers/dl-darknet/log:/darknet/log \
     -v $HOME/git/docker-containers/dl-darknet/backup:/darknet/backup \
     -v $HOME/git/docker-containers/dl-darknet/scripts:/root/scripts \
+    --entrypoint /opt/anaconda/bin/python \
     dl-darknet:local \
-    /bin/sh -c '/opt/anaconda/bin/python /root/scripts/annotate.py -j /darknet/log/result.json  -d /darknet/image/polygons/annotations'
+    /root/scripts/annotate.py -j /darknet/log/result.json  -d /darknet/image/polygons/annotations
 ```
 
 # Use in interactive terminal mode
@@ -168,6 +169,7 @@ docker run -it \
     --runtime=nvidia \
     --shm-size=5g \
     -e NVIDIA_VISIBLE_DEVICES=0 \
+    --entrypoint /bin/bash \
     dl-darknet:local
 ```
 
@@ -225,8 +227,3 @@ author={One-Off Coder},
 year={2019}, 
 month={Jul}}
 ```
-
-# TODO's
-
-* [Use ENTRYPOINT and CMD](https://medium.com/@oprearocks/how-to-properly-override-the-entrypoint-using-docker-run-2e081e5feb9d)
-* [Use WORKDIR](https://stackoverflow.com/questions/20632258/change-directory-command-in-docker)
