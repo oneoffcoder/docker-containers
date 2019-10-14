@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 Customized Natural Language Processing (NLP) container for use with Databricks. NLP libraries in Python include the following.

@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose 
 
 This project is an executable container with [all of PyTorch's convolutional neural networks](https://pytorch.org/docs/stable/torchvision/models.html) (CNNs). You may use it with ease to train, test and validate against your own data. All the available pre-trained model weights are downloaded into the container already. The way this container works is with the helper Python program `pt.py` and the docker instructions `ENTRYPOINT` and `CMD`. The `ENTRYPOINT` instruction points to `pt.py` and the `CMD` instruction passes in the `--help` flag. At runtime, you override what `CMD` passes to `pt.py` by specifying appropriate flags.

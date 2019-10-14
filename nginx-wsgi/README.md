@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 The purpose of this project is to demonstrate the ability to run [nginx](https://www.nginx.com/), [gunicorn](https://gunicorn.org/) and [flask](http://flask.pocoo.org/) together in a Docker container. 

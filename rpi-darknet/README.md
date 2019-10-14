@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 The purpose of this docker image is to dockerize [darknet](https://pjreddie.com/darknet/) so that you may easily use it in a portable manner on your Raspbery Pi.

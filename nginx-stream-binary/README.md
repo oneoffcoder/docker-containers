@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 This application is a simple demonstration of streaming binary data (e.g. Word, Excel, PowerPoint and PDF) back using Flask. There are 2 types of data being streamed back; one being the binary file itself and the other being the base64 encoded version of the binary file. For now, when the binary file is streamed back, it is chunked; however, for the base64 encoded version, there is no chunking (someone work on that and contribute) as the whole file is read and then streamed back. Chunking is important to avoid memory issues.

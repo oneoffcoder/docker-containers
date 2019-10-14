@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 The purpose of this container is to demonstrate how to read environment variables and write them to a directory. When deploying a container application (e.g. Angular application), at runtime, you might have to read environment variables to configure the application.

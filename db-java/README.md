@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 Template Docker container showing how to manage Java/Scala dependencies for use with Databricks.

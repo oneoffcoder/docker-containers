@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Intro
 
 This project shows `HOWTO` create a Docker container using nginx where the nginx server can `dynamically` acquire values from environment variables passed in by docker (e.g. using the `-e` command).

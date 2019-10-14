@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 The purpose of this container is to create a base Docker image for use with Raspberry Pi 4 (armv7l).
