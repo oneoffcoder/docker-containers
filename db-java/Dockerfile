@@ -21,7 +21,7 @@ RUN wget -q http://mirror.metrocast.net/apache/maven/maven-3/3.6.1/binaries/apac
 # install jars
 COPY pom.xml /tmp/pom.xml
 RUN cd /tmp \
-    && mvn dependency:copy-dependencies -DoutputDirectory=/databricks/jars
+    && /opt/maven/bin/mvn dependency:copy-dependencies -DoutputDirectory=/databricks/jars
 
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
