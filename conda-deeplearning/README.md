@@ -1,3 +1,5 @@
+![One-Off Coder Logo](../logo.png "One-Off Coder")
+
 # Purpose
 
 The purpose of this container is to create a Deep Learning [Conda](https://anaconda.org/) environment with Jupyter Lab.
