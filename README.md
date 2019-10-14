@@ -40,6 +40,11 @@ Here are the dependencies between the RPi Docker images.
 
 The rpi-python37 docker image does not depend on the others.
 
+# Databricks Images
+
+* [db-nlp](db-nlp): Customized Natural Language Processing (NLP) container for use with Databricks.
+* [db-java](db-java): Template Docker container showing how to manage Java/Scala dependencies for use with Databricks.
+
 # Docker Hub
 
 All the images are published on [Docker Hub](https://hub.docker.com/u/oneoffcoder).
