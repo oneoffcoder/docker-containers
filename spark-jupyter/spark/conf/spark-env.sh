@@ -25,6 +25,9 @@
 # - HADOOP_CONF_DIR, to point Spark towards Hadoop configuration files
 # - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
 # - SPARK_PUBLIC_DNS, to set the public dns name of the driver program
+HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
+YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop
+SPARK_MASTER_HOST=localhost
 
 # Options read by executors and drivers running inside the cluster
 # - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
