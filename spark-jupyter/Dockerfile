@@ -47,7 +47,8 @@ RUN $HADOOP_HOME/bin/hdfs namenode -format oneoffcoder
 RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz -O /tmp/spark-2.4.4-bin-hadoop2.7.tgz \
     && tar -xzf /tmp/spark-2.4.4-bin-hadoop2.7.tgz -C /usr/local/ \
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
-    && rm -fr /usr/local/spark/conf/*
+    && rm -fr /usr/local/spark/conf/* \
+    && mkdir /tmp/spark-events
 COPY spark/conf/* /usr/local/spark/conf/
 
 # clean up
