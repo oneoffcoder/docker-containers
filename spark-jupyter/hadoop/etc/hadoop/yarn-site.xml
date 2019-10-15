@@ -23,4 +23,18 @@
     <name>yarn.log-aggregation-enable</name>
     <value>true</value>
   </property>
+  <!--
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>localhost</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.hostname</name>
+    <value>localhost</value>
+  </property>
+  <property>
+    <name>yarn.tracking.url.generator</name>
+    <value>localhost</value>
+  </property>
+  -->
 </configuration>
