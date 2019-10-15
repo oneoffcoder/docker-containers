@@ -15,7 +15,7 @@ ENV HADOOP_LOG_DIR=${HADOOP_YARN_HOME}/logs
 ENV HADOOP_IDENT_STRING=root
 ENV HADOOP_MAPRED_IDENT_STRING=root
 ENV SPARK_HOME=/usr/local/spark
-ENV PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${PATH}
+ENV PATH=${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 
 # setup ubuntu
 RUN apt-get update -y \
