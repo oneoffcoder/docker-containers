@@ -16,7 +16,8 @@ ENV HADOOP_IDENT_STRING=root
 ENV HADOOP_MAPRED_IDENT_STRING=root
 ENV HADOOP_MAPRED_HOME=${HADOOP_HOME}
 ENV SPARK_HOME=/usr/local/spark
-ENV PATH=${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
+ENV CONDA_HOME=/user/local/conda
+ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 
 # setup ubuntu
 RUN apt-get update -y \
@@ -51,6 +52,13 @@ RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
     && rm /usr/local/spark/conf/*.template
 COPY spark/conf/* /usr/local/spark/conf/
+
+# setup conda
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh -O /tmp/Anaconda3-2019.07-Linux-x86_64.sh \
+    && /bin/bash /tmp/Anaconda3-2019.07-Linux-x86_64.sh -b -p $CONDA_HOME \
+    && $CONDA_HOME/bin/conda update -n root conda -y \
+    && $CONDA_HOME/bin/conda update --all -y \
+    && $CONDA_HOME/bin/pip install --upgrade pip
 
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
