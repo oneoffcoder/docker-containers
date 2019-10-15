@@ -29,6 +29,7 @@ RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.
 	&& mkdir /var/hadoop/mr-history/done \
 	&& mkdir /var/hadoop/mr-history/tmp
 COPY hadoop/etc/hadoop/* /usr/local/hadoop/etc/hadoop/
+RUN $HADOOP_PREFIX/bin/hdfs namenode -format oneoffcoder
 
 # setup spark
 RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz -O /tmp/spark-2.4.4-bin-hadoop2.7.tgz \
