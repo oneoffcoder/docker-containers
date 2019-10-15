@@ -14,7 +14,8 @@ ENV PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_PREFIX}/bin:${PATH}
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-8-jdk wget
+    && apt-get -y install openjdk-8-jdk wget \
+    && apt-get clean
 
 # setup hadoop
 RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz -O /tmp/hadoop-3.2.1.tar.gz \
@@ -35,3 +36,6 @@ RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
     && rm -fr /usr/local/spark/conf/*
 COPY spark/conf/* /usr/local/spark/conf/
+
+# clean up
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
