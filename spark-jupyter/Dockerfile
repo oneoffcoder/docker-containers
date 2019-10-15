@@ -48,8 +48,8 @@ RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.
     && tar -xzf /tmp/spark-2.4.4-bin-hadoop2.7.tgz -C /usr/local/ \
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
     && rm -fr /usr/local/spark/conf/* \
-    && mkdir /tmp/spark-events
 COPY spark/conf/* /usr/local/spark/conf/
 
 # clean up
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && mkdir /tmp/spark-events
