@@ -2,20 +2,27 @@ FROM ubuntu:latest
 LABEL One-Off Coder "info@oneoffcoder.com"
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV HDFS_NAMENODE_USER=root
+ENV HDFS_DATANODE_USER=root
+ENV HDFS_SECONDARYNAMENODE_USER=root
+ENV YARN_RESOURCEMANAGER_USER=root
+ENV YARN_NODEMANAGER_USER=root
+ENV YARN_PROXYSERVER_USER=root
 ENV HADOOP_HOME=/usr/local/hadoop
 ENV HADOOP_YARN_HOME=${HADOOP_HOME}
 ENV HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
-ENV YARN_LOG_DIR=${HADOOP_YARN_HOME}/logs
-ENV YARN_IDENT_STRING=root
+ENV HADOOP_LOG_DIR=${HADOOP_YARN_HOME}/logs
+ENV HADOOP_IDENT_STRING=root
 ENV HADOOP_MAPRED_IDENT_STRING=root
 ENV SPARK_HOME=/usr/local/spark
-ENV PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${PATH}
+ENV PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:${PATH}
 
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-8-jdk wget \
+    && apt-get -y install openjdk-8-jdk wget openssh-server sshpass \
     && apt-get clean
+COPY ubuntu/etc/ssh/* /etc/ssh/
 
 # setup hadoop
 RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz -O /tmp/hadoop-3.2.1.tar.gz \
