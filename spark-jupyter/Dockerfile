@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:disco
 LABEL One-Off Coder "info@oneoffcoder.com"
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
