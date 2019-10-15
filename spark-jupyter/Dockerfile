@@ -22,7 +22,11 @@ RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get -y install openjdk-8-jdk wget openssh-server sshpass \
     && apt-get clean
-COPY ubuntu/etc/ssh/* /etc/ssh/
+
+# setup ssh
+RUN ssh-keygen -t rsa -P "" -f /root/.ssh/id_rsa \
+    && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+COPY ubuntu/root/.ssh/config /root/.ssh/config
 
 # setup hadoop
 RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz -O /tmp/hadoop-3.2.1.tar.gz \
