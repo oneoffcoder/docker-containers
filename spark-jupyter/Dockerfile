@@ -27,7 +27,8 @@ RUN apt-get update -y \
 
 # setup ssh
 RUN ssh-keygen -t rsa -P "" -f /root/.ssh/id_rsa \
-    && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+    && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
+    && chmod 0600 /root/.ssh/authorized_keys
 COPY ubuntu/root/.ssh/config /root/.ssh/config
 
 # setup hadoop
