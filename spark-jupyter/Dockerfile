@@ -21,6 +21,7 @@ ENV PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${HADOOP_HOME}/bin:${HADOOP_HOME}/
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get -y install openjdk-8-jdk wget openssh-server sshpass \
+    && apt-get -y install nano net-tools lynx \
     && apt-get clean
 
 # setup ssh
