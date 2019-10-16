@@ -16,7 +16,7 @@ After running the container, you may visit the following pages.
 * [Spark History](http://localhost:18080)
 * [Jupyter Lab](http://localhost:8888)
 
-As can be seen, Jupyter Lab is running on port `8888`. An example notebook is mounted at `/root/ipynb`. To get the PySpark code to run, you will have to upload the `data.csv` file to HDFS first.
+As can be seen, Jupyter Lab is running on port `8888`. An example notebook is mounted at `/root/ipynb`. To get the PySpark code to run, you will have to upload the `data.csv` file to HDFS first. [View the example notebook](https://nbviewer.jupyter.org/github/oneoffcoder/docker-containers/blob/master/spark-jupyter/ubuntu/root/ipynb/demo.ipynb?flush_cache=true).
 
 # Docker
 
