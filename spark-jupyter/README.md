@@ -24,8 +24,10 @@ $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi \
 
 $SPARK_HOME/bin/spark-shell --master spark://localhost:7077
 
+export PYSPARK_PYTHON=/user/local/conda/bin/python
 export PYSPARK_DRIVER_PYTHON=jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root"
+
 pyspark \
     --driver-memory 2g \
     --executor-memory 2g \
@@ -36,6 +38,11 @@ pyspark \
     --queue default \
     --master yarn-client > $HOME/jupyter.log 2>&1 &
 
+pyspark --master spark://localhost:7077
+
+num_rdd = sc.parallelize(list(range(10000)))
+num_rdd.map(lambda x: x * x).reduce(lambda a, b: a + b)
+
 $HADOOP_HOME/sbin/stop-all.sh \
     && $SPARK_HOME/sbin/stop-all.sh \
     && $SPARK_HOME/sbin/stop-history-server.sh
@@ -45,5 +52,3 @@ $HADOOP_HOME/sbin/stop-all.sh \
 * [YARN](http://localhost:8088)
 * [Spark](http://localhost:8080)
 * [Spark History](http://localhost:18080)
-
-* https://stackoverflow.com/questions/19641326/http-localhost50070-does-not-work-hadoop

@@ -18,6 +18,7 @@ ENV HADOOP_MAPRED_HOME=${HADOOP_HOME}
 ENV SPARK_HOME=/usr/local/spark
 ENV CONDA_HOME=/user/local/conda
 ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
+ENV PYSPARK_PYTHON=/user/local/conda/bin/python
 ENV PYSPARK_DRIVER_PYTHON=jupyter
 ENV PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root"
 
