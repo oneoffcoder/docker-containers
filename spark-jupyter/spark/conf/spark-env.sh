@@ -28,6 +28,7 @@
 HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop
 SPARK_MASTER_HOST=localhost
+PYSPARK_PYTHON=/user/local/conda/bin/python
 
 # Options read by executors and drivers running inside the cluster
 # - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node
