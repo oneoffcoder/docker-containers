@@ -53,3 +53,7 @@ $HADOOP_HOME/sbin/stop-all.sh \
 * [Spark](http://localhost:8080)
 * [Spark History](http://localhost:18080)
 * [Jupyter Lab](http://localhost:8888)
+
+# References
+
+* [List of all ports](https://kontext.tech/docs/DataAndBusinessIntelligence/p/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn)
