@@ -57,3 +57,8 @@ $HADOOP_HOME/sbin/stop-all.sh \
 # References
 
 * [List of all ports](https://kontext.tech/docs/DataAndBusinessIntelligence/p/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn)
+* [Enable CORS for WebHDFS](https://stackoverflow.com/questions/52768514/how-to-enable-cors-origin-allow-in-webhdfs-hdfs-hadoop-origin-http-local)
+* [core-default.xml](https://hadoop.apache.org/docs/r3.2.1/hadoop-project-dist/hadoop-common/core-default.xml)
+* [hdfs-default.xml](http://hadoop.apache.org/docs/r3.2.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
+* [yarn-default.xml](https://hadoop.apache.org/docs/r3.2.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+* [mapred-default.xml](https://hadoop.apache.org/docs/r3.2.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
