@@ -3,7 +3,7 @@
 # Notes
 
 ```bash
-docker run -it -p 9870:9870 -p 8088:8088 -p 8080:8080 -p 18080:18080 spark-jupyter:local
+docker run -it -p 9870:9870 -p 8088:8088 -p 8080:8080 -p 18080:18080 -p 9000:9000 -p 8888:8888 spark-jupyter:local
 
 service ssh start \
     && $HADOOP_HOME/sbin/start-all.sh \
@@ -23,6 +23,18 @@ $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi \
     100
 
 $SPARK_HOME/bin/spark-shell --master spark://localhost:7077
+
+export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root"
+pyspark \
+    --driver-memory 2g \
+    --executor-memory 2g \
+    --num-executors 1 \
+    --executor-cores 1 \
+    --conf spark.driver.maxResultSize=8g \
+    --conf spark.network.timeout=2000 \
+    --queue default \
+    --master yarn-client > $HOME/jupyter.log 2>&1 &
 
 $HADOOP_HOME/sbin/stop-all.sh \
     && $SPARK_HOME/sbin/stop-all.sh \
