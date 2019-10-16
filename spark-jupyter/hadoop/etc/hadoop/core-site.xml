@@ -18,7 +18,31 @@
 
 <configuration>
   <property>
-  <name>fs.defaultFS</name>
-  <value>hdfs://localhost</value>
- </property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost</value>
+  </property>
+  <property>
+    <name>hadoop.http.filter.initializers</name>
+    <value>org.apache.hadoop.http.lib.StaticUserWebFilter,org.apache.hadoop.security.HttpCrossOriginFilterInitializer</value>
+  </property>
+  <property>
+    <name>hadoop.http.cross-origin.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hadoop.http.cross-origin.allowed-origins</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.http.cross-origin.allowed-methods</name>
+    <value>GET,POST,HEAD,PUT,OPTIONS,DELETE,TRACE</value>
+  </property>
+  <property>
+    <name>hadoop.http.cross-origin.allowed-headers</name>
+    <value>X-Requested-With,Content-Type,Accept,Origin,WWW-Authenticate,Accept-Encoding,Transfer-Encoding,X-XSRF-HEADER</value>
+  </property>
+  <property>
+    <name>hadoop.http.cross-origin.max-age</name>
+    <value>1800</value>
+  </property>  
 </configuration>

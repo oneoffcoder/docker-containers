@@ -15,6 +15,7 @@
 -->
 
 <!-- Put site-specific property overrides in this file. -->
+<!-- http://hadoop.apache.org/docs/r3.2.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml -->
 
 <configuration>
   <property>
@@ -25,12 +26,26 @@
   <name>dfs.datanode.data.dir</name>
   <value>file:///var/hadoop/hadoop-datanode</value>
  </property>
- <!-- enable webhdfs -->
+ <property>
+  <name>dfs.datanode.hostname</name>
+  <value>localhost</value>
+ </property>
  <property>
   <name>dfs.webhdfs.enabled</name>
   <value>true</value>
  </property>
- <!-- disable permissions; only for development, of course -->
+ <property>
+  <name>dfs.webhdfs.rest-csrf.enabled</name>
+  <value>false</value>
+ </property>
+ <property>
+  <name>dfs.webhdfs.rest-csrf.methods-to-ignore</name>
+  <value>GET,POST,HEAD,PUT,OPTIONS,DELETE,TRACE</value>
+ </property>
+ <property>
+  <name>dfs.webhdfs.rest-csrf.browser-useragents-regex</name>
+  <value>^Netscape.*</value>
+ </property>
  <property>
   <name>dfs.permissions.enabled</name>
   <value>false</value>
