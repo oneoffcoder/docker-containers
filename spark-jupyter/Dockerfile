@@ -22,7 +22,7 @@ ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-8-jdk wget openssh-server sshpass \
+    && apt-get -y install openjdk-8-jdk wget openssh-server sshpass supervisor \
     && apt-get -y install nano net-tools lynx \
     && apt-get clean
 
@@ -60,10 +60,17 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh 
     && $CONDA_HOME/bin/conda update --all -y \
     && $CONDA_HOME/bin/pip install --upgrade pip
 
-# setup extra
+# setup volumes
 RUN mkdir /root/ipynb
 VOLUME [ "/root/ipynb" ]
+
+# setup supervisor
+COPY ubuntu/etc/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
+COPY ubuntu/etc/supervisor/conf.d/all.conf /etc/supervisor/conf.d/all.conf
+COPY ubuntu/usr/local/bin/start-all.sh /usr/local/bin/start-all.sh
 
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir /tmp/spark-events
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]

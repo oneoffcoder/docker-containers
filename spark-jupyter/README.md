@@ -20,25 +20,28 @@ docker run -it \
 Stuff to do after going into the container e.g. `docker exec -it <id> /bin/bash`
 
 ```bash
-service ssh start \
-    && $HADOOP_HOME/sbin/start-all.sh \
-    && $SPARK_HOME/sbin/start-all.sh \
-    && $SPARK_HOME/sbin/start-history-server.sh
-
+# test yarn
 yarn jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar pi 1 50
 
+# test spark against yarn
 $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi \
     --master yarn \
     $SPARK_HOME/examples/jars/spark-examples*.jar \
     100
 
+# test spark standalone
 $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi \
     --master spark://localhost:7077 \
     $SPARK_HOME/examples/jars/spark-examples*.jar \
     100
 
+# start a scala spark shell
 $SPARK_HOME/bin/spark-shell --master spark://localhost:7077
 
+# start a python spark shell
+pyspark --master spark://localhost:7077 > /tmp/jupyter.log 2>&1 &
+
+# start a python spark shell against yarn
 pyspark \
     --driver-memory 2g \
     --executor-memory 2g \
@@ -48,12 +51,6 @@ pyspark \
     --conf spark.network.timeout=2000 \
     --queue default \
     --master yarn-client > /tmp/jupyter.log 2>&1 &
-
-pyspark --master spark://localhost:7077 > /tmp/jupyter.log 2>&1 &
-
-$HADOOP_HOME/sbin/stop-all.sh \
-    && $SPARK_HOME/sbin/stop-all.sh \
-    && $SPARK_HOME/sbin/stop-history-server.sh
 ```
 
 # Sites
@@ -72,3 +69,4 @@ $HADOOP_HOME/sbin/stop-all.sh \
 * [hdfs-default.xml](http://hadoop.apache.org/docs/r3.2.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 * [yarn-default.xml](https://hadoop.apache.org/docs/r3.2.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
 * [mapred-default.xml](https://hadoop.apache.org/docs/r3.2.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+* [Keep docker container running after services start](https://stackoverflow.com/questions/25775266/how-to-keep-docker-container-running-after-starting-services)
