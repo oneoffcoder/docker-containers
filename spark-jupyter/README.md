@@ -71,6 +71,10 @@ pyspark \
     --master yarn-client > /tmp/jupyter.log 2>&1 &
 ```
 
+# Docker Hub
+
+[Image](https://hub.docker.com/r/oneoffcoder/spark-jupyter)
+
 # References
 
 * [List of all ports](https://kontext.tech/docs/DataAndBusinessIntelligence/p/default-ports-used-by-hadoop-services-hdfs-mapreduce-yarn)
