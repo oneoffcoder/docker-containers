@@ -38,7 +38,7 @@ pyspark \
     --queue default \
     --master yarn-client > $HOME/jupyter.log 2>&1 &
 
-pyspark --master spark://localhost:7077
+pyspark --master spark://localhost:7077 > $HOME/jupyter.log 2>&1 &
 
 num_rdd = sc.parallelize(list(range(10000)))
 num_rdd.map(lambda x: x * x).reduce(lambda a, b: a + b)
