@@ -1,6 +1,24 @@
 ![One-Off Coder Logo](../logo.png "One-Off Coder")
 
-# Notes
+# Purpose
+
+This docker container is meant to be used for learning purpose for programming PySpark. It has the following components.
+
+* Hadoop v3.2.1
+* Spark v2.4.4
+* Conda 3 with Python v3.7
+
+After running the container, you may visit the following pages.
+
+* [HDFS](http://localhost:9870)
+* [YARN](http://localhost:8088)
+* [Spark](http://localhost:8080)
+* [Spark History](http://localhost:18080)
+* [Jupyter Lab](http://localhost:8888)
+
+As can be seen, Jupyter Lab is running on port `8888`. An example notebook is mounted at `/root/ipynb`. To get the PySpark code to run, you will have to upload the `data.csv` file to HDFS first.
+
+# Docker
 
 To run the container.
 
@@ -52,14 +70,6 @@ pyspark \
     --queue default \
     --master yarn-client > /tmp/jupyter.log 2>&1 &
 ```
-
-# Sites
-
-* [HDFS](http://localhost:9870)
-* [YARN](http://localhost:8088)
-* [Spark](http://localhost:8080)
-* [Spark History](http://localhost:18080)
-* [Jupyter Lab](http://localhost:8888)
 
 # References
 
