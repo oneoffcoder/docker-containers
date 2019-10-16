@@ -2,9 +2,24 @@
 
 # Notes
 
-```bash
-docker run -it -p 9870:9870 -p 8088:8088 -p 8080:8080 -p 18080:18080 -p 9000:9000 -p 8888:8888 -p 9864:9864 spark-jupyter:local
+To run the container.
 
+```bash
+docker run -it \
+    -p 9870:9870 \
+    -p 8088:8088 \
+    -p 8080:8080 \
+    -p 18080:18080 \
+    -p 9000:9000 \
+    -p 8888:8888 \
+    -p 9864:9864 \
+    -v $HOME/git/docker-containers/spark-jupyter/ubuntu/root/ipynb:/root/ipynb \
+    spark-jupyter:local
+```
+
+Stuff to do after going into the container e.g. `docker exec -it <id> /bin/bash`
+
+```bash
 service ssh start \
     && $HADOOP_HOME/sbin/start-all.sh \
     && $SPARK_HOME/sbin/start-all.sh \
@@ -24,10 +39,6 @@ $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi \
 
 $SPARK_HOME/bin/spark-shell --master spark://localhost:7077
 
-export PYSPARK_PYTHON=/user/local/conda/bin/python
-export PYSPARK_DRIVER_PYTHON=jupyter
-export PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root"
-
 pyspark \
     --driver-memory 2g \
     --executor-memory 2g \
@@ -36,17 +47,16 @@ pyspark \
     --conf spark.driver.maxResultSize=8g \
     --conf spark.network.timeout=2000 \
     --queue default \
-    --master yarn-client > $HOME/jupyter.log 2>&1 &
+    --master yarn-client > /tmp/jupyter.log 2>&1 &
 
-pyspark --master spark://localhost:7077 > $HOME/jupyter.log 2>&1 &
-
-num_rdd = sc.parallelize(list(range(10000)))
-num_rdd.map(lambda x: x * x).reduce(lambda a, b: a + b)
+pyspark --master spark://localhost:7077 > /tmp/jupyter.log 2>&1 &
 
 $HADOOP_HOME/sbin/stop-all.sh \
     && $SPARK_HOME/sbin/stop-all.sh \
     && $SPARK_HOME/sbin/stop-history-server.sh
 ```
+
+# Sites
 
 * [HDFS](http://localhost:9870)
 * [YARN](http://localhost:8088)

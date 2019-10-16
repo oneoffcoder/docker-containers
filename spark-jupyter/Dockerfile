@@ -60,6 +60,10 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh 
     && $CONDA_HOME/bin/conda update --all -y \
     && $CONDA_HOME/bin/pip install --upgrade pip
 
+# setup extra
+RUN mkdir /root/ipynb
+VOLUME [ "/root/ipynb" ]
+
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir /tmp/spark-events
