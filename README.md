@@ -15,6 +15,7 @@ These are some sample docker containers for learning purposes.
 * [nginx-wsgi](nginx-wsgi): A [container](https://hub.docker.com/r/oneoffcoder/nginx-wsgi) showing how to run flask behind gunicorn and nginx.
 * [nginx-stream-binary](nginx-stream-binary): A [container](https://hub.docker.com/r/oneoffcoder/nginx-stream-binary) showing how to stream back binary files (e.g. Word, Excel, PowerPoint and PDF).
 * [docker-exe](docker-exe): A [project](https://hub.docker.com/r/oneoffcoder/docker-exe) showing how to build a container that may be used as an executable.
+* [spark-jupyter](spark-jupyter): A [project](https://hub.docker.com/r/oneoffcoder/spark-jupyter) with Hadoop, Spark and Python that may be used to learn massively parallel processing.
 
 ## Raspberry Pi Docker Images
 
