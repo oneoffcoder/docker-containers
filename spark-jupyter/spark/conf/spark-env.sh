@@ -28,7 +28,7 @@
 HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop
 SPARK_MASTER_HOST=localhost
-PYSPARK_PYTHON=/user/local/conda/bin/python
+PYSPARK_PYTHON=/usr/local/conda/bin/python
 PYSPARK_DRIVER_PYTHON=jupyter
 PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
 
