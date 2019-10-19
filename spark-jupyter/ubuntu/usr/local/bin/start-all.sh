@@ -18,6 +18,13 @@ $SPARK_HOME/bin/pyspark \
     --master $PYSPARK_MASTER > /tmp/jupyter.log 2>&1 &
 echo "started pyspark"
 
+if [ -d "/root/ipynb" ] && [ -f "/root/ipynb/data.csv" ]; then
+    hdfs dfs -copyFromLocal /root/ipynb/data.csv /data.csv
+    echo "copied data.csv to hdfs"
+else
+    echo "/root/ipynb/data.csv does not exists"
+fi
+
 echo "done!"
 
 exit 0
