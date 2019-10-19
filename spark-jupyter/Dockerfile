@@ -38,13 +38,15 @@ RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.
     && tar -xzf /tmp/hadoop-3.2.1.tar.gz -C /usr/local/ \
     && ln -s /usr/local/hadoop-3.2.1 /usr/local/hadoop \
     && rm -fr /usr/local/hadoop/etc/hadoop/* \
+    && mkdir /usr/local/hadoop/extras \
     && mkdir /var/hadoop \
 	&& mkdir /var/hadoop/hadoop-datanode \
 	&& mkdir /var/hadoop/hadoop-namenode \
 	&& mkdir /var/hadoop/mr-history \
 	&& mkdir /var/hadoop/mr-history/done \
 	&& mkdir /var/hadoop/mr-history/tmp
-COPY hadoop/etc/hadoop/* /usr/local/hadoop/etc/hadoop/
+COPY ubuntu/usr/local/hadoop/etc/hadoop/* /usr/local/hadoop/etc/hadoop/
+COPY ubuntu/usr/local/hadoop/extras/* /usr/local/hadoop/extras/
 RUN $HADOOP_HOME/bin/hdfs namenode -format oneoffcoder
 
 # setup spark
@@ -52,7 +54,7 @@ RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.
     && tar -xzf /tmp/spark-2.4.4-bin-hadoop2.7.tgz -C /usr/local/ \
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
     && rm /usr/local/spark/conf/*.template
-COPY spark/conf/* /usr/local/spark/conf/
+COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 
 # setup conda
 COPY ubuntu/root/ipynb/environment.yml /tmp/environment.yml
