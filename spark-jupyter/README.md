@@ -32,6 +32,7 @@ docker run -it \
     -p 8888:8888 \
     -p 9864:9864 \
     -v $HOME/git/docker-containers/spark-jupyter/ubuntu/root/ipynb:/root/ipynb \
+    -e PYSPARK_MASTER=spark://localhost:7077 \
     spark-jupyter:local
 ```
 
