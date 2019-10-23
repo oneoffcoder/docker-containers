@@ -1,7 +1,7 @@
 FROM ubuntu:disco
 LABEL One-Off Coder "info@oneoffcoder.com"
 
-ENV IJAVA_COMPILER_OPTS="--enable-preview"
+ENV IJAVA_COMPILER_OPTS="--source 12 --enable-preview"
 ENV IJAVA_CLASSPATH="/root/libs/"
 ENV CONDA_HOME=/usr/local/conda
 ENV PATH=${CONDA_HOME}/bin:${PATH}
