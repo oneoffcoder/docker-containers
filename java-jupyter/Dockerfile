@@ -18,8 +18,7 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh 
     && $CONDA_HOME/bin/conda update -n root conda -y \
     && wget -q https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3.0.zip -O /tmp/ijava-1.3.0.zip \
     && unzip /tmp/ijava-1.3.0.zip -d /tmp/ijava \
-    && python /tmp/ijava/install.py --sys-prefix \
-    && mkdir /root/libs
+    && python /tmp/ijava/install.py --sys-prefix
 COPY ubuntu/root/.jupyter /root/
 COPY ubuntu/usr/local/conda/share/jupyter/kernels/java/kernel.json /usr/local/conda/share/jupyter/kernels/java/kernel.json
 

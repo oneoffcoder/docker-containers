@@ -12,6 +12,7 @@ To run the container.
 docker run -it \
     -p 8888:8888 \
     -v $HOME/git/docker-containers/java-jupyter/ubuntu/root/ipynb:/root/ipynb \
+    -v $HOME/git/docker-containers/java-jupyter/ubuntu/root/libs:/root/libs \
     java-jupyter:local
 ```
 
