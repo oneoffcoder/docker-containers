@@ -6,13 +6,31 @@ The purpose of this container is to create a Deep Learning [Conda](https://anaco
 
 Here are some Deep Learning packages installed.
 
-* [TensorFlow](https://www.tensorflow.org/)
-* [PyTorch](https://pytorch.org/)
+* [TensorFlow](https://www.tensorflow.org/) v2.0
+* [PyTorch](https://pytorch.org/) v1.3
 * [MXNet](https://mxnet.apache.org/)
 * [spaCy](https://spacy.io)
 * [AllenNLP](https://allennlp.org)
 
-Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) (look at the `runtime=nvidia` requirement below when running this container). You will also need [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive), [cuDNN 7](https://developer.nvidia.com/cudnn), and [NCCL 2.3](https://developer.nvidia.com/nccl) installed on your host computer.
+Note that this container requires [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker). You will also need [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive), [cuDNN 7](https://developer.nvidia.com/cudnn), and [NCCL 2.3](https://developer.nvidia.com/nccl) installed on your host computer.
+
+## Ubuntu
+On Ubuntu 19+, `nvidia-docker2` is not yet published. You need to do the following.
+
+```bash
+distribution=ubuntu18.04
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+    sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+ 
+# check runtime hook is installed
+which nvidia-container-runtime-hook
+ 
+# make sure container detects gpu
+docker run --gpus all --rm nvidia/cuda nvidia-smi
+```
 
 # Docker Hub
 
@@ -30,9 +48,8 @@ Run it.
 
 ```bash
 docker run -it \
-    --runtime=nvidia \
     --shm-size=5g \
-    -e NVIDIA_VISIBLE_DEVICES=0 \
+    --gpus all \
     -p 8888:8888 \
     conda-deeplearning:local
 ```
@@ -41,11 +58,10 @@ Run it with a mounted host folder.
 
 ```bash
 docker run -it \
-    -v $HOME/git/docker-containers/conda-deeplearning/ipynb:/ipynb \
+    -v $HOME/git/docker-containers/conda-deeplearning/ipynb:/root/ipynb \
     -p 8888:8888 \
-    --runtime=nvidia \
     --shm-size=5g \
-    -e NVIDIA_VISIBLE_DEVICES=0 \
+    --gpus all \
     conda-deeplearning:local
 ```
 

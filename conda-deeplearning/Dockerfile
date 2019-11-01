@@ -1,15 +1,24 @@
 FROM nvidia/cuda:10.0-cudnn7-devel
 LABEL One-Off Coder "info@oneoffcoder.com"
-RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install wget supervisor -y
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh -O /tmp/conda.sh
-RUN bash /tmp/conda.sh -b
-RUN echo "export PATH=/root/anaconda3/bin:${PATH}" >> /root/.bashrc
+
+ENV CONDA_HOME=/root/anaconda3
+ENV PATH=${CONDA_HOME}/bin:${PATH}
+
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install wget supervisor -y \
+    && apt-get clean
+
 COPY requirements.txt /tmp/requirements.txt
-RUN /root/anaconda3/bin/pip install -r /tmp/requirements.txt
-RUN /root/anaconda3/bin/python -m spacy download en_core_web_lg
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh -O /tmp/conda.sh \
+    && /bin/bash /tmp/conda.sh -b -p $CONDA_HOME \
+    && /root/anaconda3/bin/pip install -r /tmp/requirements.txt \
+    && /root/anaconda3/bin/python -m spacy download en_core_web_lg
+
+RUN mkdir /root/ipynb
+VOLUME ["/root/ipynb"]
+
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 COPY supervisord.conf /etc/supervisor/supervisord.conf
-RUN mkdir /ipynb
-EXPOSE 8888
-VOLUME ["/ipynb"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
