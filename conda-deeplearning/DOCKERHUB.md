@@ -29,7 +29,7 @@ Run it.
 ```bash
 docker run -it \
     --shm-size=5g \
-    -gpus all \
+    --gpus all \
     -p 8888:8888 \
     oneoffcoder/conda-deeplearning
 ```
@@ -41,7 +41,7 @@ docker run -it \
     -v $HOME/git/docker-containers/conda-deeplearning/ipynb:/ipynb \
     -p 8888:8888 \
     --shm-size=5g \
-    -gpus all \
+    --gpus all \
     oneoffcoder/conda-deeplearning
 ```
 
