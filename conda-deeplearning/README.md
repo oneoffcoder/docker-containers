@@ -65,6 +65,18 @@ docker run -it \
     conda-deeplearning:local
 ```
 
+Run it with password protection.
+
+```bash
+docker run -it \
+    -v $HOME/git/docker-containers/conda-deeplearning/ipynb:/root/ipynb \
+    -p 8888:8888 \
+    -e NOTEBOOK_PASSWORD=sha1:6676da7235c8:9c7d402c01e330b9368fa9e1637233748be11cc5 \
+    --shm-size=5g \
+    --gpus all \
+    conda-deeplearning:local
+```
+
 Observe it.
 
 * [http://localhost:8888](http://localhost:8888)

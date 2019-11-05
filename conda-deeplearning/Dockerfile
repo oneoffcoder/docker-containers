@@ -3,6 +3,7 @@ LABEL One-Off Coder "info@oneoffcoder.com"
 
 ENV CONDA_HOME=/root/anaconda3
 ENV PATH=${CONDA_HOME}/bin:${PATH}
+ENV NOTEBOOK_PASSWORD=""
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
