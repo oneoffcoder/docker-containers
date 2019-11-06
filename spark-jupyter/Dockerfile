@@ -59,8 +59,8 @@ COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 
 # setup conda
 COPY ubuntu/root/ipynb/environment.yml /tmp/environment.yml
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh -O /tmp/Anaconda3-2019.07-Linux-x86_64.sh \
-    && /bin/bash /tmp/Anaconda3-2019.07-Linux-x86_64.sh -b -p $CONDA_HOME \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /tmp/anaconda.sh \
+    && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda env update -n base --file /tmp/environment.yml \
     && $CONDA_HOME/bin/conda update -n root conda -y \
     && $CONDA_HOME/bin/conda update --all -y \

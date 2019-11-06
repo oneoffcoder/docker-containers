@@ -11,8 +11,8 @@ RUN apt-get update -y \
     && apt-get clean
 
 COPY requirements.txt /tmp/requirements.txt
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh -O /tmp/conda.sh \
-    && /bin/bash /tmp/conda.sh -b -p $CONDA_HOME \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /tmp/anaconda.sh \
+    && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && /root/anaconda3/bin/pip install -r /tmp/requirements.txt \
     && /root/anaconda3/bin/python -m spacy download en_core_web_lg
 
