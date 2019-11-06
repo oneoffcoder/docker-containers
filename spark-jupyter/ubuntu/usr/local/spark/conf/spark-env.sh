@@ -30,7 +30,7 @@ YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop
 SPARK_MASTER_HOST=localhost
 PYSPARK_PYTHON=/usr/local/conda/bin/python
 PYSPARK_DRIVER_PYTHON=jupyter
-PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''"
+PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='$NOTEBOOK_PASSWORD'"
 PYTHONPATH=$PYTHONPATH:/usr/local/hadoop/extras/graphframes.zip:.
 
 # Options read by executors and drivers running inside the cluster

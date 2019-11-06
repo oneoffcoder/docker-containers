@@ -36,6 +36,23 @@ docker run -it \
     spark-jupyter:local
 ```
 
+To run the container with a password.
+
+```bash
+docker run -it \
+    -p 9870:9870 \
+    -p 8088:8088 \
+    -p 8080:8080 \
+    -p 18080:18080 \
+    -p 9000:9000 \
+    -p 8888:8888 \
+    -p 9864:9864 \
+    -v $HOME/git/docker-containers/spark-jupyter/ubuntu/root/ipynb:/root/ipynb \
+    -e PYSPARK_MASTER=spark://localhost:7077 \
+    -e NOTEBOOK_PASSWORD=sha1:6676da7235c8:9c7d402c01e330b9368fa9e1637233748be11cc5 \
+    spark-jupyter:local
+```
+
 Stuff to do after going into the container e.g. `docker exec -it <id> /bin/bash`
 
 ```bash

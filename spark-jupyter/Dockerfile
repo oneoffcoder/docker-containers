@@ -19,6 +19,7 @@ ENV SPARK_HOME=/usr/local/spark
 ENV CONDA_HOME=/usr/local/conda
 ENV PYSPARK_MASTER=yarn
 ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
+ENV NOTEBOOK_PASSWORD=""
 
 # setup ubuntu
 RUN apt-get update -y \
