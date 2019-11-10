@@ -2,4 +2,4 @@
 
 docker run \
     -e MYSQL_ROOT_PASSWORD=oneoffcoder \
-    mysql-demo:local
+    --rm mysql-demo:local
