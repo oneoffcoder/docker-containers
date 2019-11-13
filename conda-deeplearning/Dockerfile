@@ -16,8 +16,9 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh 
     && /root/anaconda3/bin/pip install -r /tmp/requirements.txt \
     && /root/anaconda3/bin/python -m spacy download en_core_web_lg
 
-RUN mkdir /root/ipynb
-VOLUME ["/root/ipynb"]
+RUN mkdir /root/ipynb \
+    && mkdir /root/tensorboard
+VOLUME ["/root/ipynb", "/root/tensorboard"]
 
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
