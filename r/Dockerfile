@@ -4,6 +4,7 @@ LABEL One-Off Coder "info@oneoffcoder.com"
 ENV CONDA_HOME=/usr/local/conda
 ENV PATH=${CONDA_HOME}/bin:${PATH}
 ENV DEBIAN_FRONTEND=noninteractive
+ENV NOTEBOOK_PASSWORD=""
 
 # setup ubuntu
 RUN apt-get update -y \
@@ -31,6 +32,12 @@ RUN mkdir /root/ipynb \
 VOLUME [ "/root/ipynb" ]
 VOLUME [ "/root/libs" ]
 
+# setup supervisor
+COPY ubuntu/etc/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
+COPY ubuntu/etc/supervisor/conf.d/all.conf /etc/supervisor/conf.d/all.conf
+
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get clean
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]
