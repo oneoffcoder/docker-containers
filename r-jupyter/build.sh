@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --no-cache -t r:local .
+docker build --no-cache -t r-jupyter:local .

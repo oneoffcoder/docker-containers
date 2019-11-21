@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ORGANIZATION=oneoffcoder
-REPOSITORY=r
+REPOSITORY=r-jupyter
 VERSION=0.0.1
 IMAGEID=$REPOSITORY:local
 
