@@ -191,4 +191,4 @@ DEBUG:
   SAVE_HEATMAPS_PRED: true
 ```
 
-The `circle`, `label` and `line` flags indicate if you want the final annotated (output) pictures to have circles, labels or lines. After you run the container against your input data, you should have a `custom/final` folder with your input images annotated with the pose estimations.
+The `circle`, `label` and `line` flags indicate if you want the final annotated (output) pictures to have circles, labels or lines. After you run the container against your input data, you should have a `custom/final` folder with your input images annotated with the pose estimations. There will also be a `custom/output` folder for debugging purposes.
