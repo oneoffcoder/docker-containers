@@ -192,3 +192,15 @@ DEBUG:
 ```
 
 The `circle`, `label` and `line` flags indicate if you want the final annotated (output) pictures to have circles, labels or lines. After you run the container against your input data, you should have a `custom/final` folder with your input images annotated with the pose estimations. There will also be a `custom/output` folder for debugging purposes.
+
+# Citation
+
+```
+@misc{oneoffcoder_dl_pose_hrn_2019, 
+title={An executable docker container for Deep High-Resolution Network pose estimation}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/dl-pose-hrn}, 
+journal={GitHub},
+author={One-Off Coder}, 
+year={2020}, 
+month={Jan}}
+```

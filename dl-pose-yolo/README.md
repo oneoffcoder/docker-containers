@@ -48,3 +48,14 @@ docker run -it \
       --n_cpu 8
 ```
 
+# Citation
+
+```
+@misc{oneoffcoder_dl_pose_yolo_2019, 
+title={An executable docker container with YOLO V3 for pose estimation}, 
+url={https://github.com/oneoffcoder/docker-containers/tree/master/dl-pose-yolo}, 
+journal={GitHub},
+author={One-Off Coder}, 
+year={2020}, 
+month={Jan}}
+```
