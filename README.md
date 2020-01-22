@@ -10,6 +10,7 @@ These are some sample docker containers for learning purposes.
 * [dl-darknet](dl-darknet): [YOLO object detection](https://github.com/pjreddie/darknet) with [darknet](https://github.com/AlexeyAB/darknet) in a [box](https://hub.docker.com/r/oneoffcoder/dl-darknet)!
 * [dl-pose-yolo](dl-pose-yolo): A modified [YOLO v3 Pytorch](https://github.com/eriklindernoren/PyTorch-YOLOv3) implementation used for detecting humans for pose estimation.
 * [dl-pose-hrn](dl-pose-hrn): A modified [Deep High-Resolution Network](https://github.com/leoxiaobin/deep-high-resolution-net.pytorch) implementation used for pose estimation.
+* [dl-transfer](dl-transfer): An executable neural style transfer Docker image.
 * [conda-deeplearning](conda-deeplearning): A [container](https://hub.docker.com/r/oneoffcoder/conda-deeplearning) with conda environment + Jupyter for Deep Learning.
 * [conda-nlp](conda-nlp): A [container](https://hub.docker.com/r/oneoffcoder/conda-nlp) with conda environment + Jupyter for Natural Language Processing (NLP).
 * [nginx-env](nginx-env): A [container](https://hub.docker.com/r/oneoffcoder/nginx-env) showing how to acquire environment variables at runtime for application configuration (externalizing properties).
