@@ -223,14 +223,14 @@ def parse_args(args):
     parser = argparse.ArgumentParser('Neural Style Transfer',
         epilog='One-Off Coder http://www.oneoffcoder.com')
     
-    parser.add_argument('--seed', help='Seed', default=37, required=False)
-    parser.add_argument('--steps', help='Number of steps', default=600, required=False)
-    parser.add_argument('--sweight', help='Style weight', default=1000000, required=False)
-    parser.add_argument('--cweight', help='Content weight', default=1, required=False)
+    parser.add_argument('--seed', help='Seed', type=int, default=37, required=False)
+    parser.add_argument('--steps', help='Number of steps', type=int, default=600, required=False)
+    parser.add_argument('--sweight', help='Style weight', type=int, default=1000000, required=False)
+    parser.add_argument('--cweight', help='Content weight', type=int, default=1, required=False)
 
-    parser.add_argument('-s', '--style', help='Style image path', required=True)
-    parser.add_argument('-c', '--content', help='Content image path', required=True)
-    parser.add_argument('-o', '--output', help='Output image path', default='./image/output.jpg', required=False)
+    parser.add_argument('-s', '--style', help='Style image path', type=str, required=True)
+    parser.add_argument('-c', '--content', help='Content image path', type=str, required=True)
+    parser.add_argument('-o', '--output', help='Output image path', type=str, default='./image/output.jpg', required=False)
 
     return parser.parse_args(args)
 
