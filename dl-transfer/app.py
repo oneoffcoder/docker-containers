@@ -21,14 +21,19 @@ from collections import namedtuple
 def get_device():
     return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+def get_raw_image_size(fpath):
+    with Image.open(fpath) as img:
+        width, height = img.size
+        return width, height
+    
 def get_image_size():
-    imsize = 512 if torch.cuda.is_available() else 128
+    imsize = (512, 512) if torch.cuda.is_available() else (128, 128)
     return imsize
 
-def get_loader():
-    image_size = get_image_size()
+def get_loader(image_size=None):
+    image_size = get_image_size() if image_size is None else image_size
     loader = transforms.Compose([
-        transforms.Resize((image_size, image_size)),
+        transforms.Resize((image_size[1], image_size[0])),
         transforms.ToTensor()])
     return loader
 
@@ -36,11 +41,11 @@ def get_unloader():
     unloader = transforms.ToPILImage()
     return unloader
 
-def image_loader(image_name):
+def image_loader(image_name, image_size=None):
     device = get_device()
     image = Image.open(image_name)
     # fake batch dimension required to fit network's input dimensions
-    loader = get_loader()
+    loader = get_loader(image_size=image_size)
     image = loader(image).unsqueeze(0)
     return image.to(device, torch.float)
 
@@ -247,8 +252,11 @@ if __name__ == '__main__':
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-    style_img = image_loader(style_path)
-    content_img = image_loader(content_path)
+    image_size = get_raw_image_size(content_path)
+    print(f'target width={image_size[0]} and height={image_size[1]}')
+
+    style_img = image_loader(style_path, image_size)
+    content_img = image_loader(content_path, image_size)
     input_img = content_img.clone()
 
     assert style_img.size() == content_img.size(), \
@@ -268,3 +276,5 @@ if __name__ == '__main__':
                     content_weight=content_weight)
         output_img = to_pil_image(output)
         output_img.save(output_path)
+
+        print(f'style:{style_path} + content:{content_path} ==> output:{output_path}')
