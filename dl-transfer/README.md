@@ -30,18 +30,6 @@ docker run -it \
     --gpus=all \
     --shm-size=5g \
     oneoffcoder/dl-transfer -s image/picasso-01.jpg -c image/dancing.jpg
-
-docker run -it \
-    -v `pwd`/image:/app/image \
-    --gpus=all \
-    --shm-size=5g \
-    dl-transfer:local -s image/picasso-01.jpg -c image/dancing.jpg
-
-docker run -it \
-    -v `pwd`/image:/app/image \
-    --gpus=all \
-    --shm-size=5g \
-    dl-transfer:local -s image/picasso.jpg -c image/dancing.jpg -o image/final.jpg
 ```
 
 # Citation
