@@ -20,6 +20,7 @@ These are some sample docker containers for learning purposes.
 * [docker-exe](docker-exe): A [project](https://hub.docker.com/r/oneoffcoder/docker-exe) showing how to build a container that may be used as an executable.
 * [spark-jupyter](spark-jupyter): A [project](https://hub.docker.com/r/oneoffcoder/spark-jupyter) with Hadoop, Spark and Python that may be used to learn massively parallel processing.
 * [java-jupyter](java-jupyter): A [project](https://hub.docker.com/r/oneoffcoder/java-jupyter) to learn Java 12.
+* [cpp-cicd](cpp-cicd): A [C++](https://hub.docker.com/r/oneoffcoder/cpp-cicd) Docker image for building C++ projects using CMake and BOOST.
 
 ## Raspberry Pi Docker Images
 

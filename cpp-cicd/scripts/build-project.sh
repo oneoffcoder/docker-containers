@@ -1,0 +1,8 @@
+#!/bin/bash
+[ -d "/project/cmake-build-debug" ] && rm -fr /project/cmake-build-debug
+[ ! -d "/project/cmake-build-debug" ] && mkdir /project/cmake-build-debug
+cd /project/cmake-build-debug
+cmake ..
+make clean
+make
+make test
