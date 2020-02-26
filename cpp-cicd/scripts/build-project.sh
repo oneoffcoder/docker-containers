@@ -5,4 +5,6 @@ cd /project/cmake-build-debug
 cmake ..
 make clean
 make -j $NJOBS
+make ccov-all -j $NJOBS
 ctest -T memcheck -j $NJOBS
+make doc

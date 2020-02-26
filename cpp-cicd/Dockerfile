@@ -7,7 +7,7 @@ ENV NJOBS=8
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install build-essential cmake libboost-all-dev gcc clang gdb libblkid-dev e2fslibs-dev libaudit-dev valgrind ninja-build
+    && apt-get -y install build-essential cmake libboost-all-dev gcc clang gdb libblkid-dev e2fslibs-dev libaudit-dev valgrind ninja-build doxygen graphviz mscgen dia lcov
 
 RUN mkdir /project
 WORKDIR /project
