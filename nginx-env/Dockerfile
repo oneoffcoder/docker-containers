@@ -1,5 +1,14 @@
 FROM nginx:alpine  
-LABEL One-Off Coder "info@oneoffcoder.com"
+LABEL org="One-Off Coder"
+LABEL author="Jee Vang, Ph.D."
+LABEL website="https://www.oneoffcoder.com"
+LABEL email="info@oneoffcoder.com"
+LABEL facebook="https://www.facebook.com/oneoffcoder"
+LABEL twitter="https://twitter.com/oneoffcoder"
+LABEL instagram="https://www.instagram.com/oneoffcoder/"
+LABEL youtube="https://www.youtube.com/channel/UCCCv8Glpb2dq2mhUj5mcHCQ"
+LABEL linkedin="https://www.linkedin.com/company/one-off-code"
+
 COPY ./doit.sh /tmp/doit.sh
 COPY ./supervisord.conf /etc/supervisord.conf
 RUN apk update && apk add --no-cache supervisor bash
