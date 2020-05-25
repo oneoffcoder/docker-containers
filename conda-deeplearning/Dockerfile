@@ -19,10 +19,11 @@ RUN apt-get update -y \
     && apt-get clean
 
 COPY requirements.txt /tmp/requirements.txt
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /tmp/anaconda.sh \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && /root/anaconda3/bin/pip install -r /tmp/requirements.txt \
     && /root/anaconda3/bin/python -m spacy download en_core_web_lg
+COPY ubuntu/root/.jupyter /root/.jupyter/
 
 RUN mkdir /root/ipynb \
     && mkdir /root/tensorboard
