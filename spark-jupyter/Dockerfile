@@ -1,4 +1,4 @@
-FROM ubuntu:disco
+FROM ubuntu:eoan
 LABEL org="One-Off Coder"
 LABEL author="Jee Vang, Ph.D."
 LABEL email="info@oneoffcoder.com"
@@ -59,7 +59,7 @@ COPY ubuntu/usr/local/hadoop/extras/* /usr/local/hadoop/extras/
 RUN $HADOOP_HOME/bin/hdfs namenode -format oneoffcoder
 
 # setup spark
-RUN wget -q http://mirrors.advancedhosters.com/apache/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz -O /tmp/spark-2.4.4-bin-hadoop2.7.tgz \
+RUN wget -q https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz -O /tmp/spark-2.4.4-bin-hadoop2.7.tgz \
     && tar -xzf /tmp/spark-2.4.4-bin-hadoop2.7.tgz -C /usr/local/ \
     && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
     && rm /usr/local/spark/conf/*.template
@@ -67,7 +67,7 @@ COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 
 # setup conda
 COPY ubuntu/root/ipynb/environment.yml /tmp/environment.yml
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /tmp/anaconda.sh \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda env update -n base --file /tmp/environment.yml \
     && $CONDA_HOME/bin/conda update -n root conda -y \

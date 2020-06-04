@@ -2,8 +2,8 @@
 
 ORGANIZATION=oneoffcoder
 REPOSITORY=spark-jupyter
-VERSION=0.0.6
-IMAGEID=$(docker images | awk -v repo="$REPOSITORY" -v tag="local" 'index($1, repo) && index($2, tag) {print $3}')
+VERSION=0.0.7
+IMAGEID=spark-jupyter:local
 
 echo ${IMAGEID}
 
