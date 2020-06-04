@@ -31,7 +31,7 @@ SPARK_MASTER_HOST=localhost
 PYSPARK_PYTHON=/usr/local/conda/bin/python
 PYSPARK_DRIVER_PYTHON=jupyter
 PYSPARK_DRIVER_PYTHON_OPTS="lab --port 8888 --notebook-dir='~/' --ip='*' --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='$NOTEBOOK_PASSWORD'"
-PYTHONPATH=$PYTHONPATH:/usr/local/hadoop/extras/graphframes.zip:.
+PYTHONPATH=$PYTHONPATH:/usr/local/hadoop/extras:.
 
 # Options read by executors and drivers running inside the cluster
 # - SPARK_LOCAL_IP, to set the IP address Spark binds to on this node

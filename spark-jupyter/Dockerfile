@@ -66,6 +66,7 @@ RUN wget -q https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-ha
 COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 
 # setup conda
+COPY ubuntu/root/.jupyter /root/.jupyter/
 COPY ubuntu/root/ipynb/environment.yml /tmp/environment.yml
 RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
