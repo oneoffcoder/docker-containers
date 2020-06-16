@@ -16,7 +16,7 @@ ENV NOTEBOOK_PASSWORD=""
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install wget supervisor -y \
+    && apt-get install wget supervisor libomp-dev -y \
     && apt-get clean
 
 COPY requirements.txt /tmp/requirements.txt
