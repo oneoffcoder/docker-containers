@@ -7,4 +7,4 @@ make clean
 make -j $NJOBS
 make ccov-all -j $NJOBS
 ctest -T memcheck -j $NJOBS
-make doc
+make Doxygen Sphinx

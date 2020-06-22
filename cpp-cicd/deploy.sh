@@ -2,7 +2,7 @@
 
 ORGANIZATION=oneoffcoder
 REPOSITORY=cpp-cicd
-VERSION=0.0.3
+VERSION=0.0.4
 IMAGEID=cpp-cicd:local
 
 docker tag ${IMAGEID} ${ORGANIZATION}/${REPOSITORY}:${VERSION}
