@@ -9,6 +9,7 @@ LABEL instagram="https://www.instagram.com/oneoffcoder/"
 LABEL youtube="https://www.youtube.com/channel/UCCCv8Glpb2dq2mhUj5mcHCQ"
 LABEL linkedin="https://www.linkedin.com/company/one-off-coder"
 
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV CONDA_HOME=/usr/local/conda
 ENV PATH=${CONDA_HOME}/bin:${PATH}
 
