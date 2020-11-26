@@ -20,8 +20,8 @@ RUN apt-get update -y \
     && apt-get clean
 
 # setup conda
-RUN ANACONDA_SH=Anaconda3-2020.11-Linux-x86_64.sh wget -q https://repo.anaconda.com/archive/$ANACONDA_SH -O /tmp/$ANACONDA_SH \
-    && /bin/bash /tmp/$ANACONDA_SH -b -p $CONDA_HOME \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O /tmp/anaconda.sh \
+    && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda update -n root conda -y \
     && $CONDA_HOME/bin/pip install -U pip
 
