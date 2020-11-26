@@ -16,12 +16,12 @@ ENV PATH=${CONDA_HOME}/bin:${PATH}
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-8-jdk wget build-essential \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-8-jdk wget build-essential \
     && apt-get clean
 
 # setup conda
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O /tmp/Anaconda3-2020.11-Linux-x86_64.sh \
-    && /bin/bash /tmp/Anaconda3-2020.11-Linux-x86_64.sh -b -p $CONDA_HOME \
+RUN ANACONDA_SH=Anaconda3-2020.11-Linux-x86_64.sh wget -q https://repo.anaconda.com/archive/$ANACONDA_SH -O /tmp/$ANACONDA_SH \
+    && /bin/bash /tmp/$ANACONDA_SH -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda update -n root conda -y \
     && $CONDA_HOME/bin/pip install -U pip
 
