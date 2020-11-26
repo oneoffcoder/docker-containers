@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t python-java:local .
+docker build --no-cache -t python-java:local .
