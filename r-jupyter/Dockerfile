@@ -45,8 +45,11 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh 
 COPY ubuntu/root/.jupyter /root/.jupyter/
 
 # install r kernel
-RUN Rscript -e "install.packages('IRkernel', repos='https://mirrors.nics.utk.edu/cran/')" \
-       -e "IRkernel::installspec()"
+RUN Rscript \
+    -e "repos <- 'https://cloud.r-project.org/'" \
+    -e "dependencies <- c('Depends', 'Imports', 'LinkingTo', 'Suggests', 'Enhances')" \
+    -e "install.packages('IRkernel', repos=repos, Ncpus=10, dependencies=dependencies)" \
+    -e "IRkernel::installspec()"
 
 # setup volumes
 RUN mkdir /root/ipynb \
