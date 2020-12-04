@@ -9,8 +9,9 @@ LABEL instagram="https://www.instagram.com/oneoffcoder/"
 LABEL youtube="https://www.youtube.com/channel/UCCCv8Glpb2dq2mhUj5mcHCQ"
 LABEL linkedin="https://www.linkedin.com/company/one-off-coder"
 
+ENV NODE_HOME=/usr/local/node-v14.15.1-linux-x64
 ENV CONDA_HOME=/usr/local/conda
-ENV PATH=${CONDA_HOME}/bin:${PATH}
+ENV PATH=${NODE_HOME}/bin:${CONDA_HOME}/bin:${PATH}
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NOTEBOOK_PASSWORD=""
 
