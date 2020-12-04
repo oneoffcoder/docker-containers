@@ -18,7 +18,7 @@ ENV NOTEBOOK_PASSWORD=""
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install wget nano supervisor unzip gnupg2 software-properties-common dirmngr apt-transport-https ca-certificates build-essential
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install wget nano supervisor unzip gnupg2 software-properties-common dirmngr apt-transport-https ca-certificates build-essential
 
 # setup r
 # https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/
