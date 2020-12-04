@@ -1,4 +1,4 @@
-FROM ubuntu:eoan
+FROM ubuntu:latest
 LABEL org="One-Off Coder"
 LABEL author="Jee Vang, Ph.D."
 LABEL email="info@oneoffcoder.com"
@@ -17,23 +17,35 @@ ENV NOTEBOOK_PASSWORD=""
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install wget nano supervisor unzip gnupg2 software-properties-common
+    && apt-get -y install wget nano supervisor unzip gnupg2 software-properties-common dirmngr apt-transport-https ca-certificates build-essential
 
 # setup r
+# https://linuxize.com/post/how-to-install-r-on-ubuntu-20-04/
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
-    && add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu eoan-cran35/' \
+    && add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/' \
     && apt-get update -y \
     && apt-get -y install r-base
 
+# setup nodejs
+RUN wget -q https://nodejs.org/dist/v14.15.1/node-v14.15.1-linux-x64.tar.xz -O /tmp/node.tar.xz \
+    && tar xf /tmp/node.tar.xz -C /usr/local \
+    && node --version \
+    && npm --version
+
 # setup conda
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
-    && $CONDA_HOME/bin/conda update -n root conda -y
+    && conda update --all \
+    && conda update -c conda-forge jupyterlab \
+    && conda install -c conda-forge nodejs \
+    && pip install jupyterlab-commenting-service \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager @jupyterlab/commenting-extension @jupyterlab/toc @krassowski/jupyterlab-lsp \
+    && conda install -c conda-forge python-language-server r-languageserver
 COPY ubuntu/root/.jupyter /root/.jupyter/
 
 # install r kernel
 RUN Rscript -e "install.packages('IRkernel', repos='https://mirrors.nics.utk.edu/cran/')" \
-       -e "IRkernel::installspec(name = 'ir36', displayname = 'R 3.6')"
+       -e "IRkernel::installspec()"
 
 # setup volumes
 RUN mkdir /root/ipynb \
