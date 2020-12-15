@@ -1,4 +1,5 @@
-FROM ubuntu:disco
+FROM ubuntu:latest
+
 LABEL org="One-Off Coder"
 LABEL author="Jee Vang, Ph.D."
 LABEL email="info@oneoffcoder.com"
@@ -21,7 +22,7 @@ RUN apt-get update -y \
     && apt-get -y install wget supervisor nano build-essential
 
 # setup conda
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O /tmp/anaconda.sh \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda update -n root conda -y \
     && pip install \
@@ -31,6 +32,7 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh 
         sphinx-autobuild \
         sphinxcontrib-blockdiag \
         sphinx-sitemap \
+        jupyter-sphinx \
         nbsphinx \
     && conda install -c conda-forge pandoc ipython
 
