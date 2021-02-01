@@ -1,4 +1,4 @@
-FROM ubuntu:eoan
+FROM ubuntu:latest
 LABEL org="One-Off Coder"
 LABEL author="Jee Vang, Ph.D."
 LABEL email="info@oneoffcoder.com"
