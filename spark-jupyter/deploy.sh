@@ -2,7 +2,7 @@
 
 ORGANIZATION=oneoffcoder
 REPOSITORY=spark-jupyter
-VERSION=0.0.9
+VERSION=0.1.0
 IMAGEID=spark-jupyter:local
 
 echo ${IMAGEID}
