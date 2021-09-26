@@ -1,17 +1,8 @@
 FROM spark0:local
-LABEL org="One-Off Coder"
-LABEL author="Jee Vang, Ph.D."
-LABEL email="info@oneoffcoder.com"
-LABEL website="https://www.oneoffcoder.com"
-LABEL facebook="https://www.facebook.com/oneoffcoder"
-LABEL twitter="https://twitter.com/oneoffcoder"
-LABEL instagram="https://www.instagram.com/oneoffcoder/"
-LABEL youtube="https://www.youtube.com/channel/UCCCv8Glpb2dq2mhUj5mcHCQ"
-LABEL linkedin="https://www.linkedin.com/company/one-off-coder"
 
-ENV SPARK_WORKER_INSTANCES="5"
-ENV SPARK_WORKER_CORES="2"
-ENV SPARK_WORKER_MEMORY="20g"
+ENV SPARK_WORKER_INSTANCES="1"
+ENV SPARK_WORKER_CORES="1"
+ENV SPARK_WORKER_MEMORY="1g"
 
 # setup hadoop
 COPY ubuntu/usr/local/hadoop/etc/hadoop/* /usr/local/hadoop/etc/hadoop/
@@ -23,6 +14,8 @@ COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 # setup supervisor
 COPY ubuntu/etc/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
 COPY ubuntu/etc/supervisor/conf.d/all.conf /etc/supervisor/conf.d/all.conf
-COPY ubuntu/usr/local/bin/start-all.sh /usr/local/bin/start-all.sh
+COPY ubuntu/usr/local/bin/* /usr/local/bin/
+
+EXPOSE 9870 8088 9864 19888 8080 18080 4040 7077
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]

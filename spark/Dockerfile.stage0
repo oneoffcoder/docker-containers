@@ -42,6 +42,7 @@ RUN apt-get update -y \
         net-tools \
         lynx \
         python3-pip \
+    && pip install psutil \
     && apt-get clean \
     && ln -s /usr/bin/python3.8 /usr/bin/python
 
