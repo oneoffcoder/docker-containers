@@ -39,6 +39,7 @@ Run.
 [Hadoop](https://docs.bitnami.com/aws/apps/hadoop/get-started/understand-default-config/)
 
 - `9870` : Name Node (HDFS)
+- `8020` : Name Node metadata service
 - `8088` : Resource Manager (YARN)
 - `9864` : Data node
 - `19888` : History Server
@@ -77,7 +78,13 @@ pyspark --master spark://172.18.0.5:7077
 If you want to submit an Python application.
 
 ```bash
+# spark standalone
 spark-submit \
     --master spark://172.18.0.5:7077 \
     dummy.py
+
+# YARN
+HADOOP_CONF_DIR=/home/super/dev/hadoop/etc/hadoop/ spark-submit \
+    --deploy-mode client \
+    --master yarn dummy.py
 ```
