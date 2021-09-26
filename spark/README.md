@@ -47,7 +47,6 @@ Run.
 # Test Connection
 
 ```bash
-./bin/spark-shell \
-    --master spark://localhost:7077 \
-    --conf spark.ui.port=4041
+docker exec -it <ID> spark-shell --master spark://localhost:7077
+docker exec -it <ID> pyspark --master spark://localhost:7077
 ```
