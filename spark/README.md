@@ -22,6 +22,12 @@ Build.
 ./build.sh
 ```
 
+We need to create a network. The reason is because we cannot specify a static IP for the container if we do NOT use a custom-created network. Why do we need to specify a static IP? Because `SPARK_MASTER_HOST` is typically set to `localhost` and `localhost` binds only to `127.0.0.1` and any request from the outside to the container on port `7077` will be rejected. We can specify for `SPARK_MASTER_HOST` to be `0.0.0.0` explicitly, but, this specification breaks Spark entirely (computations will not run as workers cannot find the master). The workaround is to create a network and assign a static IP to the container.
+
+```bash
+docker network create --subnet=172.18.0.0/16 sparknet
+```
+
 Run.
 
 ```bash
@@ -46,7 +52,32 @@ Run.
 
 # Test Connection
 
+Some network useful commands.
+
 ```bash
-docker exec -it <ID> spark-shell --master spark://localhost:7077
-docker exec -it <ID> pyspark --master spark://localhost:7077
+docker network ls
+docker network inspect sparknet
+netstat -tulpn | grep LISTEN
+```
+
+If you want to use the shell on the container.
+
+```bash
+docker exec -it <CONTAINER_ID> spark-shell --master spark://172.18.0.5:7077
+docker exec -it <CONTAINER_ID> pyspark --master spark://172.18.0.5:7077
+```
+
+If you want to use a locally installed instance of Spark.
+
+```bash
+spark-shell --master spark://172.18.0.5:7077
+pyspark --master spark://172.18.0.5:7077
+```
+
+If you want to submit an Python application.
+
+```bash
+spark-submit \
+    --master spark://172.18.0.5:7077 \
+    dummy.py
 ```

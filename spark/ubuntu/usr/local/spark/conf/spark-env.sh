@@ -27,7 +27,7 @@
 # - SPARK_PUBLIC_DNS, to set the public dns name of the driver program
 HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop
 YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop
-SPARK_MASTER_HOST=localhost
+SPARK_MASTER_HOST=172.18.0.5
 SPARK_WORKER_INSTANCES=1
 SPARK_WORKER_CORES=1
 SPARK_WORKER_MEMORY=1g
