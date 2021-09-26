@@ -7,7 +7,7 @@ spark = SparkSession.builder\
     .getOrCreate()
 sc = spark.sparkContext
 
-rdd = sc.parallelize((i for i in range(1_000)))
+rdd = sc.parallelize((i for i in range(1_000_000))).repartition(5)
 
 n = rdd.reduce(lambda a, b: a + b)
 print(f'reduce: {n}')
