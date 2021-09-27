@@ -11,6 +11,9 @@ echo "configured spark"
 $HADOOP_HOME/sbin/start-all.sh
 echo "started hadoop"
 
+$HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver
+echo "started job history server"
+
 $SPARK_HOME/sbin/start-all.sh
 echo "started spark"
 

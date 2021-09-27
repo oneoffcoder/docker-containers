@@ -24,6 +24,10 @@
     <value>true</value>
   </property>
   <property>
+    <name>yarn.log.server.url</name>
+    <value>http://172.18.0.5:19888/jobhistory/logs</value>
+  </property>
+  <property>
     <name>yarn.resourcemanager.hostname</name>
     <value>172.18.0.5</value>
   </property>

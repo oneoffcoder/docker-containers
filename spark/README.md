@@ -91,42 +91,13 @@ HADOOP_CONF_DIR=/home/super/dev/hadoop/etc/hadoop/ spark-submit \
     --master yarn dummy.py
 ```
 
+# References
 
-
-
-
-
-
-
-tcp        0      0 0.0.0.0:13562           0.0.0.0:*               LISTEN      862/java            
-tcp        0      0 0.0.0.0:8030            0.0.0.0:*               LISTEN      743/java            
-tcp        0      0 0.0.0.0:8031            0.0.0.0:*               LISTEN      743/java            
-tcp        0      0 0.0.0.0:18080           0.0.0.0:*               LISTEN      1755/java           
-tcp        0      0 0.0.0.0:8032            0.0.0.0:*               LISTEN      743/java            
-tcp        0      0 0.0.0.0:8033            0.0.0.0:*               LISTEN      743/java            
-tcp        0      0 127.0.0.11:35265        0.0.0.0:*               LISTEN      -                   
-tcp        0      0 172.18.0.5:7077         0.0.0.0:*               LISTEN      1221/java           
-tcp        0      0 172.18.0.5:41831        0.0.0.0:*               LISTEN      1411/java           
-tcp        0      0 0.0.0.0:8040            0.0.0.0:*               LISTEN      862/java            
-tcp        0      0 0.0.0.0:9864            0.0.0.0:*               LISTEN      327/java            
-tcp        0      0 0.0.0.0:8042            0.0.0.0:*               LISTEN      862/java            
-tcp        0      0 0.0.0.0:9866            0.0.0.0:*               LISTEN      327/java            
-tcp        0      0 172.18.0.5:46699        0.0.0.0:*               LISTEN      1669/java           
-tcp        0      0 172.18.0.5:40139        0.0.0.0:*               LISTEN      1583/java           
-tcp        0      0 172.18.0.5:43083        0.0.0.0:*               LISTEN      1497/java           
-tcp        0      0 0.0.0.0:9867            0.0.0.0:*               LISTEN      327/java            
-tcp        0      0 0.0.0.0:9868            0.0.0.0:*               LISTEN      515/java            
-tcp        0      0 0.0.0.0:9870            0.0.0.0:*               LISTEN      165/java            
-tcp        0      0 172.18.0.5:38351        0.0.0.0:*               LISTEN      1325/java           
-tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      1221/java           
-tcp        0      0 0.0.0.0:8081            0.0.0.0:*               LISTEN      1325/java           
-tcp        0      0 0.0.0.0:8082            0.0.0.0:*               LISTEN      1411/java           
-tcp        0      0 0.0.0.0:8083            0.0.0.0:*               LISTEN      1497/java           
-tcp        0      0 0.0.0.0:8084            0.0.0.0:*               LISTEN      1583/java           
-tcp        0      0 127.0.0.1:8020          0.0.0.0:*               LISTEN      165/java            
-tcp        0      0 0.0.0.0:8085            0.0.0.0:*               LISTEN      1669/java           
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      20/sshd: /usr/sbin/ 
-tcp        0      0 0.0.0.0:43607           0.0.0.0:*               LISTEN      862/java            
-tcp        0      0 0.0.0.0:8088            0.0.0.0:*               LISTEN      743/java            
-tcp        0      0 127.0.0.1:35001         0.0.0.0:*               LISTEN      327/java            
-tcp6       0      0 :::22                   :::*                    LISTEN      20/sshd: /usr/sbin/
+- [How to resolve pickle error in pyspark?](https://www.py4u.net/discuss/254317?utm_source=pocket_mylist)
+- [What can be pickled and unpickled](https://docs.python.org/3.5/library/pickle.html#what-can-be-pickled-and-unpickled)
+- [cloudpickle](https://github.com/apache/spark/blob/33ae7a35daa86c34f1f9f72f997e0c2d4cd8abec/python/pyspark/cloudpickle.py)
+- [How do I call pyspark code with .whl file?](https://stackoverflow.com/questions/64503039/how-do-i-call-pyspark-code-with-whl-file)
+- [Does spark standalone cluster supports deploye mode = cluster for python applications?](https://stackoverflow.com/questions/41919295/does-spark-standalone-cluster-supports-deploye-mode-cluster-for-python-applica)
+- [Understand the default configuration](https://docs.bitnami.com/aws/apps/hadoop/get-started/understand-default-config/)
+- [Call From kv.local/172.20.12.168 to localhost:8020 failed on connection exception, when using tera gen](https://stackoverflow.com/questions/44304138/call-from-kv-local-172-20-12-168-to-localhost8020-failed-on-connection-exceptio)
+- [Yarn JobHistory Error: Failed redirect for container_1400260444475_3309_01_000001](https://stackoverflow.com/questions/24076192/yarn-jobhistory-error-failed-redirect-for-container-1400260444475-3309-01-00000)
