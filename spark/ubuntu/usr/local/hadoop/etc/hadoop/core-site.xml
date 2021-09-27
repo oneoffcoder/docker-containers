@@ -19,8 +19,12 @@
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://localhost</value>
+    <value>hdfs://172.18.0.5</value>
   </property>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://172.18.0.5:8020</value>
+</property>
   <property>
     <name>hadoop.http.filter.initializers</name>
     <value>org.apache.hadoop.http.lib.StaticUserWebFilter,org.apache.hadoop.security.HttpCrossOriginFilterInitializer</value>
