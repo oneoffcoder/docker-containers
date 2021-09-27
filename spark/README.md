@@ -11,6 +11,7 @@ After running the container, you may visit the following pages.
 * [HDFS](http://172.18.0.5:9870)
 * [Node Manager](http://172.18.0.5:8042)
 * [YARN](http://172.18.0.5:8088)
+* [Job History](http://172.18.0.5:19888)
 * [Spark](http://172.18.0.5:8080)
 * [Spark Jobs](http://172.18.0.5:4040)
 * [Spark History](http://172.18.0.5:18080)
