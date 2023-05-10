@@ -8,9 +8,7 @@ IMAGE_VERSION = $(ORGANIZATION)/$(REPOSITORY):$(VERSION)
 IMAGE_LATEST = $(ORGANIZATION)/$(REPOSITORY):latest
 
 build:
-	docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $(IMAGE_VERSION) .
-	docker tag $(IMAGE_VERSION) ${IMAGE_LATEST}
+	docker buildx build --platform linux/amd64,linux/arm64 -t $(IMAGE_VERSION) --push .
 
 push:
 	docker push ${IMAGE_VERSION}
-	docker push ${IMAGE_LATEST}

@@ -1,7 +1,11 @@
 FROM ubuntu:latest
+
 ENV NJOBS=8
 ENV CONDA_HOME=/root/anaconda3
 ENV PATH=${CONDA_HOME}/bin:${PATH}
+
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 # ubuntu
 RUN apt-get update -y \
@@ -26,7 +30,9 @@ RUN apt-get update -y \
         wget
 
 # anaconda
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh -O /tmp/anaconda.sh \
+COPY scripts/download-conda.sh /tmp/download-conda.sh
+RUN chmod +x /tmp/download-conda.sh \
+    && /bin/bash /tmp/download-conda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && conda update conda -y \
     && conda update --all -y \
