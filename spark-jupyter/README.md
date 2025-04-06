@@ -4,9 +4,9 @@
 
 This docker container is meant to be used for learning purpose for programming PySpark. It has the following components.
 
-* Hadoop v3.2.1
-* Spark v2.4.4
-* Conda 3 with Python v3.7
+* Hadoop v3.4.1
+* Spark v3.5.5
+* Conda with Python v3.11
 
 After running the container, you may visit the following pages.
 

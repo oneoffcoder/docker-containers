@@ -43,9 +43,9 @@ RUN ssh-keygen -t rsa -P "" -f /root/.ssh/id_rsa \
 COPY ubuntu/root/.ssh/config /root/.ssh/config
 
 # setup hadoop
-RUN wget -q http://apache.mirrors.tds.net/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz -O /tmp/hadoop-3.2.1.tar.gz \
-    && tar -xzf /tmp/hadoop-3.2.1.tar.gz -C /usr/local/ \
-    && ln -s /usr/local/hadoop-3.2.1 /usr/local/hadoop \
+RUN wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz -O /tmp/hadoop.tar.gz \
+    && tar -xzf /tmp/hadoop.tar.gz -C /usr/local/ \
+    && ln -s /usr/local/hadoop-3.4.1 /usr/local/hadoop \
     && rm -fr /usr/local/hadoop/etc/hadoop/* \
     && mkdir /usr/local/hadoop/extras \
     && mkdir /var/hadoop \
@@ -59,16 +59,16 @@ COPY ubuntu/usr/local/hadoop/extras/* /usr/local/hadoop/extras/
 RUN $HADOOP_HOME/bin/hdfs namenode -format oneoffcoder
 
 # setup spark
-RUN wget -q https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz -O /tmp/spark-2.4.4-bin-hadoop2.7.tgz \
-    && tar -xzf /tmp/spark-2.4.4-bin-hadoop2.7.tgz -C /usr/local/ \
-    && ln -s /usr/local/spark-2.4.4-bin-hadoop2.7 /usr/local/spark \
+RUN wget -q https://dlcdn.apache.org/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz -O /tmp/spark.tgz \
+    && tar -xzf /tmp/spark.tgz -C /usr/local/ \
+    && ln -s /usr/local/spark-3.5.5-bin-hadoop3 /usr/local/spark \
     && rm /usr/local/spark/conf/*.template
 COPY ubuntu/usr/local/spark/conf/* /usr/local/spark/conf/
 
 # setup conda
 COPY ubuntu/root/.jupyter /root/.jupyter/
 COPY ubuntu/root/ipynb/environment.yml /tmp/environment.yml
-RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O /tmp/anaconda.sh \
+RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.sh -O /tmp/anaconda.sh \
     && /bin/bash /tmp/anaconda.sh -b -p $CONDA_HOME \
     && $CONDA_HOME/bin/conda env update -n base --file /tmp/environment.yml \
     && $CONDA_HOME/bin/conda update -n root conda -y \
