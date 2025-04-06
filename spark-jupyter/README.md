@@ -6,7 +6,8 @@ This docker container is meant to be used for learning purpose for programming P
 
 * Hadoop v3.4.1
 * Spark v3.5.5
-* Conda with Python v3.11
+* Python v3.12.7
+* Conda v25.3.1
 
 After running the container, you may visit the following pages.
 
