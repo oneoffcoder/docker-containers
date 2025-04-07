@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --no-cache -t spark-jupyter:local .
+docker build --no-cache --platform=linux/amd64 -t spark-jupyter:local .

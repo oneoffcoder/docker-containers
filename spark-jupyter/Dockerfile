@@ -34,6 +34,7 @@ RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get -y install openjdk-8-jdk wget openssh-server sshpass supervisor \
     && apt-get -y install nano net-tools lynx \
+    && apt-get -y install sudo \
     && apt-get clean
 
 # setup ssh

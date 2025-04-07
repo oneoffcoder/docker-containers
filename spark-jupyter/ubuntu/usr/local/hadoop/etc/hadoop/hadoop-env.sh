@@ -53,6 +53,10 @@
 # variable is REQUIRED on ALL platforms except OS X!
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
+# The language environment in which Hadoop runs. Use the English
+# environment to ensure that logs are printed as expected.
+export LANG=en_US.UTF-8
+
 # Location of Hadoop.  By default, Hadoop will attempt to determine
 # this location based upon its execution path.
 export HADOOP_HOME=/usr/local/hadoop
