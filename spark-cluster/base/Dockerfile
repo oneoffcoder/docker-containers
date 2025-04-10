@@ -27,10 +27,7 @@ RUN apt-get update -y \
     && apt-get clean
 
 # setup ssh
-RUN ssh-keygen -t rsa -P "" -f /root/.ssh/id_rsa \
-    && cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
-    && chmod 0600 /root/.ssh/authorized_keys
-COPY ubuntu/root/.ssh/config /root/.ssh/config
+COPY ubuntu/root/.ssh/* /root/.ssh/
 
 # setup hadoop
 RUN wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz -O /tmp/hadoop.tar.gz \
