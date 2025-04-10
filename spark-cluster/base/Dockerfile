@@ -22,9 +22,13 @@ ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-17-jdk wget ssh openssh-server sshpass supervisor \
+    && apt-get -y install openjdk-17-jdk wget sudo openssh-client openssh-server sshpass supervisor \
     && apt-get -y install nano net-tools lynx \
     && apt-get clean
+
+RUN mkdir /var/run/sshd && \
+    echo 'root:root' | chpasswd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # setup ssh
 COPY ubuntu/root/.ssh/* /root/.ssh/
@@ -60,3 +64,9 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.s
 # clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir /tmp/spark-events
+
+COPY ubuntu/etc/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
+COPY ubuntu/etc/supervisor/conf.d/ssh.conf /etc/supervisor/conf.d/ssh.conf
+
+EXPOSE 22
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]
