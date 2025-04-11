@@ -49,6 +49,8 @@ RUN wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar
 	&& mkdir /var/hadoop/mr-history/done \
 	&& mkdir /var/hadoop/mr-history/tmp
 
+COPY ubuntu/usr/local/hadoop/extras/* /usr/local/hadoop/extras/
+
 # setup spark
 RUN wget -q https://dlcdn.apache.org/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz -O /tmp/spark.tgz \
     && tar -xzf /tmp/spark.tgz -C /usr/local/ \
