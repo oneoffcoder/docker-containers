@@ -33,6 +33,9 @@ RUN mkdir /var/run/sshd && \
 # setup ssh
 COPY ubuntu/root/.ssh/* /root/.ssh/
 
+# setup bash
+COPY ubuntu/root/.bashrc /root/.bashrc
+
 # setup hadoop
 RUN wget -q https://dlcdn.apache.org/hadoop/common/hadoop-3.4.1/hadoop-3.4.1.tar.gz -O /tmp/hadoop.tar.gz \
     && tar -xzf /tmp/hadoop.tar.gz -C /usr/local/ \
@@ -65,6 +68,7 @@ RUN wget -q https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.s
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir /tmp/spark-events
 
+# setup supervisor
 COPY ubuntu/etc/supervisor/supervisor.conf /etc/supervisor/supervisor.conf
 COPY ubuntu/etc/supervisor/conf.d/ssh.conf /etc/supervisor/conf.d/ssh.conf
 
