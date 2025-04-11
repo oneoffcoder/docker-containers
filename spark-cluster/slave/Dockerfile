@@ -1,0 +1,1 @@
+FROM spark-base:latest
