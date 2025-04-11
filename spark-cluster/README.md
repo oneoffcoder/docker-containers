@@ -78,6 +78,7 @@ docker run \
     -p 50075:50075 \
     -p 7078:7078 \
     -p 8081:8081 \
+    -p 9868:9868 \
     -v $(pwd)/hadoop/etc/hadoop:/usr/local/hadoop/etc/hadoop/ \
     -v $(pwd)/spark/conf:/usr/local/spark/conf \
     -e PYSPARK_MASTER=spark://localhost:7077 \
