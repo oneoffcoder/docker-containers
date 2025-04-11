@@ -1,8 +1,5 @@
 #!/bin/bash
 
-service ssh start
-echo "started ssh"
-
 $HADOOP_HOME/sbin/start-all.sh
 echo "started hadoop"
 
@@ -19,16 +16,6 @@ $SPARK_HOME/bin/pyspark \
     --repositories https://repos.spark-packages.org \
     --master $PYSPARK_MASTER > /tmp/jupyter.log 2>&1 &
 echo "started pyspark"
-
-if [ -d "/root/ipynb/data" ]; then
-    for entry in /root/ipynb/data/*
-    do
-        hdfs dfs -copyFromLocal -f $entry /$(basename $entry)
-        echo "copied $entry to hdfs"
-    done
-else
-    echo "/root/ipynb/data does not exists"
-fi
 
 echo "done!"
 
