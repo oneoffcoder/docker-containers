@@ -13,5 +13,8 @@ run:
 		--platform=$(PLATFORM) \
 		$(IMAGE_NAME)
 
+ssh:
+	ssh root@localhost -p 23
+
 purge: clean
 	docker rmi $(IMAGE_NAME) || true
