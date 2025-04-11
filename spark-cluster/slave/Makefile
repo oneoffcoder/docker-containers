@@ -1,9 +1,19 @@
-# Name of the Docker image
 IMAGE_NAME=spark-slave
 PLATFORM=linux/amd64
+ORGANIZATION=oneoffcoder
+VERSION=0.0.1
+VER_TAG := $(ORGANIZATION)/$(IMAGE_NAME):$(VERSION)
+LAT_TAG := $(ORGANIZATION)/$(IMAGE_NAME):latest
 
 build:
 	docker build --platform=$(PLATFORM) -t $(IMAGE_NAME) .
+
+push:
+	docker tag $(IMAGE_NAME) $(VER_TAG)
+	docker tag $(IMAGE_NAME) $(LAT_TAG)
+
+	@echo "docker push $(VER_TAG)"
+	@echo "docker push $(LAT_TAG)"
 
 run:
 	docker run \
