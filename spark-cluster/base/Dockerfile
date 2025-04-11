@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV HDFS_NAMENODE_USER=root
 ENV HDFS_DATANODE_USER=root
 ENV HDFS_SECONDARYNAMENODE_USER=root
@@ -22,7 +22,7 @@ ENV PATH=${CONDA_HOME}/bin:${SPARK_HOME}/bin:${HADOOP_HOME}/bin:${PATH}
 # setup ubuntu
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get -y install openjdk-17-jdk wget sudo openssh-client openssh-server sshpass supervisor \
+    && apt-get -y install openjdk-8-jdk wget sudo openssh-client openssh-server sshpass supervisor \
     && apt-get -y install nano net-tools lynx \
     && apt-get clean
 
