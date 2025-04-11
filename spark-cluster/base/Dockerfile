@@ -32,6 +32,8 @@ RUN mkdir /var/run/sshd && \
 
 # setup ssh
 COPY ubuntu/root/.ssh/* /root/.ssh/
+RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
+    && chmod 0600 /root/.ssh/authorized_keys
 
 # setup bash
 COPY ubuntu/root/.bashrc /root/.bashrc
