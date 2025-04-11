@@ -26,11 +26,11 @@ RUN apt-get update -y \
     && apt-get -y install nano net-tools lynx \
     && apt-get clean
 
+# setup ssh
 RUN mkdir /var/run/sshd && \
     echo 'root:root' | chpasswd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-# setup ssh
 COPY ubuntu/root/.ssh/* /root/.ssh/
 RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys \
     && chmod 0600 /root/.ssh/authorized_keys
