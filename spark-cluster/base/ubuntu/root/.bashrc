@@ -1,3 +1,5 @@
+alias ll='ls -lhag'
+
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export HDFS_NAMENODE_USER=root
 export HDFS_DATANODE_USER=root
